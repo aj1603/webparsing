@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class PullBearController extends Controller
 {
-    public function dbbershka() {
+    public function dbpullbear() {
         $client = new Client();
         $products = array();
         $urls = [

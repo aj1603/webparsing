@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class AsicsController extends Controller
 {
-    public function dbbershka() {
+    public function dbasics() {
         $client = new Client();
         $products = array();
         $urls = [
