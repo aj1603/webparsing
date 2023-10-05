@@ -40,13 +40,13 @@ class BershkaController extends Controller
             'https://www.trendyol.com/bershka/feminen-bol-kesim-klasik-blazer-p-635010162',
             'https://www.trendyol.com/bershka/suni-kurklu-oversize-biker-ceket-p-756891279',
             'https://www.trendyol.com/bershka/dokulu-yirtilmaz-crop-ceket-p-666177819',
-            // 'https://www.trendyol.com/bershka/detayli-crop-blazer-ceket-p-749817632',
+            'https://www.trendyol.com/bershka/detayli-crop-blazer-ceket-p-749817632',
             'https://www.trendyol.com/bershka/3-boyutlu-cepli-ceket-p-732037773',
             'https://www.trendyol.com/bershka/spy-x-family-baskili-naylon-ceket-p-748889983',
             'https://www.trendyol.com/bershka/feminen-kesim-dokumlu-blazer-p-514307185',
             'https://www.trendyol.com/bershka/pamuklu-bolero-bomber-ceket-p-747794146',
             'https://www.trendyol.com/bershka/feminen-bol-kesim-klasik-blazer-p-637312506',
-            // 'https://www.trendyol.com/bershka/fermuarli-tailored-fit-trucker-blazer-p-751624392',
+            'https://www.trendyol.com/bershka/fermuarli-tailored-fit-trucker-blazer-p-751624392',
             'https://www.trendyol.com/bershka/denim-crop-ceket-p-742778412',
             'https://www.trendyol.com/bershka/soluk-efektli-bomber-ceket-p-760766949',
             'https://www.trendyol.com/bershka/soluk-efektli-denim-oversize-biker-ceket-p-764036478',
@@ -62,18 +62,18 @@ class BershkaController extends Controller
             'https://www.trendyol.com/bershka/vatkali-crop-denim-ceket-p-754567905',
             'https://www.trendyol.com/bershka/bomber-ceket-p-748890026',
             'https://www.trendyol.com/bershka/parlak-pelus-mont-p-764034711',
-            // 'https://www.trendyol.com/bershka/pamuk-ve-naylon-karisimli-kisa-ceket-p-744785614',
+            'https://www.trendyol.com/bershka/pamuk-ve-naylon-karisimli-kisa-ceket-p-744785614',
             'https://www.trendyol.com/bershka/naylon-karisimli-yarisci-ceket-p-754892874',
             'https://www.trendyol.com/bershka/suni-deri-biker-ceket-p-714327401',
             'https://www.trendyol.com/bershka/bomber-ceket-p-747844908',
             'https://www.trendyol.com/bershka/distressed-detayli-suni-deri-biker-ceket-p-744785857',
             'https://www.trendyol.com/bershka/suni-deri-oversize-dad-fit-ceket-p-751624493',
-            // 'https://www.trendyol.com/bershka/ince-cizgili-crop-fit-blazer-p-754893027',
+            'https://www.trendyol.com/bershka/ince-cizgili-crop-fit-blazer-p-754893027',
             'https://www.trendyol.com/bershka/suni-yunlu-suni-suet-crop-ceket-p-760767052',
             'https://www.trendyol.com/bershka/kapusonlu-pelus-ceket-p-752856490',
-            // 'https://www.trendyol.com/bershka/metalik-renk-sisme-mont-p-761306419',
-            // 'https://www.trendyol.com/bershka/kapitone-kanvas-worker-ceket-p-750038939',
-            // 'https://www.trendyol.com/bershka/ozel-dikim-bomber-ceket-p-753760398',
+            'https://www.trendyol.com/bershka/metalik-renk-sisme-mont-p-761306419',
+            'https://www.trendyol.com/bershka/kapitone-kanvas-worker-ceket-p-750038939',
+            'https://www.trendyol.com/bershka/ozel-dikim-bomber-ceket-p-753760398',
             'https://www.trendyol.com/bershka/metalik-bomber-ceket-p-764034833',
             'https://www.trendyol.com/bershka/yakasi-suni-yunlu-kisa-suni-deri-pilot-ceket-p-760766972',
             'https://www.trendyol.com/bershka/new-york-islemeli-fermuarli-sweatshirt-p-752845393',
@@ -84,13 +84,25 @@ class BershkaController extends Controller
             'https://www.trendyol.com/bershka/denim-ince-ceket-p-754893466',
             'https://www.trendyol.com/bershka/denim-trenckot-p-747795619',
             'https://www.trendyol.com/bershka/crop-naylon-karisimli-kapusonlu-ceket-p-750778253',
+            'https://www.trendyol.com/bershka/suni-kurklu-oversize-biker-ceket-p-762616795',
+            'https://www.trendyol.com/bershka/cepli-bolero-p-762617935',
+            'https://www.trendyol.com/bershka/oversize-blazer-ceket-p-760766805',
+            'https://www.trendyol.com/bershka/fermuarli-tailored-fit-trucker-blazer-p-744786073',
+            'https://www.trendyol.com/bershka/feminen-bol-kesim-klasik-blazer-p-637342650',
+            'https://www.trendyol.com/bershka/cepli-pamuklu-ceket-p-747773830',
+            'https://www.trendyol.com/bershka/cepli-pamuklu-ceket-p-747773930',
+            'https://www.trendyol.com/bershka/fosforlu-detayli-kapusonlu-ceket-p-750039073',
+            'https://www.trendyol.com/bershka/ince-cizgili-crop-fit-blazer-p-754891848',
+            'https://www.trendyol.com/bershka/crop-denim-trench-ceket-p-752739761',
+            'https://www.trendyol.com/bershka/fosforlu-detayli-kapusonlu-ceket-p-750039068',
+            'https://www.trendyol.com/bershka/distressed-suni-deri-trucker-ceket-p-751624910',
         ];
         
         foreach ($urls as $url) {
             $response = $client->request('GET', $url);            
             $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });
             $size = $response->filter('.sp-itm')->each(function ($node) { return $node->text(); });
-            $price = $response->filter('.pr-bx-nm')->each(function ($node) { return $node->text(); });
+            $price = $response->filter('.prc-dsc')->each(function ($node) { return $node->text(); });
             $image = $response->filter('img')->each(function ($node) { return $node->attr('src'); });
             
             $imgUrl;
@@ -142,60 +154,3 @@ class BershkaController extends Controller
         return $products;
     }
 }
-    // public function getproduct() {
-    //     $client = new Client();
-    //     $products = array();
-    //     $bershka1 = $client->request('GET', 'https://www.trendyol.com/bershka/feminen-kesim-regular-fit-klasik-kruvaze-blazer-p-652816143?merchantId=104961&boutiqueId=618519&v=s');
-
-    //     $bershka1_name = $bershka1->filter('h1.pr-new-br')->each(function ($node) {return $node->text();});
-                
-    //     $bershka1_size = $bershka1->filter('.sp-itm')->each(function ($node) {return $node->text();});
-
-    //     $bershka1_price = $bershka1->filter('.pr-bx-nm')->each(function ($node) {return $node->text();});
-
-    //     $bershka1_image = $bershka1->filter('img')->each(function ($node) {return $node->attr('src');});
-
-    //     $imgUrl1;
-    //     $san1 = count($bershka1_image);
-    //     for ($i=0; $i<$san1; $i++){
-    //         $surat1 = explode(".", $bershka1_image[$i]);            
-    //         if($surat1[3] == 'jpg'){
-    //             $imgUrl1 = $bershka1_image[$i];
-    //         }
-    //     }
-
-    //     $count1 = count($bershka1_name);
-    //     for ($i = 0; $i < $count1; $i++) {
-    //         $fullprice = explode(" ", $bershka1_price[$i]);
-    //         $floatValue = floatval($fullprice[0]);
-    //         $fullpricee = $floatValue * 0.78;
-    //         $product = array(
-    //             'name' => $bershka1_name[$i],
-    //             'price' => $fullpricee,
-    //             'imgUrl' => $imgUrl1,
-    //             'size' => $bershka1_size,
-    //             'brand' => "Bershka",
-    //         );
-    //         array_push($products, $product);
-    //     }
-
-    //     foreach ($products as $product) {
-    //         $newprice = 0;
-    //         if ($product['price'] < 10) {
-    //             $newprice = $product['price'] * 1000;
-    //         }
-    //         else {
-    //             $newprice = $product['price'];
-    //         }
-    //         DB::table('products')->insert([
-    //             'name' => $product['name'],
-    //             'price' => $newprice,
-    //             'imgUrl' => $product['imgUrl'],
-    //             'brand' => $product['brand'],
-    //             'size' => "HI",
-    //             'created_at' => now(),
-    //             'updated_at' => now(),
-    //         ]);
-    //     }
-    //     return "Sucessfully update";
-    // }

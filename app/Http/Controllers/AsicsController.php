@@ -21,7 +21,7 @@ class AsicsController extends Controller
             $response = $client->request('GET', $url);            
             $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });
             $size = $response->filter('.sp-itm')->each(function ($node) { return $node->text(); });
-            $price = $response->filter('.pr-bx-nm')->each(function ($node) { return $node->text(); });
+            $price = $response->filter('.prc-dsc')->each(function ($node) { return $node->text(); });
             $image = $response->filter('img')->each(function ($node) { return $node->attr('src'); });
             
             $imgUrl;
@@ -43,7 +43,7 @@ class AsicsController extends Controller
                     'price' => $fullpricee,
                     'imgUrl' => $imgUrl,
                     'size' => $size,
-                    'brand' => "Bershka",
+                    'brand' => "Asics",
                 );
                 array_push($products, $product);
             }
@@ -69,7 +69,7 @@ class AsicsController extends Controller
     }
 
     public function getasics() {
-        $products = DB::select('SELECT * FROM products WHERE shop = "Asics"');
+        $products = DB::select('SELECT * FROM products WHERE brand = "Asics"');
         return $products;
     }
 
