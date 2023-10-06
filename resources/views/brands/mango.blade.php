@@ -79,6 +79,12 @@
         list-style-type: none;
     }
 </style>
+<a href="/dbmango">
+    <p>dbmango update</p>
+</a>
+<a href="/dbmango1">
+    <p>dbmango update</p>
+</a>
 <div class="products-div">
     <!-- <ul class="products-ul"> -->
     @foreach ($products as $product)

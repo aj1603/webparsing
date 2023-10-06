@@ -79,6 +79,9 @@
         list-style-type: none;
     }
 </style>
+<a href="/dbpullbear">
+    <p>Pullbear update</p>
+</a>
 <div class="products-div">
     <!-- <ul class="products-ul"> -->
     @foreach ($products as $product)

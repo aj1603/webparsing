@@ -79,6 +79,10 @@
         list-style-type: none;
     }
 </style>
+<a href="/dbgrimelange">
+    <p>Grimelange update</p>
+</a>
+
 <div class="products-div">
     <!-- <ul class="products-ul"> -->
     @foreach ($products as $product)

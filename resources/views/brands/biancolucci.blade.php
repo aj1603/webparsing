@@ -79,6 +79,12 @@
         list-style-type: none;
     }
 </style>
+<a href="/dbbiancolucci">
+    <p>Biancolucci update</p>
+</a>
+<a href="/dbbiancolucci1">
+    <p>Biancolucci update</p>
+</a>
 <div class="products-div">
     <!-- <ul class="products-ul"> -->
     @foreach ($products as $product)

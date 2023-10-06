@@ -80,7 +80,7 @@
     }
 </style>
 <a href="/dbasics">
-    <p>Asics reload</p>
+    <p>Asics update</p>
 </a>
 <div class="products-div">
     <!-- <ul class="products-ul"> -->

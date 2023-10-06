@@ -79,6 +79,21 @@
         list-style-type: none;
     }
 </style>
+<a href="/dbkoton1">
+    <p>Koton update</p>
+</a>
+<a href="/dbkoton2">
+    <p>Koton update</p>
+</a>
+<a href="/dbkoton3">
+    <p>Koton update</p>
+</a>
+<a href="/dbkoton4">
+    <p>Koton update</p>
+</a>
+<a href="/dbkoton5">
+    <p>Koton update</p>
+</a>
 <div class="products-div">
     <!-- <ul class="products-ul"> -->
     @foreach ($products as $product)

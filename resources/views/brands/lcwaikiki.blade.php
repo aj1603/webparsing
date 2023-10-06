@@ -79,6 +79,18 @@
         list-style-type: none;
     }
 </style>
+<a href="/dblcwaikiki">
+    <p>LCWaikiki update</p>
+</a>
+<a href="/dblcwaikiki1">
+    <p>LCWaikiki update</p>
+</a>
+<a href="/dblcwaikiki2">
+    <p>LCWaikiki update</p>
+</a>
+<a href="/dblcwaikiki3">
+    <p>LCWaikiki update</p>
+</a>
 <div class="products-div">
     <!-- <ul class="products-ul"> -->
     @foreach ($products as $product)
