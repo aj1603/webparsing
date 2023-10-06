@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class LCWaikikiController extends Controller
 {
+    public function alllcwaikiki(Request $request){
+        $products = DB::select("SELECT * FROM products WHERE brand='LCWaikiki'");
+        return view('brands/lcwaikiki', ['products' => $products]);
+    }
+
     public function dblcwaikiki() {
         $client = new Client();
         $products = array();

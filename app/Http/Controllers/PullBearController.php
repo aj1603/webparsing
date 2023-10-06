@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class PullBearController extends Controller
 {
+    public function allpullbear(Request $request){
+        $products = DB::select("SELECT * FROM products WHERE brand='Pullbear'");
+        return view('brands/pullbear', ['products' => $products]);
+    }
+
     public function dbpullbear() {
         $client = new Client();
         $products = array();

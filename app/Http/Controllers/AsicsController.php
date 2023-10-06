@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class AsicsController extends Controller
 {
+    public function allasics(Request $request){
+        $products = DB::select("SELECT * FROM products WHERE brand='Asics'");
+        return view('brands/asics', ['products' => $products]);
+    }
+    
     public function dbasics() {
         $client = new Client();
         $products = array();

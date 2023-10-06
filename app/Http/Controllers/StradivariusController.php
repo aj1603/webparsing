@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class StradivariusController extends Controller
 {
+    public function allstradivarius(Request $request){
+        $products = DB::select("SELECT * FROM products WHERE brand='Stradivarius'");
+        return view('brands/stradivarius', ['products' => $products]);
+    }
+
     public function dbstradivarius() {
         $client = new Client();
         $products = array();

@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class KotonController extends Controller
 {
+    public function allkoton(Request $request){
+        $products = DB::select("SELECT * FROM products WHERE brand='Koton'");
+        return view('brands/koton', ['products' => $products]);
+    }
+
     public function dbkoton1() {
         $client = new Client();
         $products = array();
@@ -319,8 +324,103 @@ class KotonController extends Controller
         $client = new Client();
         $products = array();
         $urls = [
-            'https://www.trendyol.com/grimelange/henrietta-relaxed-gri-tekli-ceket-p-760529016',
-        ];
+            'https://www.trendyol.com/koton/deri-gorunumlu-gomlek-ceket-citcitli-yirtmac-detayli-p-459216172',
+            'https://www.trendyol.com/koton/crop-tuvit-ceket-dugmeli-cepli-yuvarlak-yaka-p-372675452',
+            'https://www.trendyol.com/koton/bomber-ceket-fermuarli-cepli-beli-buzgulu-p-641744268',
+            'https://www.trendyol.com/koton/blazer-ceket-tek-dugmeli-cep-detayli-p-645523386',
+            'https://www.trendyol.com/koton/kot-ceket-tasli-cepli-metal-dugmeli-pamuklu-p-746381752',
+            'https://www.trendyol.com/koton/tas-detayli-kruvaze-crop-blazer-ceket-p-366177948',
+            'https://www.trendyol.com/koton/kadin-leopar-deri-gorunumlu-oversize-biker-ceket-3wak20017pw-p-422991172',
+            'https://www.trendyol.com/koton/kadin-kirmizi-desenli-ceket-3wak50035pw-p-348688457',
+            'https://www.trendyol.com/koton/kadin-bej-ceket-3wal20072iw-p-348688397',
+            'https://www.trendyol.com/koton/aysegul-afacan-x-koton-kruvaze-dugmeli-keten-karisimli-blazer-ceket-p-741580316',
+            'https://www.trendyol.com/koton/aysegul-afacan-x-dugme-detayli-kruvaze-blazer-ceket-p-379434875',
+            'https://www.trendyol.com/koton/dugmeli-tuvit-ceket-p-367419745',
+            'https://www.trendyol.com/koton/dugme-detayli-tuvit-crop-ceket-p-302151885',
+            'https://www.trendyol.com/koton/crop-kot-ceket-cepli-kollari-pencere-detayli-tasli-pamuklu-p-757067201',
+            'https://www.trendyol.com/koton/kiz-cocuk-aplike-detayli-cepli-sardonlu-cizgili-kaskorse-detayli-kolej-ceket-4wkg10056-p-755011771',
+            'https://www.trendyol.com/koton/kruvaze-dugmeli-katli-yaka-kareli-blazer-ceket-p-241399644',
+            'https://www.trendyol.com/koton/aslihan-malbora-x-pelus-detayli-citcitli-bomber-ceket-p-444101373',
+            'https://www.trendyol.com/koton/crop-tuvit-ceket-yuvarlak-yaka-p-370991393',
+            'https://www.trendyol.com/koton/kadin-bej-ceket-p-752437917',
+            'https://www.trendyol.com/koton/haki-kadin-ceket-p-754519448',
+            'https://www.trendyol.com/koton/blazer-ceket-kircilli-tek-dugmeli-cep-detayli-p-744082395',
+            'https://www.trendyol.com/koton/crop-tuvit-ceket-cepli-dugmeli-p-748926571',
+            'https://www.trendyol.com/koton/fitilli-kadife-kruvaze-blazer-ceket-p-377617310',
+            'https://www.trendyol.com/koton/kadin-turuncu-ekose-ceket-3wak50083ew-p-459216141',
+            'https://www.trendyol.com/koton/aslihan-malbora-x-tas-islemeli-crop-kot-ceket-p-366776932',
+            'https://www.trendyol.com/koton/uzun-kot-ceket-zimba-islemeli-buyuk-kapakli-cepli-p-746385228',
+            'https://www.trendyol.com/koton/kadin-siyah-ceket-2sal20040iw-p-242096353',
+            'https://www.trendyol.com/koton/kot-ceket-cep-detayli-citcit-kapama-pamuklu-p-747865026',
+            'https://www.trendyol.com/koton/tuvit-blazer-ceket-dugmeli-kapakli-cepli-astarli-p-752352688',
+            'https://www.trendyol.com/koton/kadin-siyah-ekoseli-ceket-3sak50046iw-p-641744484',
+            'https://www.trendyol.com/koton/deri-gorunumlu-ceket-crop-kapakli-cepli-dugmeli-p-759967311',
+            'https://www.trendyol.com/koton/kadin-gomlek-yaka-cep-detayli-kot-ceket-3wal50029md-p-334432827',
+            'https://www.trendyol.com/koton/kadin-3-4-kollu-cep-detayli-blazer-ceket-3sak50012uw-p-515990265',
+            'https://www.trendyol.com/koton/aysegul-afacan-x-ekoseli-kruvaze-blazer-ceket-p-389004398',
+            'https://www.trendyol.com/koton/blazer-ceket-kollari-tuy-detayli-tek-dugmeli-p-389073240',
+            'https://www.trendyol.com/koton/oversize-deri-gorunumlu-ceket-gomlek-yaka-kusakli-p-391627769',
+            'https://www.trendyol.com/koton/melis-agazat-x-piriltili-kadife-blazer-ceket-p-443341252',
+            'https://www.trendyol.com/koton/kimono-gorunumlu-ceket-kusakli-p-472893023',
+            'https://www.trendyol.com/koton/blazer-ceket-cift-dugmeli-cep-detayli-p-458759715',
+            'https://www.trendyol.com/koton/crop-blazer-ceket-kruvaze-yaka-dugmeli-bros-detayli-p-752653979',
+            'https://www.trendyol.com/koton/aysegul-afacan-x-dugmeli-kruvaze-blazer-ceket-p-388992742',
+            'https://www.trendyol.com/koton/kadin-kapakli-cep-detayli-kruvaze-dugmeli-blazer-ceket-3sak50003uw-p-457992215',
+            'https://www.trendyol.com/koton/kot-ceket-yirtik-detayli-kapakli-cepli-pamuklu-p-762641612',
+            'https://www.trendyol.com/koton/cep-kapakli-keten-karisimli-blazer-ceket-p-675040336',
+            'https://www.trendyol.com/koton/oversize-keten-blazer-ceket-p-686014249',
+            'https://www.trendyol.com/koton/crop-blazer-ceket-tek-dugmeli-p-679682290',
+            'https://www.trendyol.com/koton/piriltili-kruvaze-blazer-ceket-p-444122464',
+            'https://www.trendyol.com/koton/blazer-ceket-tek-dugmeli-p-691141862',
+            'https://www.trendyol.com/koton/kadin-siyah-ekose-ceket-3wal20165iw-p-372675399',
+            'https://www.trendyol.com/koton/tek-dugmeli-blazer-ceket-p-376443311',
+            'https://www.trendyol.com/koton/deri-gorunumlu-dugmeli-ceket-p-376452303',
+            'https://www.trendyol.com/koton/kruvaze-blazer-ceket-p-411261860',
+            'https://www.trendyol.com/koton/tuvit-kruvaze-crop-blazer-ceket-p-410968774',
+            'https://www.trendyol.com/koton/4wal50014md-koton-kadin-jean-ceket-siyah-p-760154580',
+            'https://www.trendyol.com/koton/aysegul-afacan-x-kruvaze-dugmeli-blazer-ceket-p-683118484',
+            'https://www.trendyol.com/koton/deri-gorunumlu-kruvaze-blazer-ceket-cep-detayli-p-443897349',
+            'https://www.trendyol.com/koton/kisa-sisme-mont-p-358860146',
+            'https://www.trendyol.com/koton/tuvit-gomlek-ceket-crop-uzun-kollu-kareli-p-460321747',
+            'https://www.trendyol.com/koton/oversize-gomlek-ceket-citcit-dugmeli-kapakli-cepli-p-761513171',
+            'https://www.trendyol.com/koton/standart-deve-tuyu-kadin-ceket-4wal20120iw-p-756563314',
+            'https://www.trendyol.com/koton/crop-ceket-dugmeli-cepli-gomlek-yaka-p-691046759',
+            'https://www.trendyol.com/koton/bomber-ceket-leopar-desenli-fermuarli-cep-detayli-p-761183093',
+            'https://www.trendyol.com/koton/cep-detayli-dugmeli-blazer-ceket-p-289027158',
+            'https://www.trendyol.com/koton/pelus-detayli-crop-fermuarli-ceket-p-465337010',
+            'https://www.trendyol.com/koton/kareli-cepli-ceket-p-260623395',
+            'https://www.trendyol.com/koton/aysegul-afacan-x-koton-kruvaze-dugmeli-keten-karisimli-blazer-ceket-p-741581758',
+            'https://www.trendyol.com/koton/oversize-kot-ceket-baskili-p-358860613',
+            'https://www.trendyol.com/koton/pelus-detayli-citcitli-bomber-ceket-p-452503774',
+            'https://www.trendyol.com/koton/renk-bloklu-fermuarli-ceket-p-259811010',
+            'https://www.trendyol.com/koton/kolej-ceket-deri-gorunumlu-aplike-detayli-p-377610311',
+            'https://www.trendyol.com/koton/parasut-sweatshirt-kapusonlu-beli-lastikli-p-659626661',
+            'https://www.trendyol.com/koton/kadin-mor-desenli-ceket-3wak50133uw-p-371851779',
+            'https://www.trendyol.com/koton/jackets-p-761527763',
+            'https://www.trendyol.com/koton/leopar-desenli-plus-ceket-kapusonlu-p-364440914',
+            'https://www.trendyol.com/koton/kruvaze-tuvit-ceket-dugmeli-p-379703616',
+            'https://www.trendyol.com/koton/melis-agazat-x-bros-detayli-kruvaze-tuvit-ceket-p-459216142',
+            'https://www.trendyol.com/koton/kadin-fermuar-detayli-hakim-yaka-uzun-kollu-kot-ceket-3sal50032md-p-703890444',
+            'https://www.trendyol.com/koton/zebra-desenli-oversize-blazer-ceket-tek-dugmeli-p-744272825',
+            'https://www.trendyol.com/koton/aysegul-afacan-x-dugmeli-crop-ceket-p-391567378',
+            'https://www.trendyol.com/koton/kot-ceket-kisa-aplike-asimetrik-cep-detayli-pamuklu-p-753724505',
+            'https://www.trendyol.com/koton/deri-gorunumlu-yelek-fermuarli-cep-detayli-kruvaze-p-744761288',
+            'https://www.trendyol.com/koton/suet-gorunumlu-blazer-ceket-p-377612077',
+            'https://www.trendyol.com/koton/zebra-desenli-kapusonlu-pelus-ceket-p-374802024',
+            'https://www.trendyol.com/koton/crop-blazer-ceket-kruvaze-dugmeli-p-723237279',
+            'https://www.trendyol.com/koton/aysegul-afacan-x-kollari-triko-kase-ceket-p-463315353',
+            'https://www.trendyol.com/koton/crop-kot-ceket-kusgozu-detayli-p-366300149',
+            'https://www.trendyol.com/koton/melis-agazat-x-oversize-kruvaze-blazer-ceket-p-455852241',
+            'https://www.trendyol.com/koton/biker-ceket-deri-gorunumlu-fermuarli-p-764823088',
+            'https://www.trendyol.com/koton/kadin-siyah-ceket-3sak40001bw-p-637317381',
+            'https://www.trendyol.com/koton/oversize-blazer-ceket-dugmeli-kruvaze-kapakli-cepli-p-759158741',
+            'https://www.trendyol.com/koton/aysegul-afacan-x-kruvaze-crop-blazer-ceket-p-371850543',
+            'https://www.trendyol.com/koton/blazer-ceket-dugmeli-ters-yaka-kapakli-cep-detayli-p-761500856',
+            'https://www.trendyol.com/koton/tuvit-blazer-ceket-gold-dugmeli-p-371060681',
+            'https://www.trendyol.com/koton/blazer-ceket-p-263492380',
+            'https://www.trendyol.com/koton/rachel-araz-x-puskul-detayli-cepli-tuvit-ceket-p-461805726',
+            'https://www.trendyol.com/koton/oversize-blazer-ceket-kruvaze-dugmeli-p-702178069',
+      ];
         
         foreach ($urls as $url) {
             $response = $client->request('GET', $url);            
@@ -377,7 +477,246 @@ class KotonController extends Controller
         $client = new Client();
         $products = array();
         $urls = [
-            'https://www.trendyol.com/grimelange/henrietta-relaxed-gri-tekli-ceket-p-760529016',
+            'https://www.trendyol.com/koton/dugme-detayli-blazer-ceket-p-372433657',
+            'https://www.trendyol.com/koton/yakasiz-blazer-ceket-p-359384786',
+            'https://www.trendyol.com/koton/kadin-ekru-ceket-3sak50059uw-p-641744410',
+            'https://www.trendyol.com/koton/buyuk-cep-detayli-crop-kot-ceket-p-680470841',
+            'https://www.trendyol.com/koton/deri-gorunumlu-gomlek-ceket-cepli-dugmeli-p-443889666',
+            'https://www.trendyol.com/koton/oversize-kruvaze-ceket-cift-dugmeli-p-383434059',
+            'https://www.trendyol.com/koton/kadin-tek-dugmeli-blazer-ceket-p-354431913',
+            'https://www.trendyol.com/koton/blazer-ceket-deri-gorunumlu-dugmeli-kapakli-cepli-p-758362154',
+            'https://www.trendyol.com/koton/desenli-cep-detayli-blazer-ceket-p-455840180',
+            'https://www.trendyol.com/koton/kadin-siyah-ceket-p-752437380',
+            'https://www.trendyol.com/koton/polo-yaka-hirka-dugmeli-uzun-kollu-ajurlu-p-752358128',
+            'https://www.trendyol.com/koton/crop-tuvit-ceket-kisa-kollu-kruvaze-dugmeli-v-yaka-p-472083592',
+            'https://www.trendyol.com/koton/rachel-araz-x-kruvaze-blazer-ceket-p-637173583',
+            'https://www.trendyol.com/koton/blazer-tuvit-ceket-tek-dugmeli-cep-detayli-p-391624878',
+            'https://www.trendyol.com/koton/melis-agazat-x-inci-dugmeli-kruvaze-tuvit-blazer-ceket-p-411232728',
+            'https://www.trendyol.com/koton/kadin-yesil-ekose-ceket-3wak20334ew-p-459216152',
+            'https://www.trendyol.com/koton/pembe-kadin-ceket-3sak50011uw-p-472831425',
+            'https://www.trendyol.com/koton/siyah-kadin-ceket-p-754519780',
+            'https://www.trendyol.com/koton/kadin-dik-yaka-fermuarli-sisme-mont-3wal20072iw-p-348688394',
+            'https://www.trendyol.com/koton/tuvit-ceket-gold-dugmeli-cepli-simli-p-744058177',
+            'https://www.trendyol.com/koton/standart-cok-renkli-kadin-ceket-3sak20006nw-p-673198583',
+            'https://www.trendyol.com/koton/deri-gorunumlu-blazer-ceket-cep-detayli-p-442696339',
+            'https://www.trendyol.com/koton/suni-deri-detayli-shacket-p-358860845',
+            'https://www.trendyol.com/koton/kadin-aslihan-malbora-x-zebra-desenli-kapusonlu-pelus-ceket-3wak00305ew-p-384952656',
+            'https://www.trendyol.com/koton/crop-parasut-ceket-fermuarli-dik-yaka-p-679512206',
+            'https://www.trendyol.com/koton/kadin-suni-kurklu-renk-bloklu-kot-ceket-3wal50052md-p-380508265',
+            'https://www.trendyol.com/koton/aysegul-afacan-x-pencere-detayli-blazer-ceket-p-379703313',
+            'https://www.trendyol.com/koton/melis-agazat-x-jakarli-cep-detayli-blazer-ceket-p-444042903',
+            'https://www.trendyol.com/koton/kadin-gri-ekose-ceket-3wak20329ew-p-459216158',
+            'https://www.trendyol.com/koton/oversize-blazer-ceket-yilan-derisi-desenli-dugme-detayli-p-757269949',
+            'https://www.trendyol.com/koton/deri-gorunumlu-crop-blazer-ceket-tek-dugmeli-cep-detayli-p-441385696',
+            'https://www.trendyol.com/koton/kadin-siyah-ekose-ceket-3wak50011pw-p-371851397',
+            'https://www.trendyol.com/koton/crop-kot-ceket-pamuklu-zimba-detayli-kapakli-cift-cepli-p-751661726',
+            'https://www.trendyol.com/koton/melis-agazat-x-cicekli-oversize-blazer-ceket-p-728103353',
+            'https://www.trendyol.com/koton/oversize-tuvit-shacket-cepli-dugmeli-p-437207720',
+            'https://www.trendyol.com/koton/kadin-kiremit-ceket-3wak50006iw-p-358860572',
+            'https://www.trendyol.com/koton/tek-dugmeli-blazer-ceket-cep-detayli-p-723311375',
+            'https://www.trendyol.com/koton/kadin-kirik-beyaz-ceket-p-727785362',
+            'https://www.trendyol.com/koton/kadife-crop-shacket-cepli-dugmeli-p-391646474',
+            'https://www.trendyol.com/koton/jackets-pu-p-239769730',
+            'https://www.trendyol.com/koton/deri-gorunumlu-ceket-cep-detayli-citcit-dugmeli-gomlek-yaka-p-767187219',
+            'https://www.trendyol.com/koton/kadin-beli-buzgulu-fermuarli-turuncu-ceket-beli-buzgulu-fermuarli-ceket-2sak50029pw-p-260780120',
+            'https://www.trendyol.com/koton/kadin-leopar-astarli-kruvaze-dugmeli-blazer-ceket-3sak50010uw-p-465896025',
+            'https://www.trendyol.com/koton/kirik-beyaz-kadin-ceket-p-754519175',
+            'https://www.trendyol.com/koton/standart-beyaz-siyah-kadin-ceket-4wak20099ew-p-756563338',
+            'https://www.trendyol.com/koton/kadin-tek-dugme-kollari-katlamali-blazer-ceket-4wak10017ek-p-744053832',
+            'https://www.trendyol.com/koton/3sak50009uw-koton-kadin-ceket-siyah-p-744098839',
+            'https://www.trendyol.com/koton/kadin-tas-islemeli-cepli-gomlek-yaka-kot-ceket-4wal50014md-p-756634182',
+            'https://www.trendyol.com/koton/melis-agazat-x-tasli-dugmeli-desenli-blazer-ceket-p-455783675',
+            'https://www.trendyol.com/koton/kadin-bej-ceket-2sak50034cw-p-334432721',
+            'https://www.trendyol.com/koton/basic-blazer-ceket-kapakli-cepli-p-759854467',
+            'https://www.trendyol.com/koton/standart-kirik-beyaz-kadin-ceket-4wak20101ew-p-763549271',
+            'https://www.trendyol.com/koton/melis-agazat-x-simli-crop-blazer-ceket-p-445613061',
+            'https://www.trendyol.com/koton/zebra-desenli-blazer-ceket-p-364635138',
+            'https://www.trendyol.com/koton/kadin-x-cepli-oversize-pelus-yaka-gomlek-ceket-3wak20192ew-p-448208236',
+            'https://www.trendyol.com/koton/kadin-lacivert-ekoseli-ceket-3wak50238uw-p-459216138',
+            'https://www.trendyol.com/koton/acik-indigo-kadin-denim-ceket-4wal50014md-p-757762242',
+            'https://www.trendyol.com/koton/tek-dugmeli-blazer-ceket-p-344939941',
+            'https://www.trendyol.com/koton/blazer-ceket-tek-dugmeli-kapakli-cep-detayli-p-448204597',
+            'https://www.trendyol.com/koton/aysegul-afacan-x-jakarli-oversize-blazer-ceket-p-391563104',
+            'https://www.trendyol.com/koton/kadin-ceket-4wak20102ew-p-762750433',
+            'https://www.trendyol.com/koton/crop-tuvit-ceket-cepli-dugmeli-p-691061596',
+            'https://www.trendyol.com/koton/kiz-cocuk-fileto-ve-kapakli-cepli-pul-islemeli-kot-ceket-3skg20001ad-p-515510474',
+            'https://www.trendyol.com/koton/kadin-aysegul-afacan-x-tek-dugmeli-jakarli-ceket-3sak50151uw-p-680232704',
+            'https://www.trendyol.com/koton/suni-deri-blazer-ceket-cep-detayli-p-379740969',
+            'https://www.trendyol.com/koton/kadin-siyah-ceket-3wak50211uw-p-637317314',
+            'https://www.trendyol.com/koton/polar-gomlek-ceket-kapakli-cep-detayli-citcitli-p-754742621',
+            'https://www.trendyol.com/koton/kadin-bej-ekose-ceket-p-752437347',
+            'https://www.trendyol.com/koton/kadin-siyah-ekose-ceket-3wak50174uw-p-377610144',
+            'https://www.trendyol.com/koton/tuvit-ceket-dugmeli-gomlek-yaka-cep-detayli-p-752348717',
+            'https://www.trendyol.com/koton/suni-deri-detayli-gomlek-ceket-cepli-citcitli-p-391646483',
+            'https://www.trendyol.com/koton/kadin-siyah-desenli-mont-1kak22417nk-p-49576543',
+            'https://www.trendyol.com/koton/etnik-desenli-kimono-kusakli-midi-boy-p-377617272',
+            'https://www.trendyol.com/koton/3sal20008iw-kadin-ceket-kahverengi-p-457992235',
+            'https://www.trendyol.com/koton/blazer-ceket-tek-dugmeli-p-744569477',
+            'https://www.trendyol.com/koton/kadin-melis-agazat-x-dugme-detayli-tuvit-crop-ceket-2sak50070pw-p-363676797',
+            'https://www.trendyol.com/koton/kadin-ceket-bej-3wal10168ik-p-348688293',
+            'https://www.trendyol.com/koton/ekoseli-cepli-shacket-p-376442677',
+            'https://www.trendyol.com/koton/kadin-beyaz-ekose-ceket-3wak50097uw-p-371851639',
+            'https://www.trendyol.com/koton/kadin-acik-indigo-ceket-3sal50007md-p-641744310',
+            'https://www.trendyol.com/koton/kruvaze-blazer-ceket-arma-dugmeli-p-691061720',
+            'https://www.trendyol.com/koton/dugmeli-cepli-ekose-ceket-p-147047891',
+            'https://www.trendyol.com/koton/blazer-ceket-suit-gorunumlu-dugmeli-cep-detayli-p-759026364',
+            'https://www.trendyol.com/koton/cep-detayli-desenli-blazer-ceket-p-280565465',
+            'https://www.trendyol.com/koton/tuvit-biker-ceket-fermuarli-cepli-suni-deri-gorunumlu-yaka-detayli-p-762582508',
+            'https://www.trendyol.com/koton/aplike-cepli-ceket-p-377610358',
+            'https://www.trendyol.com/koton/crop-kot-ceket-aplike-asimetrik-cep-detayli-pamuklu-p-752653973',
+            'https://www.trendyol.com/koton/parasut-spor-ceket-fermuarli-p-674410918',
+            'https://www.trendyol.com/koton/siyah-kadin-ceket-p-754519845',
+            'https://www.trendyol.com/koton/crop-yelek-dugmeli-mini-cepli-p-761512855',
+            'https://www.trendyol.com/koton/kadin-siyah-ceket-p-752437642',
+            'https://www.trendyol.com/koton/crop-parasut-ceket-beli-lastikli-dik-yaka-p-744272671',
+            'https://www.trendyol.com/koton/erkek-cocuk-kapakli-cepli-uzun-kollu-kot-ceket-4wkb20002td-p-741210507',
+            'https://www.trendyol.com/koton/kadin-kahverengi-desenli-ceket-p-727785254',
+            'https://www.trendyol.com/koton/crop-tuvit-ceket-kisa-kollu-kruvaze-dugmeli-v-yaka-p-641744420',
+            'https://www.trendyol.com/koton/melis-agazat-x-bros-detayli-kruvaze-tuvit-ceket-3wak50064ew-p-465897658',
+        ];
+        
+        foreach ($urls as $url) {
+            $response = $client->request('GET', $url);            
+            $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });
+            $size = $response->filter('.sp-itm')->each(function ($node) { return $node->text(); });
+            $price = $response->filter('.prc-dsc')->each(function ($node) { return $node->text(); });
+            $image = $response->filter('img')->each(function ($node) { return $node->attr('src'); });
+            
+            $imgUrl;
+            for ($i = 0; $i < count($image); $i++) {
+                $surat = explode(".", $image[$i]);
+                if ($surat[3] == 'jpg') {
+                    $imgUrl = $image[$i];
+                    break;
+                }
+            }
+            
+            for ($i = 0; $i < count($name); $i++) {
+                $fullprice = explode(" ", $price[$i]);
+                $floatValue = floatval($fullprice[0]);
+                $fullpricee = $floatValue * 0.78;
+                
+                $product = array(
+                    'name' => $name[$i],
+                    'price' => $fullpricee,
+                    'imgUrl' => $imgUrl,
+                    'size' => $size,
+                    'brand' => "Koton",
+                );
+                array_push($products, $product);
+            }
+        }
+        
+        $insertData = array();
+        foreach ($products as $product) {
+            $newprice = $product['price'] < 10 ? $product['price'] * 1000 : $product['price'];
+            $insertData[] = [
+                'name' => $product['name'],
+                'price' => $newprice,
+                'imgUrl' => $product['imgUrl'],
+                'brand' => $product['brand'],
+                'size' => $size[1],
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+        }
+        
+        DB::table('products')->insert($insertData);
+        
+        return "Successfully updated";
+    }
+
+    public function dbkoton5() {
+        $client = new Client();
+        $products = array();
+        $urls = [
+            'https://www.trendyol.com/koton/kadin-deri-gorunumlu-oversize-shacket-3wak20170ew-p-384919571',
+            'https://www.trendyol.com/koton/kadin-kruvaze-kapama-crop-tuvit-ceket-p-380486808',
+            'https://www.trendyol.com/koton/kadin-cepli-dugmeli-jakarli-blazer-ceket-2sak50045pw-p-363675374',
+            'https://www.trendyol.com/koton/crop-kot-ceket-pencere-detayli-cepli-gomlek-yaka-p-685757093',
+            'https://www.trendyol.com/koton/kadin-yesil-ceket-p-752437433',
+            'https://www.trendyol.com/koton/ceket-p-154172615',
+            'https://www.trendyol.com/koton/kisa-sisme-mont-kapusonlu-fermuarli-cepli-p-444042788',
+            'https://www.trendyol.com/koton/kadin-gumus-ceket-3wak20139ew-p-377610603',
+            'https://www.trendyol.com/koton/kadin-siyah-ceket-3wal20195iw-p-377610491',
+            'https://www.trendyol.com/koton/ceket-p-160115263',
+            'https://www.trendyol.com/koton/crop-fermuarli-bomber-ceket-p-372087904',
+            'https://www.trendyol.com/koton/kot-ceket-klasik-yaka-buyuk-kapakli-cepli-pamuklu-uzun-kollu-p-759082758',
+            'https://www.trendyol.com/koton/kadin-kahverengi-ekoseli-ceket-3wak50219uw-p-444042798',
+            'https://www.trendyol.com/koton/rachel-araz-x-kruvaze-blazer-ceket-p-641745161',
+            'https://www.trendyol.com/koton/kadin-siyah-ekose-ceket-3wak50231uw-p-457992346',
+            'https://www.trendyol.com/koton/crop-parasut-ceket-beli-lastikli-dik-yaka-p-744105517',
+            'https://www.trendyol.com/koton/oversize-deri-gorunumlu-shacket-p-391646476',
+            'https://www.trendyol.com/koton/kadin-pencere-detayli-cepli-gomlek-yaka-crop-kot-ceket-3sal50026md-p-705164656',
+            'https://www.trendyol.com/koton/oversize-gomlek-ceket-cep-detayli-citcit-dugmeli-p-758115016',
+            'https://www.trendyol.com/koton/oversize-shacket-cep-detayli-citcitli-p-379718675',
+            'https://www.trendyol.com/koton/kadin-suet-gorunumlu-cepli-oversize-gomlek-ceket-3wak10054ek-p-377617063',
+            'https://www.trendyol.com/koton/dugmeli-cepli-shacket-p-371036084',
+            'https://www.trendyol.com/koton/zebra-desenli-kruvaze-blazer-ceket-p-371851362',
+            'https://www.trendyol.com/koton/kadin-aysegul-afacan-x-kruvaze-dugmeli-blazer-ceket-3sak50155uw-p-684023642',
+            'https://www.trendyol.com/koton/oversize-tuvit-ceket-deri-gorunum-detayli-kapakli-cepli-p-761512960',
+            'https://www.trendyol.com/koton/fusya-kadin-ceket-4wkg20002aw-p-760059998',
+            'https://www.trendyol.com/koton/kadin-lacivert-cizgili-ceket-6yak52792uk-p-3175692',
+            'https://www.trendyol.com/koton/kaidn-kisa-sisme-mont-2yak23524ow-p-359452069',
+            'https://www.trendyol.com/koton/kiz-cocuk-ceket-cep-detayli-uzun-kollu-gomlek-4wkg20023aw-p-755014688',
+            'https://www.trendyol.com/koton/tuvit-ceket-deri-gorunum-detayli-cepli-dugmeli-p-752347822',
+            'https://www.trendyol.com/koton/standart-beyaz-siyah-kadin-ceket-4wal10017ik-p-749179331',
+            'https://www.trendyol.com/koton/standart-vizon-kadin-ceket-3sak50114uw-p-741192429',
+            'https://www.trendyol.com/koton/kadin-yirtmac-detayli-tek-dugmeli-blazer-ceket-3sak50060uw-p-516015713',
+            'https://www.trendyol.com/koton/kadin-melis-agazat-x-oversize-kruvaze-blazer-ceket-3wak50052ew-p-471716876',
+            'https://www.trendyol.com/koton/cep-detayli-tek-dugmeli-crop-blazer-ceket-p-411259397',
+            'https://www.trendyol.com/koton/kadin-ekoseli-cepli-ceket-3wak20111ew-p-376714840',
+            'https://www.trendyol.com/koton/melis-agazat-x-puskul-detayli-kimono-p-322202790',
+            'https://www.trendyol.com/koton/tek-dugmeli-blazer-ceket-yirtmac-detayli-p-463697867',
+            'https://www.trendyol.com/koton/siyah-kadin-ceket-p-754518650',
+            'https://www.trendyol.com/koton/kadin-kiremit-ceket-p-752437779',
+            'https://www.trendyol.com/koton/kadin-siyah-ceket-p-752437583',
+            'https://www.trendyol.com/koton/kadin-siyah-ceket-3wak50071uw-p-444042911',
+            'https://www.trendyol.com/koton/kadin-bej-ekose-ceket-3wak20137ew-p-377610449',
+            'https://www.trendyol.com/koton/cep-detayli-ceket-p-32433875',
+            'https://www.trendyol.com/koton/siyah-kadin-ceket-p-754519679',
+            'https://www.trendyol.com/koton/acik-indigo-kadin-ceket-p-754519484',
+            'https://www.trendyol.com/koton/bej-kadin-ceket-p-754519330',
+            'https://www.trendyol.com/koton/kadin-hardal-desenli-ceket-p-727785368',
+            'https://www.trendyol.com/koton/kadin-cep-detayli-citcitli-oversize-gomlek-ceket-3wak50032pw-p-380484394',
+            'https://www.trendyol.com/koton/ceket-42-bej-melanj-p-373816758',
+            'https://www.trendyol.com/koton/kadin-cepli-tek-dugmeli-ceket-2sak50065pw-p-363676316',
+            'https://www.trendyol.com/koton/kadin-x-cep-detayli-desenli-blazer-ceket-2sak50031ew-p-363675610',
+            'https://www.trendyol.com/koton/kadin-kazayagi-desenli-ceket-3wak20107ew-p-358860640',
+            'https://www.trendyol.com/koton/kruvaze-dugmeli-blazer-ceket-kapakli-cep-detayli-p-463702192',
+            'https://www.trendyol.com/koton/crop-kruvaze-blazer-ceket-p-708571152',
+            'https://www.trendyol.com/koton/siyah-kadin-blazer-4wak50022uw-p-749193166',
+            'https://www.trendyol.com/koton/blazer-ceket-tek-dugmeli-kapakli-cep-detayli-p-649679585',
+            'https://www.trendyol.com/koton/kadin-siyah-ceket-3wak50210uw-p-457992267',
+            'https://www.trendyol.com/koton/kot-ceket-fermuar-detayli-hakim-yaka-uzun-kollu-p-684120702',
+            'https://www.trendyol.com/koton/suni-deri-detayli-tuvit-gomlek-ceket-cepli-citcitli-p-411262632',
+            'https://www.trendyol.com/koton/siyah-beyaz-kadin-ceket-4wkg10056ak-p-756776699',
+            'https://www.trendyol.com/koton/blazer-ceket-v-yaka-cep-detayli-p-641744408',
+            'https://www.trendyol.com/koton/ceket-kadin-p-154815244',
+            'https://www.trendyol.com/koton/zebra-desenli-blazer-ceket-tek-dugmeli-p-391646479',
+            'https://www.trendyol.com/koton/zebra-desenli-kruvaze-blazer-ceket-p-370965017',
+            'https://www.trendyol.com/koton/kadin-kirmizi-ekose-ceket-3wak50032pw-p-371851291',
+            'https://www.trendyol.com/koton/standart-ekru-kadin-ceket-3sak50116uw-p-736541428',
+            'https://www.trendyol.com/koton/cepli-kareli-uzun-kollu-ceket-p-248996583',
+            'https://www.trendyol.com/koton/deri-gorunumlu-biker-ceket-ters-yaka-yakasi-ve-mansetleri-suni-kurklu-fermuarli-p-764853399',
+            'https://www.trendyol.com/koton/fermuarli-deri-gorunumlu-ceket-p-158369259',
+            'https://www.trendyol.com/koton/suet-gorunumlu-biker-ceket-ters-yaka-suni-kurklu-dugmeli-cepli-p-764848975',
+            'https://www.trendyol.com/koton/biker-ceket-suet-gorunumlu-cepli-yakalari-ve-astari-pelus-p-754013532',
+            'https://www.trendyol.com/koton/biker-ceket-suet-gorunumlu-suni-kurk-detayli-dugmeli-p-759981961',
+            'https://www.trendyol.com/koton/biker-ceket-suet-gorunumlu-suni-kurk-detayli-kemerli-p-754029400',
+            'https://www.trendyol.com/koton/deri-ceket-oversize-cepli-zimba-detayli-gomlek-yaka-p-649651337',
+            'https://www.trendyol.com/koton/oversize-ceket-gomlek-yaka-uzun-kollu-cep-detayli-p-458772180',
+            'https://www.trendyol.com/koton/oduncu-gomlek-ceket-puskul-detayli-cepli-dugmeli-p-475243648',
+            'https://www.trendyol.com/koton/pilot-ceket-deri-gorunumlu-aplike-detayli-p-379605523',
+            'https://www.trendyol.com/koton/deri-gorunumlu-ceket-yakasi-suni-kurklu-cep-detayli-p-475255315',
+            'https://www.trendyol.com/koton/biker-ceket-pelus-ters-yaka-suet-gorunumlu-cepli-dugme-detayli-p-754873486',
+            'https://www.trendyol.com/koton/parlak-deri-gorunumlu-ceket-yakasi-suni-kurk-detayli-p-391609514',
+            'https://www.trendyol.com/koton/crop-krokodil-ceket-uzun-kollu-dugmeli-kapakli-cep-detayli-p-759966750',
+            'https://www.trendyol.com/koton/oversize-ceket-gomlek-yaka-uzun-kollu-cep-detayli-p-459383966',
+            'https://www.trendyol.com/koton/atlet-p-721254870',
+            'https://www.trendyol.com/koton/tuvit-gomlek-ceket-crop-uzun-kollu-kareli-p-636548942',
+            'https://www.trendyol.com/koton/kadin-kruvaze-fermuarli-cep-detayli-astarli-biker-ceket-4wak20103ew-p-767618822',
+            'https://www.trendyol.com/koton/kadin-cepli-dugmeli-suni-deri-detayli-crop-tuvit-blazer-ceket-4wak50080uw-p-767614274'
         ];
         
         foreach ($urls as $url) {
@@ -435,43 +774,4 @@ class KotonController extends Controller
         $products = DB::select('SELECT * FROM products WHERE brand = "Koton"');
         return $products;
     }
-
-    // public function url() {
-
-        
-    //     $client = new Client();
-        
-    //     // Specify the URL of the page you want to scrape
-    //     $url = 'https://www.trendyol.com/koton-kadin-ceket-x-b38-g1-c1030?pi=21';
-        
-    //     // Send a GET request to the URL
-    //     $crawler = $client->request('GET', $url);
-        
-    //     // Extract product URLs using CSS selectors
-    //     $productLinks = $crawler->filter('.p-card-chldrn-cntnr.card-border a')->links();
-        
-    //     // Loop through the links and display the URLs
-    //     foreach ($productLinks as $link) {
-    //         print_r($link->getUri()) . "<br>";
-    //     }
-    // }
-
 }
-
-
-//  https://www.trendyol.com/koton/deri-gorunumlu-gomlek-ceket-citcitli-yirtmac-detayli-p-459216172https://www.trendyol.com/koton/crop-tuvit-ceket-dugmeli-cepli-yuvarlak-yaka-p-372675452https://www.trendyol.com/koton/bomber-ceket-fermuarli-cepli-beli-buzgulu-p-641744268https://www.trendyol.com/koton/blazer-ceket-tek-dugmeli-cep-detayli-p-645523386https://www.trendyol.com/koton/kot-ceket-tasli-cepli-metal-dugmeli-pamuklu-p-746381752https://www.trendyol.com/koton/tas-detayli-kruvaze-crop-blazer-ceket-p-366177948https://www.trendyol.com/koton/kadin-leopar-deri-gorunumlu-oversize-biker-ceket-3wak20017pw-p-422991172https://www.trendyol.com/koton/kadin-kirmizi-desenli-ceket-3wak50035pw-p-348688457https://www.trendyol.com/koton/kadin-bej-ceket-3wal20072iw-p-348688397https://www.trendyol.com/koton/aysegul-afacan-x-koton-kruvaze-dugmeli-keten-karisimli-blazer-ceket-p-741580316https://www.trendyol.com/koton/aysegul-afacan-x-dugme-detayli-kruvaze-blazer-ceket-p-379434875https://www.trendyol.com/koton/dugmeli-tuvit-ceket-p-367419745https://www.trendyol.com/koton/dugme-detayli-tuvit-crop-ceket-p-302151885https://www.trendyol.com/koton/crop-kot-ceket-cepli-kollari-pencere-detayli-tasli-pamuklu-p-757067201https://www.trendyol.com/koton/kiz-cocuk-aplike-detayli-cepli-sardonlu-cizgili-kaskorse-detayli-kolej-ceket-4wkg10056-p-755011771https://www.trendyol.com/koton/kruvaze-dugmeli-katli-yaka-kareli-blazer-ceket-p-241399644https://www.trendyol.com/koton/aslihan-malbora-x-pelus-detayli-citcitli-bomber-ceket-p-444101373https://www.trendyol.com/koton/crop-tuvit-ceket-yuvarlak-yaka-p-370991393https://www.trendyol.com/koton/kadin-bej-ceket-p-752437917https://www.trendyol.com/koton/haki-kadin-ceket-p-754519448https://www.trendyol.com/koton/blazer-ceket-kircilli-tek-dugmeli-cep-detayli-p-744082395https://www.trendyol.com/koton/crop-tuvit-ceket-cepli-dugmeli-p-748926571https://www.trendyol.com/koton/fitilli-kadife-kruvaze-blazer-ceket-p-377617310https://www.trendyol.com/koton/kadin-turuncu-ekose-ceket-3wak50083ew-p-459216141
-// https://www.trendyol.com/koton/aslihan-malbora-x-tas-islemeli-crop-kot-ceket-p-366776932https://www.trendyol.com/koton/uzun-kot-ceket-zimba-islemeli-buyuk-kapakli-cepli-p-746385228https://www.trendyol.com/koton/kadin-siyah-ceket-2sal20040iw-p-242096353https://www.trendyol.com/koton/kot-ceket-cep-detayli-citcit-kapama-pamuklu-p-747865026https://www.trendyol.com/koton/tuvit-blazer-ceket-dugmeli-kapakli-cepli-astarli-p-752352688https://www.trendyol.com/koton/kadin-siyah-ekoseli-ceket-3sak50046iw-p-641744484https://www.trendyol.com/koton/deri-gorunumlu-ceket-crop-kapakli-cepli-dugmeli-p-759967311https://www.trendyol.com/koton/kadin-gomlek-yaka-cep-detayli-kot-ceket-3wal50029md-p-334432827https://www.trendyol.com/koton/kadin-3-4-kollu-cep-detayli-blazer-ceket-3sak50012uw-p-515990265https://www.trendyol.com/koton/aysegul-afacan-x-ekoseli-kruvaze-blazer-ceket-p-389004398https://www.trendyol.com/koton/blazer-ceket-kollari-tuy-detayli-tek-dugmeli-p-389073240https://www.trendyol.com/koton/oversize-deri-gorunumlu-ceket-gomlek-yaka-kusakli-p-391627769https://www.trendyol.com/koton/melis-agazat-x-piriltili-kadife-blazer-ceket-p-443341252https://www.trendyol.com/koton/kimono-gorunumlu-ceket-kusakli-p-472893023https://www.trendyol.com/koton/blazer-ceket-cift-dugmeli-cep-detayli-p-458759715https://www.trendyol.com/koton/crop-blazer-ceket-kruvaze-yaka-dugmeli-bros-detayli-p-752653979https://www.trendyol.com/koton/aysegul-afacan-x-dugmeli-kruvaze-blazer-ceket-p-388992742https://www.trendyol.com/koton/kadin-kapakli-cep-detayli-kruvaze-dugmeli-blazer-ceket-3sak50003uw-p-457992215https://www.trendyol.com/koton/kot-ceket-yirtik-detayli-kapakli-cepli-pamuklu-p-762641612https://www.trendyol.com/koton/cep-kapakli-keten-karisimli-blazer-ceket-p-675040336https://www.trendyol.com/koton/oversize-keten-blazer-ceket-p-686014249https://www.trendyol.com/koton/crop-blazer-ceket-tek-dugmeli-p-679682290https://www.trendyol.com/koton/piriltili-kruvaze-blazer-ceket-p-444122464https://www.trendyol.com/koton/blazer-ceket-tek-dugmeli-p-691141862
-// https://www.trendyol.com/koton/kadin-siyah-ekose-ceket-3wal20165iw-p-372675399https://www.trendyol.com/koton/tek-dugmeli-blazer-ceket-p-376443311https://www.trendyol.com/koton/deri-gorunumlu-dugmeli-ceket-p-376452303https://www.trendyol.com/koton/kruvaze-blazer-ceket-p-411261860https://www.trendyol.com/koton/tuvit-kruvaze-crop-blazer-ceket-p-410968774https://www.trendyol.com/koton/4wal50014md-koton-kadin-jean-ceket-siyah-p-760154580https://www.trendyol.com/koton/aysegul-afacan-x-kruvaze-dugmeli-blazer-ceket-p-683118484https://www.trendyol.com/koton/deri-gorunumlu-kruvaze-blazer-ceket-cep-detayli-p-443897349https://www.trendyol.com/koton/kisa-sisme-mont-p-358860146https://www.trendyol.com/koton/tuvit-gomlek-ceket-crop-uzun-kollu-kareli-p-460321747https://www.trendyol.com/koton/oversize-gomlek-ceket-citcit-dugmeli-kapakli-cepli-p-761513171https://www.trendyol.com/koton/standart-deve-tuyu-kadin-ceket-4wal20120iw-p-756563314https://www.trendyol.com/koton/crop-ceket-dugmeli-cepli-gomlek-yaka-p-691046759https://www.trendyol.com/koton/bomber-ceket-leopar-desenli-fermuarli-cep-detayli-p-761183093https://www.trendyol.com/koton/cep-detayli-dugmeli-blazer-ceket-p-289027158https://www.trendyol.com/koton/pelus-detayli-crop-fermuarli-ceket-p-465337010https://www.trendyol.com/koton/kareli-cepli-ceket-p-260623395https://www.trendyol.com/koton/aysegul-afacan-x-koton-kruvaze-dugmeli-keten-karisimli-blazer-ceket-p-741581758https://www.trendyol.com/koton/oversize-kot-ceket-baskili-p-358860613https://www.trendyol.com/koton/pelus-detayli-citcitli-bomber-ceket-p-452503774https://www.trendyol.com/koton/renk-bloklu-fermuarli-ceket-p-259811010https://www.trendyol.com/koton/kolej-ceket-deri-gorunumlu-aplike-detayli-p-377610311https://www.trendyol.com/koton/parasut-sweatshirt-kapusonlu-beli-lastikli-p-659626661https://www.trendyol.com/koton/kadin-mor-desenli-ceket-3wak50133uw-p-371851779
-// https://www.trendyol.com/koton/jackets-p-761527763https://www.trendyol.com/koton/leopar-desenli-plus-ceket-kapusonlu-p-364440914https://www.trendyol.com/koton/kruvaze-tuvit-ceket-dugmeli-p-379703616https://www.trendyol.com/koton/melis-agazat-x-bros-detayli-kruvaze-tuvit-ceket-p-459216142https://www.trendyol.com/koton/kadin-fermuar-detayli-hakim-yaka-uzun-kollu-kot-ceket-3sal50032md-p-703890444https://www.trendyol.com/koton/zebra-desenli-oversize-blazer-ceket-tek-dugmeli-p-744272825https://www.trendyol.com/koton/aysegul-afacan-x-dugmeli-crop-ceket-p-391567378https://www.trendyol.com/koton/kot-ceket-kisa-aplike-asimetrik-cep-detayli-pamuklu-p-753724505https://www.trendyol.com/koton/deri-gorunumlu-yelek-fermuarli-cep-detayli-kruvaze-p-744761288https://www.trendyol.com/koton/suet-gorunumlu-blazer-ceket-p-377612077https://www.trendyol.com/koton/zebra-desenli-kapusonlu-pelus-ceket-p-374802024https://www.trendyol.com/koton/crop-blazer-ceket-kruvaze-dugmeli-p-723237279https://www.trendyol.com/koton/aysegul-afacan-x-kollari-triko-kase-ceket-p-463315353https://www.trendyol.com/koton/crop-kot-ceket-kusgozu-detayli-p-366300149https://www.trendyol.com/koton/melis-agazat-x-oversize-kruvaze-blazer-ceket-p-455852241https://www.trendyol.com/koton/biker-ceket-deri-gorunumlu-fermuarli-p-764823088https://www.trendyol.com/koton/kadin-siyah-ceket-3sak40001bw-p-637317381https://www.trendyol.com/koton/oversize-blazer-ceket-dugmeli-kruvaze-kapakli-cepli-p-759158741https://www.trendyol.com/koton/aysegul-afacan-x-kruvaze-crop-blazer-ceket-p-371850543https://www.trendyol.com/koton/blazer-ceket-dugmeli-ters-yaka-kapakli-cep-detayli-p-761500856https://www.trendyol.com/koton/tuvit-blazer-ceket-gold-dugmeli-p-371060681https://www.trendyol.com/koton/blazer-ceket-p-263492380https://www.trendyol.com/koton/rachel-araz-x-puskul-detayli-cepli-tuvit-ceket-p-461805726https://www.trendyol.com/koton/oversize-blazer-ceket-kruvaze-dugmeli-p-702178069
-// https://www.trendyol.com/koton/dugme-detayli-blazer-ceket-p-372433657https://www.trendyol.com/koton/yakasiz-blazer-ceket-p-359384786https://www.trendyol.com/koton/kadin-ekru-ceket-3sak50059uw-p-641744410https://www.trendyol.com/koton/buyuk-cep-detayli-crop-kot-ceket-p-680470841https://www.trendyol.com/koton/deri-gorunumlu-gomlek-ceket-cepli-dugmeli-p-443889666https://www.trendyol.com/koton/oversize-kruvaze-ceket-cift-dugmeli-p-383434059https://www.trendyol.com/koton/kadin-tek-dugmeli-blazer-ceket-p-354431913https://www.trendyol.com/koton/blazer-ceket-deri-gorunumlu-dugmeli-kapakli-cepli-p-758362154https://www.trendyol.com/koton/desenli-cep-detayli-blazer-ceket-p-455840180https://www.trendyol.com/koton/kadin-siyah-ceket-p-752437380https://www.trendyol.com/koton/polo-yaka-hirka-dugmeli-uzun-kollu-ajurlu-p-752358128https://www.trendyol.com/koton/crop-tuvit-ceket-kisa-kollu-kruvaze-dugmeli-v-yaka-p-472083592https://www.trendyol.com/koton/rachel-araz-x-kruvaze-blazer-ceket-p-637173583https://www.trendyol.com/koton/blazer-tuvit-ceket-tek-dugmeli-cep-detayli-p-391624878https://www.trendyol.com/koton/melis-agazat-x-inci-dugmeli-kruvaze-tuvit-blazer-ceket-p-411232728https://www.trendyol.com/koton/kadin-yesil-ekose-ceket-3wak20334ew-p-459216152https://www.trendyol.com/koton/pembe-kadin-ceket-3sak50011uw-p-472831425https://www.trendyol.com/koton/siyah-kadin-ceket-p-754519780https://www.trendyol.com/koton/kadin-dik-yaka-fermuarli-sisme-mont-3wal20072iw-p-348688394https://www.trendyol.com/koton/tuvit-ceket-gold-dugmeli-cepli-simli-p-744058177https://www.trendyol.com/koton/standart-cok-renkli-kadin-ceket-3sak20006nw-p-673198583https://www.trendyol.com/koton/deri-gorunumlu-blazer-ceket-cep-detayli-p-442696339https://www.trendyol.com/koton/suni-deri-detayli-shacket-p-358860845https://www.trendyol.com/koton/kadin-aslihan-malbora-x-zebra-desenli-kapusonlu-pelus-ceket-3wak00305ew-p-384952656
-// https://www.trendyol.com/koton/crop-parasut-ceket-fermuarli-dik-yaka-p-679512206https://www.trendyol.com/koton/kadin-suni-kurklu-renk-bloklu-kot-ceket-3wal50052md-p-380508265https://www.trendyol.com/koton/aysegul-afacan-x-pencere-detayli-blazer-ceket-p-379703313https://www.trendyol.com/koton/melis-agazat-x-jakarli-cep-detayli-blazer-ceket-p-444042903https://www.trendyol.com/koton/kadin-gri-ekose-ceket-3wak20329ew-p-459216158https://www.trendyol.com/koton/oversize-blazer-ceket-yilan-derisi-desenli-dugme-detayli-p-757269949https://www.trendyol.com/koton/deri-gorunumlu-crop-blazer-ceket-tek-dugmeli-cep-detayli-p-441385696https://www.trendyol.com/koton/kadin-siyah-ekose-ceket-3wak50011pw-p-371851397https://www.trendyol.com/koton/crop-kot-ceket-pamuklu-zimba-detayli-kapakli-cift-cepli-p-751661726https://www.trendyol.com/koton/melis-agazat-x-cicekli-oversize-blazer-ceket-p-728103353https://www.trendyol.com/koton/oversize-tuvit-shacket-cepli-dugmeli-p-437207720https://www.trendyol.com/koton/kadin-kiremit-ceket-3wak50006iw-p-358860572https://www.trendyol.com/koton/tek-dugmeli-blazer-ceket-cep-detayli-p-723311375https://www.trendyol.com/koton/kadin-kirik-beyaz-ceket-p-727785362https://www.trendyol.com/koton/kadife-crop-shacket-cepli-dugmeli-p-391646474https://www.trendyol.com/koton/jackets-pu-p-239769730https://www.trendyol.com/koton/deri-gorunumlu-ceket-cep-detayli-citcit-dugmeli-gomlek-yaka-p-767187219https://www.trendyol.com/koton/kadin-beli-buzgulu-fermuarli-turuncu-ceket-beli-buzgulu-fermuarli-ceket-2sak50029pw-p-260780120https://www.trendyol.com/koton/kadin-leopar-astarli-kruvaze-dugmeli-blazer-ceket-3sak50010uw-p-465896025https://www.trendyol.com/koton/kirik-beyaz-kadin-ceket-p-754519175https://www.trendyol.com/koton/standart-beyaz-siyah-kadin-ceket-4wak20099ew-p-756563338https://www.trendyol.com/koton/kadin-tek-dugme-kollari-katlamali-blazer-ceket-4wak10017ek-p-744053832https://www.trendyol.com/koton/3sak50009uw-koton-kadin-ceket-siyah-p-744098839https://www.trendyol.com/koton/kadin-tas-islemeli-cepli-gomlek-yaka-kot-ceket-4wal50014md-p-756634182
-// https://www.trendyol.com/koton/melis-agazat-x-tasli-dugmeli-desenli-blazer-ceket-p-455783675https://www.trendyol.com/koton/kadin-bej-ceket-2sak50034cw-p-334432721https://www.trendyol.com/koton/basic-blazer-ceket-kapakli-cepli-p-759854467https://www.trendyol.com/koton/standart-kirik-beyaz-kadin-ceket-4wak20101ew-p-763549271https://www.trendyol.com/koton/melis-agazat-x-simli-crop-blazer-ceket-p-445613061https://www.trendyol.com/koton/zebra-desenli-blazer-ceket-p-364635138https://www.trendyol.com/koton/kadin-x-cepli-oversize-pelus-yaka-gomlek-ceket-3wak20192ew-p-448208236https://www.trendyol.com/koton/kadin-lacivert-ekoseli-ceket-3wak50238uw-p-459216138https://www.trendyol.com/koton/acik-indigo-kadin-denim-ceket-4wal50014md-p-757762242https://www.trendyol.com/koton/tek-dugmeli-blazer-ceket-p-344939941https://www.trendyol.com/koton/blazer-ceket-tek-dugmeli-kapakli-cep-detayli-p-448204597https://www.trendyol.com/koton/aysegul-afacan-x-jakarli-oversize-blazer-ceket-p-391563104https://www.trendyol.com/koton/kadin-ceket-4wak20102ew-p-762750433https://www.trendyol.com/koton/crop-tuvit-ceket-cepli-dugmeli-p-691061596https://www.trendyol.com/koton/kiz-cocuk-fileto-ve-kapakli-cepli-pul-islemeli-kot-ceket-3skg20001ad-p-515510474https://www.trendyol.com/koton/kadin-aysegul-afacan-x-tek-dugmeli-jakarli-ceket-3sak50151uw-p-680232704https://www.trendyol.com/koton/suni-deri-blazer-ceket-cep-detayli-p-379740969https://www.trendyol.com/koton/kadin-siyah-ceket-3wak50211uw-p-637317314https://www.trendyol.com/koton/polar-gomlek-ceket-kapakli-cep-detayli-citcitli-p-754742621https://www.trendyol.com/koton/kadin-bej-ekose-ceket-p-752437347https://www.trendyol.com/koton/kadin-siyah-ekose-ceket-3wak50174uw-p-377610144https://www.trendyol.com/koton/tuvit-ceket-dugmeli-gomlek-yaka-cep-detayli-p-752348717https://www.trendyol.com/koton/suni-deri-detayli-gomlek-ceket-cepli-citcitli-p-391646483https://www.trendyol.com/koton/kadin-siyah-desenli-mont-1kak22417nk-p-49576543
-// https://www.trendyol.com/koton/etnik-desenli-kimono-kusakli-midi-boy-p-377617272https://www.trendyol.com/koton/3sal20008iw-kadin-ceket-kahverengi-p-457992235https://www.trendyol.com/koton/blazer-ceket-tek-dugmeli-p-744569477https://www.trendyol.com/koton/kadin-melis-agazat-x-dugme-detayli-tuvit-crop-ceket-2sak50070pw-p-363676797https://www.trendyol.com/koton/kadin-ceket-bej-3wal10168ik-p-348688293https://www.trendyol.com/koton/ekoseli-cepli-shacket-p-376442677https://www.trendyol.com/koton/kadin-beyaz-ekose-ceket-3wak50097uw-p-371851639https://www.trendyol.com/koton/kadin-acik-indigo-ceket-3sal50007md-p-641744310https://www.trendyol.com/koton/kruvaze-blazer-ceket-arma-dugmeli-p-691061720https://www.trendyol.com/koton/dugmeli-cepli-ekose-ceket-p-147047891https://www.trendyol.com/koton/blazer-ceket-suit-gorunumlu-dugmeli-cep-detayli-p-759026364https://www.trendyol.com/koton/cep-detayli-desenli-blazer-ceket-p-280565465https://www.trendyol.com/koton/tuvit-biker-ceket-fermuarli-cepli-suni-deri-gorunumlu-yaka-detayli-p-762582508https://www.trendyol.com/koton/aplike-cepli-ceket-p-377610358https://www.trendyol.com/koton/crop-kot-ceket-aplike-asimetrik-cep-detayli-pamuklu-p-752653973https://www.trendyol.com/koton/parasut-spor-ceket-fermuarli-p-674410918https://www.trendyol.com/koton/siyah-kadin-ceket-p-754519845https://www.trendyol.com/koton/crop-yelek-dugmeli-mini-cepli-p-761512855https://www.trendyol.com/koton/kadin-siyah-ceket-p-752437642https://www.trendyol.com/koton/crop-parasut-ceket-beli-lastikli-dik-yaka-p-744272671https://www.trendyol.com/koton/erkek-cocuk-kapakli-cepli-uzun-kollu-kot-ceket-4wkb20002td-p-741210507https://www.trendyol.com/koton/kadin-kahverengi-desenli-ceket-p-727785254https://www.trendyol.com/koton/crop-tuvit-ceket-kisa-kollu-kruvaze-dugmeli-v-yaka-p-641744420https://www.trendyol.com/koton/melis-agazat-x-bros-detayli-kruvaze-tuvit-ceket-3wak50064ew-p-465897658
-// https://www.trendyol.com/koton/kadin-deri-gorunumlu-oversize-shacket-3wak20170ew-p-384919571https://www.trendyol.com/koton/kadin-kruvaze-kapama-crop-tuvit-ceket-p-380486808https://www.trendyol.com/koton/kadin-cepli-dugmeli-jakarli-blazer-ceket-2sak50045pw-p-363675374https://www.trendyol.com/koton/crop-kot-ceket-pencere-detayli-cepli-gomlek-yaka-p-685757093https://www.trendyol.com/koton/kadin-yesil-ceket-p-752437433https://www.trendyol.com/koton/ceket-p-154172615https://www.trendyol.com/koton/kisa-sisme-mont-kapusonlu-fermuarli-cepli-p-444042788https://www.trendyol.com/koton/kadin-gumus-ceket-3wak20139ew-p-377610603https://www.trendyol.com/koton/kadin-siyah-ceket-3wal20195iw-p-377610491https://www.trendyol.com/koton/ceket-p-160115263https://www.trendyol.com/koton/crop-fermuarli-bomber-ceket-p-372087904https://www.trendyol.com/koton/kot-ceket-klasik-yaka-buyuk-kapakli-cepli-pamuklu-uzun-kollu-p-759082758https://www.trendyol.com/koton/kadin-kahverengi-ekoseli-ceket-3wak50219uw-p-444042798https://www.trendyol.com/koton/rachel-araz-x-kruvaze-blazer-ceket-p-641745161https://www.trendyol.com/koton/kadin-siyah-ekose-ceket-3wak50231uw-p-457992346https://www.trendyol.com/koton/crop-parasut-ceket-beli-lastikli-dik-yaka-p-744105517https://www.trendyol.com/koton/oversize-deri-gorunumlu-shacket-p-391646476https://www.trendyol.com/koton/kadin-pencere-detayli-cepli-gomlek-yaka-crop-kot-ceket-3sal50026md-p-705164656https://www.trendyol.com/koton/oversize-gomlek-ceket-cep-detayli-citcit-dugmeli-p-758115016https://www.trendyol.com/koton/oversize-shacket-cep-detayli-citcitli-p-379718675https://www.trendyol.com/koton/kadin-suet-gorunumlu-cepli-oversize-gomlek-ceket-3wak10054ek-p-377617063https://www.trendyol.com/koton/dugmeli-cepli-shacket-p-371036084https://www.trendyol.com/koton/zebra-desenli-kruvaze-blazer-ceket-p-371851362https://www.trendyol.com/koton/kadin-aysegul-afacan-x-kruvaze-dugmeli-blazer-ceket-3sak50155uw-p-684023642
-// https://www.trendyol.com/koton/oversize-tuvit-ceket-deri-gorunum-detayli-kapakli-cepli-p-761512960https://www.trendyol.com/koton/fusya-kadin-ceket-4wkg20002aw-p-760059998https://www.trendyol.com/koton/kadin-lacivert-cizgili-ceket-6yak52792uk-p-3175692https://www.trendyol.com/koton/kaidn-kisa-sisme-mont-2yak23524ow-p-359452069https://www.trendyol.com/koton/kiz-cocuk-ceket-cep-detayli-uzun-kollu-gomlek-4wkg20023aw-p-755014688https://www.trendyol.com/koton/tuvit-ceket-deri-gorunum-detayli-cepli-dugmeli-p-752347822https://www.trendyol.com/koton/standart-beyaz-siyah-kadin-ceket-4wal10017ik-p-749179331https://www.trendyol.com/koton/standart-vizon-kadin-ceket-3sak50114uw-p-741192429https://www.trendyol.com/koton/kadin-yirtmac-detayli-tek-dugmeli-blazer-ceket-3sak50060uw-p-516015713https://www.trendyol.com/koton/kadin-melis-agazat-x-oversize-kruvaze-blazer-ceket-3wak50052ew-p-471716876https://www.trendyol.com/koton/cep-detayli-tek-dugmeli-crop-blazer-ceket-p-411259397https://www.trendyol.com/koton/kadin-ekoseli-cepli-ceket-3wak20111ew-p-376714840https://www.trendyol.com/koton/melis-agazat-x-puskul-detayli-kimono-p-322202790https://www.trendyol.com/koton/tek-dugmeli-blazer-ceket-yirtmac-detayli-p-463697867https://www.trendyol.com/koton/siyah-kadin-ceket-p-754518650https://www.trendyol.com/koton/kadin-kiremit-ceket-p-752437779https://www.trendyol.com/koton/kadin-siyah-ceket-p-752437583https://www.trendyol.com/koton/kadin-siyah-ceket-3wak50071uw-p-444042911https://www.trendyol.com/koton/kadin-bej-ekose-ceket-3wak20137ew-p-377610449https://www.trendyol.com/koton/cep-detayli-ceket-p-32433875https://www.trendyol.com/koton/siyah-kadin-ceket-p-754519679https://www.trendyol.com/koton/acik-indigo-kadin-ceket-p-754519484https://www.trendyol.com/koton/bej-kadin-ceket-p-754519330https://www.trendyol.com/koton/kadin-hardal-desenli-ceket-p-727785368
-// https://www.trendyol.com/koton/kadin-cep-detayli-citcitli-oversize-gomlek-ceket-3wak50032pw-p-380484394https://www.trendyol.com/koton/ceket-42-bej-melanj-p-373816758https://www.trendyol.com/koton/kadin-cepli-tek-dugmeli-ceket-2sak50065pw-p-363676316https://www.trendyol.com/koton/kadin-x-cep-detayli-desenli-blazer-ceket-2sak50031ew-p-363675610https://www.trendyol.com/koton/kadin-kazayagi-desenli-ceket-3wak20107ew-p-358860640https://www.trendyol.com/koton/kruvaze-dugmeli-blazer-ceket-kapakli-cep-detayli-p-463702192https://www.trendyol.com/koton/crop-kruvaze-blazer-ceket-p-708571152https://www.trendyol.com/koton/siyah-kadin-blazer-4wak50022uw-p-749193166https://www.trendyol.com/koton/blazer-ceket-tek-dugmeli-kapakli-cep-detayli-p-649679585https://www.trendyol.com/koton/kadin-siyah-ceket-3wak50210uw-p-457992267https://www.trendyol.com/koton/kot-ceket-fermuar-detayli-hakim-yaka-uzun-kollu-p-684120702https://www.trendyol.com/koton/suni-deri-detayli-tuvit-gomlek-ceket-cepli-citcitli-p-411262632https://www.trendyol.com/koton/siyah-beyaz-kadin-ceket-4wkg10056ak-p-756776699https://www.trendyol.com/koton/blazer-ceket-v-yaka-cep-detayli-p-641744408https://www.trendyol.com/koton/ceket-kadin-p-154815244https://www.trendyol.com/koton/zebra-desenli-blazer-ceket-tek-dugmeli-p-391646479https://www.trendyol.com/koton/zebra-desenli-kruvaze-blazer-ceket-p-370965017https://www.trendyol.com/koton/kadin-kirmizi-ekose-ceket-3wak50032pw-p-371851291https://www.trendyol.com/koton/standart-ekru-kadin-ceket-3sak50116uw-p-736541428https://www.trendyol.com/koton/cepli-kareli-uzun-kollu-ceket-p-248996583https://www.trendyol.com/koton/deri-gorunumlu-biker-ceket-ters-yaka-yakasi-ve-mansetleri-suni-kurklu-fermuarli-p-764853399https://www.trendyol.com/koton/fermuarli-deri-gorunumlu-ceket-p-158369259https://www.trendyol.com/koton/suet-gorunumlu-biker-ceket-ters-yaka-suni-kurklu-dugmeli-cepli-p-764848975https://www.trendyol.com/koton/biker-ceket-suet-gorunumlu-cepli-yakalari-ve-astari-pelus-p-754013532
-// https://www.trendyol.com/koton/biker-ceket-suet-gorunumlu-suni-kurk-detayli-dugmeli-p-759981961https://www.trendyol.com/koton/biker-ceket-suet-gorunumlu-suni-kurk-detayli-kemerli-p-754029400https://www.trendyol.com/koton/deri-ceket-oversize-cepli-zimba-detayli-gomlek-yaka-p-649651337https://www.trendyol.com/koton/oversize-ceket-gomlek-yaka-uzun-kollu-cep-detayli-p-458772180https://www.trendyol.com/koton/oduncu-gomlek-ceket-puskul-detayli-cepli-dugmeli-p-475243648https://www.trendyol.com/koton/pilot-ceket-deri-gorunumlu-aplike-detayli-p-379605523https://www.trendyol.com/koton/deri-gorunumlu-ceket-yakasi-suni-kurklu-cep-detayli-p-475255315https://www.trendyol.com/koton/biker-ceket-pelus-ters-yaka-suet-gorunumlu-cepli-dugme-detayli-p-754873486https://www.trendyol.com/koton/parlak-deri-gorunumlu-ceket-yakasi-suni-kurk-detayli-p-391609514https://www.trendyol.com/koton/crop-krokodil-ceket-uzun-kollu-dugmeli-kapakli-cep-detayli-p-759966750https://www.trendyol.com/koton/oversize-ceket-gomlek-yaka-uzun-kollu-cep-detayli-p-459383966https://www.trendyol.com/koton/atlet-p-721254870https://www.trendyol.com/koton/tuvit-gomlek-ceket-crop-uzun-kollu-kareli-p-636548942https://www.trendyol.com/koton/kadin-kruvaze-fermuarli-cep-detayli-astarli-biker-ceket-4wak20103ew-p-767618822https://www.trendyol.com/koton/kadin-cepli-dugmeli-suni-deri-detayli-crop-tuvit-blazer-ceket-4wak50080uw-p-767614274
-
-
-
-

@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class BiancoLucciController extends Controller
 {
+    public function allbiancolucci(Request $request){
+        $products = DB::select("SELECT * FROM products WHERE brand='Biancolucci'");
+        return view('brands/biancolucci', ['products' => $products]);
+    }
+
     public function dbbiancolucci() {
         $client = new Client();
         $products = array();

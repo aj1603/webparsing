@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class MaviController extends Controller
 {
+    public function allmavi(Request $request){
+        $products = DB::select("SELECT * FROM products WHERE brand='Mavi'");
+        return view('brands/mavi', ['products' => $products]);
+    }
+
     public function dbmavi() {
         $client = new Client();
         $products = array();

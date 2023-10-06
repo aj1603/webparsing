@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class BershkaController extends Controller
 {
+    public function allbershka(Request $request){
+        $products = DB::select("SELECT * FROM products WHERE brand='Bershka'");
+        return view('brands/bershka', ['products' => $products]);
+    }
+
     public function dbbershka() {
         $client = new Client();
         $products = array();

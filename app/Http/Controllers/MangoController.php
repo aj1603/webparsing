@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class MangoController extends Controller
 {
+    public function allmango(Request $request){
+        $products = DB::select("SELECT * FROM products WHERE brand='Mango'");
+        return view('brands/mango', ['products' => $products]);
+    }
+
     public function dbmango() {
         $client = new Client();
         $products = array();

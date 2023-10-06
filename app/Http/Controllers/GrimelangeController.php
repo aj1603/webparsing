@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class GrimelangeController extends Controller
 {
+    public function allgrimelange(Request $request){
+        $products = DB::select("SELECT * FROM products WHERE brand='Grimelange'");
+        return view('brands/grimelange', ['products' => $products]);
+    }
+
     public function dbgrimelange() {
         $client = new Client();
         $products = array();

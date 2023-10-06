@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class DefactoController extends Controller
 {
+    public function alldefacto(Request $request){
+        $products = DB::select("SELECT * FROM products WHERE brand='Defacto'");
+        return view('brands/defacto', ['products' => $products]);
+    }
+
     public function dbdefacto() {
         $client = new Client();
         $products = array();
