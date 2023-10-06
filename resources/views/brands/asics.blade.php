@@ -79,8 +79,12 @@
         list-style-type: none;
     }
 </style>
+<a href="/dbasics">
+    <p>Asics reload</p>
+</a>
 <div class="products-div">
     <!-- <ul class="products-ul"> -->
+
     @foreach ($products as $product)
     <div class="product-div">
         <img src="{{ $product->imgUrl }}" width="150" height="150" alt="test">

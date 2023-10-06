@@ -37,7 +37,9 @@
     <h3><a href="/allmavi">Mavi</a></h3>
     <h3><a href="/allpullbear">PullBear</a></h3>
     <h3><a href="/allstradivarius">Stradivarius</a></h3>
+    <h3><a href="/export">Export</a></h3>
 </nav>
+
 
 <body>
     <main>
