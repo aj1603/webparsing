@@ -1,11 +1,11 @@
-export githubtoken = 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
+<!-- export githubtoken = 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
 
 # Gerekli server data
 export wpsip=135.181.28.221
 export wpsuser=workusr
 export wpspass=hb87Bvf45Kl01h
 export mysqluser=root
-export pass=hiC9kT55=Flhgn7
+export pass=hiC9kT55=Flhgn7 -->
 
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
