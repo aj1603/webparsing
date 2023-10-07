@@ -20,22 +20,8 @@ class ProductController extends Controller
         return redirect()->back();
     }
     
-    // public function export(Request $request){
-    //     return Excel::download(new ExportProduct, 'products.xlsx');
-    // }
-
-    public function export(Request $request)
-    {
-        // Set the path to the file
-        $file = 'products.xlsx'; // Replace with the actual file path
-
-        // Check if the file exists
-        if (Storage::exists($file)) {
-            return response()->download(storage_path("app/$file"), 'products.xlsx');
-        } else {
-            // Handle the case where the file does not exist
-            abort(404, 'File not found');
-        }
+    public function export(Request $request){
+        return Excel::download(new ExportProduct, 'products.xlsx');
     }
 
     public function product_all(Request $request){

@@ -14,7 +14,6 @@ use App\Http\Controllers\MangoController;
 use App\Http\Controllers\GrimelangeController;
 use App\Http\Controllers\MaviController;
 use App\Http\Controllers\LCWaikikiController;
-
     
 Route::get('/allproducts',[ProductController::class, 'allproducts'])->name('import-view');
 Route::post('/import',[ProductController::class, 'import'])->name('import');
