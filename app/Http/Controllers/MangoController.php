@@ -107,6 +107,8 @@ class MangoController extends Controller
             'https://www.trendyol.com/mango/dugmeli-kolsuz-trenckot-p-748876796',
         ];
         
+        Product::where('brand', '=', 'LCWaikiki')->delete();
+
         foreach ($urls as $url) {
             $response = $client->request('GET', $url);            
             $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });
@@ -254,6 +256,8 @@ class MangoController extends Controller
             'https://www.trendyol.com/mango/kruvaze-yaka-kumas-blazer-ceket-p-766983875',
         ];
         
+        Product::where('brand', '=', 'LCWaikiki')->delete();
+
         foreach ($urls as $url) {
             $response = $client->request('GET', $url);            
             $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });

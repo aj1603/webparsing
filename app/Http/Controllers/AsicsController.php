@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Goutte\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Product;
 
 class AsicsController extends Controller
 {
@@ -22,6 +23,8 @@ class AsicsController extends Controller
             'https://www.trendyol.com/asics/fujitrail-waterproof-jacket-kadin-lacivert-ceket-2012c253-400-p-666738535',
         ];
         
+        Product::where('brand', '=', 'Asics')->delete();
+
         foreach ($urls as $url) {
             $response = $client->request('GET', $url);            
             $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });

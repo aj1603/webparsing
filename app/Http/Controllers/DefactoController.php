@@ -86,6 +86,8 @@ class DefactoController extends Controller
             'https://www.trendyol.com/defacto/oversize-fit-keten-karisimli-blazer-p-675564629',
             'https://www.trendyol.com/defacto/oversize-fit-cep-kapakli-tek-yirtmacli-blazer-ceket-p-325614778',
         ];
+
+        Product::where('brand', '=', 'Defacto')->delete();
         
         foreach ($urls as $url) {
             $response = $client->request('GET', $url);            
@@ -187,6 +189,8 @@ class DefactoController extends Controller
             'https://www.trendyol.com/defacto/regular-fit-bisiklet-yaka-keten-karisimli-blazer-p-346183490',
             'https://www.trendyol.com/defacto/regular-fit-gomlek-yaka-blazer-p-359392313',
         ];
+
+        Product::where('brand', '=', 'Defacto')->delete();
         
         foreach ($urls as $url) {
             $response = $client->request('GET', $url);            

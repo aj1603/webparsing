@@ -81,6 +81,8 @@ class MaviController extends Controller
             'https://www.trendyol.com/pd/mavi/baskili-mavi-ceket-loose-fit-bol-rahat-kesim-1110217-71902-p-767485103',
         ];
         
+        Product::where('brand', '=', 'Mavi')->delete();
+        
         foreach ($urls as $url) {
             $response = $client->request('GET', $url);            
             $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });

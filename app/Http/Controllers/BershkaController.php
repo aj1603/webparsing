@@ -103,6 +103,8 @@ class BershkaController extends Controller
             'https://www.trendyol.com/bershka/distressed-suni-deri-trucker-ceket-p-751624910',
         ];
         
+        Product::where('brand', '=', 'Bershka')->delete();
+
         foreach ($urls as $url) {
             $response = $client->request('GET', $url);            
             $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });

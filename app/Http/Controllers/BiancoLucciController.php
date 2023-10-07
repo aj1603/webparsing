@@ -91,6 +91,8 @@ class BiancoLucciController extends Controller
             'https://www.trendyol.com/bianco-lucci/kadin-tas-islemeli-cift-cepli-kase-ceket-p-766712527',
         ];
         
+        Product::where('brand', '=', 'Biancolucci')->delete();
+
         foreach ($urls as $url) {
             $response = $client->request('GET', $url);            
             $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });
@@ -213,7 +215,9 @@ class BiancoLucciController extends Controller
             'https://www.trendyol.com/bianco-lucci/kadin-kruvaze-yaka-kase-ithal-yun-blazer-ceket-p-377124486',
             'https://www.trendyol.com/bianco-lucci/kadin-kruvaze-yaka-kase-ithal-yun-blazer-ceket-p-377124474',
         ];
-        
+
+        Product::where('brand', '=', 'Biancolucci')->delete();
+
         foreach ($urls as $url) {
             $response = $client->request('GET', $url);            
             $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });

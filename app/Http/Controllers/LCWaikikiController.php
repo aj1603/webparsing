@@ -91,6 +91,8 @@ class LCWaikikiController extends Controller
             'https://www.trendyol.com/lc-waikiki/gomlek-yaka-duz-uzun-kollu-kadin-jean-ceket-p-762092001',
         ];
         
+      Product::where('brand', '=', 'LCWaikiki')->delete();
+
         foreach ($urls as $url) {
             $response = $client->request('GET', $url);            
             $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });
@@ -244,6 +246,8 @@ class LCWaikikiController extends Controller
             'https://www.trendyol.com/lc-waikiki/onden-dugme-kapamali-duz-uzun-kollu-crop-kadin-ceket-p-639531614',
         ];
         
+      Product::where('brand', '=', 'LCWaikiki')->delete();
+
         foreach ($urls as $url) {
             $response = $client->request('GET', $url);            
             $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });
@@ -396,6 +400,8 @@ class LCWaikikiController extends Controller
             'https://www.trendyol.com/lc-waikiki/dik-yaka-duz-uzun-kollu-kadin-jean-ceket-p-366940978',
             'https://www.trendyol.com/lc-waikiki/ekose-uzun-kollu-oversize-kadin-oduncu-gomlek-ceket-p-662807495',
         ];
+
+        Product::where('brand', '=', 'LCWaikiki')->delete();
         
         foreach ($urls as $url) {
             $response = $client->request('GET', $url);            
@@ -539,6 +545,8 @@ class LCWaikikiController extends Controller
             'https://www.trendyol.com/lc-waikiki/lcw-vision-kendinden-desenli-uzun-kollu-kadin-ceket-p-639537104',
             'https://www.trendyol.com/lc-waikiki/lcw-vision-desenli-uzun-kollu-kadin-blazer-ceket-p-765776054',
         ];
+        
+        Product::where('brand', '=', 'LCWaikiki')->delete();
         
         foreach ($urls as $url) {
             $response = $client->request('GET', $url);            
