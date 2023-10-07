@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Goutte\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Product;
 
 class MangoController extends Controller
 {
@@ -107,7 +108,7 @@ class MangoController extends Controller
             'https://www.trendyol.com/mango/dugmeli-kolsuz-trenckot-p-748876796',
         ];
         
-        Product::where('brand', '=', 'LCWaikiki')->delete();
+        Product::where('brand', '=', 'Mango')->delete();
 
         foreach ($urls as $url) {
             $response = $client->request('GET', $url);            
@@ -256,7 +257,7 @@ class MangoController extends Controller
             'https://www.trendyol.com/mango/kruvaze-yaka-kumas-blazer-ceket-p-766983875',
         ];
         
-        Product::where('brand', '=', 'LCWaikiki')->delete();
+        Product::where('brand', '=', 'Mango')->delete();
 
         foreach ($urls as $url) {
             $response = $client->request('GET', $url);            
