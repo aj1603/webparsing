@@ -15,7 +15,7 @@ use App\Http\Controllers\GrimelangeController;
 use App\Http\Controllers\MaviController;
 use App\Http\Controllers\LCWaikikiController;
 
-
+    
 Route::get('/allproducts',[ProductController::class, 'allproducts'])->name('import-view');
 Route::post('/import',[ProductController::class, 'import'])->name('import');
 Route::get('/export',[ProductController::class, 'export'])->name('export');
@@ -76,8 +76,4 @@ Route::get('/allstradivarius', [StradivariusController::class, 'allstradivarius'
 Route::get('/dbstradivarius', [StradivariusController::class, 'dbstradivarius']);
 Route::get('/dbstradivarius1', [StradivariusController::class, 'dbstradivarius1']);
 Route::get('/getstradivarius', [StradivariusController::class, 'getstradivarius']);
-
-
-
-
 
