@@ -117,8 +117,6 @@ class KotonController extends Controller
             'https://www.trendyol.com/koton/kot-ceket-islemeli-fermuar-detayli-p-358861200',
         ];
 
-        Product::where('brand', '=', 'Koton')->delete();
-        
         foreach ($urls as $url) {
             $response = $client->request('GET', $url);            
             $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });
@@ -272,8 +270,6 @@ class KotonController extends Controller
             'https://www.trendyol.com/koton/blazer-ceket-v-yaka-cep-detayli-p-641744412',
         ];
         
-        Product::where('brand', '=', 'Koton')->delete();
-
         foreach ($urls as $url) {
             $response = $client->request('GET', $url);            
             $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });
@@ -427,8 +423,6 @@ class KotonController extends Controller
             'https://www.trendyol.com/koton/oversize-blazer-ceket-kruvaze-dugmeli-p-702178069',
       ];
         
-      Product::where('brand', '=', 'Koton')->delete();
-
         foreach ($urls as $url) {
             $response = $client->request('GET', $url);            
             $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });
@@ -582,8 +576,6 @@ class KotonController extends Controller
             'https://www.trendyol.com/koton/melis-agazat-x-bros-detayli-kruvaze-tuvit-ceket-3wak50064ew-p-465897658',
         ];
         
-        Product::where('brand', '=', 'Koton')->delete();
-
         foreach ($urls as $url) {
             $response = $client->request('GET', $url);            
             $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });
@@ -728,8 +720,6 @@ class KotonController extends Controller
             'https://www.trendyol.com/koton/kadin-cepli-dugmeli-suni-deri-detayli-crop-tuvit-blazer-ceket-4wak50080uw-p-767614274'
         ];
 
-        Product::where('brand', '=', 'Koton')->delete();
-        
         foreach ($urls as $url) {
             $response = $client->request('GET', $url);            
             $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });

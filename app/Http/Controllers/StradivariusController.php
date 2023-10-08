@@ -92,8 +92,7 @@ class StradivariusController extends Controller
             'https://www.trendyol.com/stradivarius/kadin-siyah-deri-biker-ceket-p-101190467',
             'https://www.trendyol.com/stradivarius/ici-suni-kurklu-biker-ceket-p-761317043',            
         ];
-        
-        Product::where('brand', '=', 'Stradivarius')->delete();
+    
 
         foreach ($urls as $url) {
             $response = $client->request('GET', $url);            
@@ -211,8 +210,6 @@ class StradivariusController extends Controller
             'https://www.trendyol.com/stradivarius/kemerli-uzun-blazer-p-760543469',
             'https://www.trendyol.com/stradivarius/crop-blazer-p-760921781',
         ];
-
-        Product::where('brand', '=', 'Stradivarius')->delete();
         
         foreach ($urls as $url) {
             $response = $client->request('GET', $url);            

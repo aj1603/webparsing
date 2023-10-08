@@ -7,6 +7,8 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ImportProduct;
 use App\Exports\ExportProduct;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
+
 
 class ProductController extends Controller
 {
@@ -27,6 +29,14 @@ class ProductController extends Controller
     public function product_all(Request $request){
         return view('productall');
     }
+
+    public function delete(Product $product)
+    {
+        DB::table('products')->delete();
+        return "Successfully deleted all products";
+    }
+
+
 
     public function url() {
 

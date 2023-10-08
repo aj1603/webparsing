@@ -20,6 +20,7 @@ Route::post('/import',[ProductController::class, 'import'])->name('import');
 Route::get('/export',[ProductController::class, 'export'])->name('export');
 Route::get('/url', [ProductController::class, 'url']);
 Route::get('/', [ProductController::class, 'product_all']);
+Route::get('/delete', [ProductController::class, 'delete']);
 
 Route::get('/allasics', [AsicsController::class, 'allasics']);
 Route::get('/dbasics', [AsicsController::class, 'dbasics']);

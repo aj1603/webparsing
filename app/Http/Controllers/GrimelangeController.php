@@ -21,8 +21,6 @@ class GrimelangeController extends Controller
             'https://www.trendyol.com/grimelange/henrietta-relaxed-gri-tekli-ceket-p-760529016',
         ];
         
-        Product::where('brand', '=', 'Grimelange')->delete();
-
         foreach ($urls as $url) {
             $response = $client->request('GET', $url);            
             $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });

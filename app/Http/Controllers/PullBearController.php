@@ -101,7 +101,6 @@ class PullBearController extends Controller
             'https://www.trendyol.com/pull-bear/basic-kruvaze-dugmeli-blazer-p-751539812',
         ];
         
-        Product::where('brand', '=', 'Pullbear')->delete();
 
         foreach ($urls as $url) {
             $response = $client->request('GET', $url);            

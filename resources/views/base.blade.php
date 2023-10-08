@@ -13,8 +13,8 @@
         color: black;
         flex-direction: row;
         justify-content: space-between;
-        padding: 10px;
-        gap: 10px;
+        padding: 5px;
+        gap: 5px;
         align-items: center;
     }
 
@@ -38,6 +38,7 @@
     <h3><a href="/allpullbear">PullBear</a></h3>
     <h3><a href="/allstradivarius">Stradivarius</a></h3>
     <h3><a href="/export">Export</a></h3>
+    <h3><a href="/delete">DELETE</a></h3>
 </nav>
 
 
