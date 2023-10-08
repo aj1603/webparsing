@@ -142,7 +142,8 @@ class StradivariusController extends Controller
         
         DB::table('products')->insert($insertData);
         
-        return "Successfully updated";
+        $products = DB::select("SELECT * FROM products WHERE brand='Stradivarius'");
+        return view('brands/stradivarius', ['products' => $products]);
     }
 
     public function dbstradivarius1() {
@@ -259,7 +260,8 @@ class StradivariusController extends Controller
         
         DB::table('products')->insert($insertData);
         
-        return "Successfully updated";
+        $products = DB::select("SELECT * FROM products WHERE brand='Stradivarius'");
+        return view('brands/stradivarius', ['products' => $products]);
     }
 
     public function getstradivarius() {

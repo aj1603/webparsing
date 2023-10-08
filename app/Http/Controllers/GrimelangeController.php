@@ -69,7 +69,8 @@ class GrimelangeController extends Controller
         
         DB::table('products')->insert($insertData);
         
-        return "Successfully updated";
+        $products = DB::select("SELECT * FROM products WHERE brand='Grimelange'");
+        return view('brands/grimelange', ['products' => $products]);
     }
 
     public function getgrimelange() {

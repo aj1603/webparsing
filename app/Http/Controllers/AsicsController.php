@@ -71,7 +71,8 @@ class AsicsController extends Controller
         
         DB::table('products')->insert($insertData);
         
-        return "Successfully updated";
+        $products = DB::select("SELECT * FROM products WHERE brand='Asics'");
+        return view('brands/asics', ['products' => $products]);
     }
 
     public function getasics() {

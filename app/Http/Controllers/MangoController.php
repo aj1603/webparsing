@@ -156,7 +156,8 @@ class MangoController extends Controller
         
         DB::table('products')->insert($insertData);
         
-        return "Successfully updated";
+        $products = DB::select("SELECT * FROM products WHERE brand='Mango'");
+        return view('brands/mango', ['products' => $products]);
     }
 
     public function dbmango1() {
@@ -303,7 +304,8 @@ class MangoController extends Controller
         
         DB::table('products')->insert($insertData);
         
-        return "Successfully updated";
+        $products = DB::select("SELECT * FROM products WHERE brand='Mango'");
+        return view('brands/mango', ['products' => $products]);
     }
 
     public function getmango() {

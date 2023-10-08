@@ -152,7 +152,8 @@ class BershkaController extends Controller
         
         DB::table('products')->insert($insertData);
         
-        return "Successfully updated";
+        $products = DB::select("SELECT * FROM products WHERE brand='Bershka'");
+        return view('brands/bershka', ['products' => $products]);
     }
 
     public function getbershka() {

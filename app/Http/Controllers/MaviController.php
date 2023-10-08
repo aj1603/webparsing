@@ -131,7 +131,8 @@ class MaviController extends Controller
         
         DB::table('products')->insert($insertData);
         
-        return "Successfully updated";
+        $products = DB::select("SELECT * FROM products WHERE brand='Mavi'");
+        return view('brands/mavi', ['products' => $products]);
     }
 
 

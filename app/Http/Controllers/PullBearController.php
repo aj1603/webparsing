@@ -150,7 +150,8 @@ class PullBearController extends Controller
         
         DB::table('products')->insert($insertData);
         
-        return "Successfully updated";
+        $products = DB::select("SELECT * FROM products WHERE brand='Pullbear'");
+        return view('brands/pullbear', ['products' => $products]);
     }
 
     public function getpullbear() {

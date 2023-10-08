@@ -136,7 +136,8 @@ class DefactoController extends Controller
         
         DB::table('products')->insert($insertData);
         
-        return "Successfully updated";
+        $products = DB::select("SELECT * FROM products WHERE brand='Defacto'");
+        return view('brands/defacto', ['products' => $products]);
     }
 
     public function dbdefacto1() {
@@ -237,7 +238,8 @@ class DefactoController extends Controller
         
         DB::table('products')->insert($insertData);
         
-        return "Successfully updated";
+        $products = DB::select("SELECT * FROM products WHERE brand='Defacto'");
+        return view('brands/defacto', ['products' => $products]);
     }
 
     public function getdefacto() {

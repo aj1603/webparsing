@@ -27,7 +27,8 @@ class ProductController extends Controller
     }
 
     public function product_all(Request $request){
-        return view('productall');
+        $products = DB::select("SELECT * FROM products");
+        return view('productall', ['products' => $products]);
     }
 
     public function delete(Product $product)

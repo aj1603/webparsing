@@ -140,7 +140,8 @@ class BiancoLucciController extends Controller
         
         DB::table('products')->insert($insertData);
         
-        return "Successfully updated";
+        $products = DB::select("SELECT * FROM products WHERE brand='Biancolucci'");
+        return view('brands/biancolucci', ['products' => $products]);
     }
 
     public function dbbiancolucci1() {
@@ -263,7 +264,8 @@ class BiancoLucciController extends Controller
         
         DB::table('products')->insert($insertData);
         
-        return "Successfully updated";
+        $products = DB::select("SELECT * FROM products WHERE brand='Biancolucci'");
+        return view('brands/biancolucci', ['products' => $products]);
     }
 
     public function getbiancolucci() {

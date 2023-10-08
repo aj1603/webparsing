@@ -165,7 +165,8 @@ class KotonController extends Controller
         
         DB::table('products')->insert($insertData);
         
-        return "Successfully updated";
+        $products = DB::select("SELECT * FROM products WHERE brand='Koton'");
+        return view('brands/koton', ['products' => $products]);
     }
 
     public function dbkoton2() {
@@ -318,7 +319,8 @@ class KotonController extends Controller
         
         DB::table('products')->insert($insertData);
         
-        return "Successfully updated";
+        $products = DB::select("SELECT * FROM products WHERE brand='Koton'");
+        return view('brands/koton', ['products' => $products]);
     }
 
     public function dbkoton3() {
@@ -471,7 +473,8 @@ class KotonController extends Controller
         
         DB::table('products')->insert($insertData);
         
-        return "Successfully updated";
+        $products = DB::select("SELECT * FROM products WHERE brand='Koton'");
+        return view('brands/koton', ['products' => $products]);
     }
 
     public function dbkoton4() {
@@ -624,7 +627,8 @@ class KotonController extends Controller
         
         DB::table('products')->insert($insertData);
         
-        return "Successfully updated";
+        $products = DB::select("SELECT * FROM products WHERE brand='Koton'");
+        return view('brands/koton', ['products' => $products]);
     }
 
     public function dbkoton5() {
@@ -768,7 +772,8 @@ class KotonController extends Controller
         
         DB::table('products')->insert($insertData);
         
-        return "Successfully updated";
+        $products = DB::select("SELECT * FROM products WHERE brand='Koton'");
+        return view('brands/koton', ['products' => $products]);
     }
 
     public function getkoton() {

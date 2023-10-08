@@ -140,7 +140,8 @@ class LCWaikikiController extends Controller
         
         DB::table('products')->insert($insertData);
         
-        return "Successfully updated";
+        $products = DB::select("SELECT * FROM products WHERE brand='LCWaikiki'");
+        return view('brands/lcwaikiki', ['products' => $products]);
     }
 
     public function dblcwaikiki1() {
@@ -293,7 +294,8 @@ class LCWaikikiController extends Controller
         
         DB::table('products')->insert($insertData);
         
-        return "Successfully updated";
+        $products = DB::select("SELECT * FROM products WHERE brand='LCWaikiki'");
+        return view('brands/lcwaikiki', ['products' => $products]);
     }
 
     public function dblcwaikiki2() {
@@ -446,7 +448,8 @@ class LCWaikikiController extends Controller
         
         DB::table('products')->insert($insertData);
         
-        return "Successfully updated";
+        $products = DB::select("SELECT * FROM products WHERE brand='LCWaikiki'");
+        return view('brands/lcwaikiki', ['products' => $products]);
     }
 
     public function dblcwaikiki3() {
@@ -589,7 +592,8 @@ class LCWaikikiController extends Controller
         
         DB::table('products')->insert($insertData);
         
-        return "Successfully updated";
+        $products = DB::select("SELECT * FROM products WHERE brand='LCWaikiki'");
+        return view('brands/lcwaikiki', ['products' => $products]);
     }
 
     public function getlcwaikiki() {
