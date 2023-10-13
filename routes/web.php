@@ -14,6 +14,7 @@ use App\Http\Controllers\MangoController;
 use App\Http\Controllers\GrimelangeController;
 use App\Http\Controllers\MaviController;
 use App\Http\Controllers\LCWaikikiController;
+use App\Http\Controllers\FacesController;
     
 Route::get('/allproducts',[ProductController::class, 'allproducts'])->name('import-view');
 Route::post('/import',[ProductController::class, 'import'])->name('import');
@@ -77,3 +78,6 @@ Route::get('/dbstradivarius', [StradivariusController::class, 'dbstradivarius'])
 Route::get('/dbstradivarius1', [StradivariusController::class, 'dbstradivarius1']);
 Route::get('/getstradivarius', [StradivariusController::class, 'getstradivarius']);
 
+
+Route::get('/getfaces', [FacesController::class, 'getfaces']);
+Route::get('/getFacesProducts', [FacesController::class, 'getFacesProducts']);
