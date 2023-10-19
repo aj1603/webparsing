@@ -11,6 +11,7 @@ class FacesController extends Controller
 {
     public function getFacesProducts(){
         $client = new Client();
+        echo("HI");
 
         $urls = [
             'https://www.faces.com/ae-en/fragrance/private_collection?sz=123',
