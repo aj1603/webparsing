@@ -9,12 +9,14 @@ use App\Models\Product;
 
 class PullBearController extends Controller
 {
-    public function allpullbear(Request $request){
+    public function allpullbear(Request $request)
+    {
         $products = DB::select("SELECT * FROM products WHERE brand='Pullbear'");
         return view('brands/pullbear', ['products' => $products]);
     }
 
-    public function dbpullbear() {
+    public function dbpullbear()
+    {
         $client = new Client();
         $products = array();
         $urls = [
@@ -100,15 +102,19 @@ class PullBearController extends Controller
             'https://www.trendyol.com/pull-bear/metalik-denim-ceket-p-756141522',
             'https://www.trendyol.com/pull-bear/basic-kruvaze-dugmeli-blazer-p-751539812',
         ];
-        
+
 
         foreach ($urls as $url) {
-            $response = $client->request('GET', $url);            
-            $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });
-            $size = $response->filter('.sp-itm')->each(function ($node) { return $node->text(); });
-            $price = $response->filter('.prc-dsc')->each(function ($node) { return $node->text(); });
-            $image = $response->filter('img')->each(function ($node) { return $node->attr('src'); });
-            
+            $response = $client->request('GET', $url);
+            $name = $response->filter('h1.pr-new-br')->each(function ($node) {
+                return $node->text(); });
+            $size = $response->filter('.sp-itm')->each(function ($node) {
+                return $node->text(); });
+            $price = $response->filter('.prc-dsc')->each(function ($node) {
+                return $node->text(); });
+            $image = $response->filter('img')->each(function ($node) {
+                return $node->attr('src'); });
+
             $imgUrl;
             for ($i = 0; $i < count($image); $i++) {
                 $surat = explode(".", $image[$i]);
@@ -117,12 +123,12 @@ class PullBearController extends Controller
                     break;
                 }
             }
-            
+
             for ($i = 0; $i < count($name); $i++) {
                 $fullprice = explode(" ", $price[$i]);
                 $floatValue = floatval($fullprice[0]);
-                $fullpricee = $floatValue * 0.78;
-                
+                $fullpricee = $floatValue * 0.82;
+
                 $product = array(
                     'name' => $name[$i],
                     'price' => $fullpricee,
@@ -133,7 +139,7 @@ class PullBearController extends Controller
                 array_push($products, $product);
             }
         }
-        
+
         $insertData = array();
         foreach ($products as $product) {
             $newprice = $product['price'] < 10 ? $product['price'] * 1000 : $product['price'];
@@ -147,14 +153,15 @@ class PullBearController extends Controller
                 'updated_at' => now(),
             ];
         }
-        
+
         DB::table('products')->insert($insertData);
-        
+
         $products = DB::select("SELECT * FROM products WHERE brand='Pullbear'");
         return view('brands/pullbear', ['products' => $products]);
     }
 
-    public function getpullbear() {
+    public function getpullbear()
+    {
         $products = DB::select('SELECT * FROM products WHERE brand = "Pullbear"');
         return $products;
     }

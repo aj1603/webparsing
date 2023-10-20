@@ -9,12 +9,14 @@ use App\Models\Product;
 
 class MaviController extends Controller
 {
-    public function allmavi(Request $request){
+    public function allmavi(Request $request)
+    {
         $products = DB::select("SELECT * FROM products WHERE brand='Mavi'");
         return view('brands/mavi', ['products' => $products]);
     }
 
-    public function dbmavi() {
+    public function dbmavi()
+    {
         $client = new Client();
         $products = array();
         $urls = [
@@ -81,15 +83,19 @@ class MaviController extends Controller
             'https://www.trendyol.com/mavi/suni-deri-siyah-ceket-fitted-vucuda-oturan-kesim-1110140-900-p-467108732',
             'https://www.trendyol.com/pd/mavi/baskili-mavi-ceket-loose-fit-bol-rahat-kesim-1110217-71902-p-767485103',
         ];
-        
-        
+
+
         foreach ($urls as $url) {
-            $response = $client->request('GET', $url);            
-            $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });
-            $size = $response->filter('.sp-itm')->each(function ($node) { return $node->text(); });
-            $price = $response->filter('.prc-dsc')->each(function ($node) { return $node->text(); });
-            $image = $response->filter('img')->each(function ($node) { return $node->attr('src'); });
-            
+            $response = $client->request('GET', $url);
+            $name = $response->filter('h1.pr-new-br')->each(function ($node) {
+                return $node->text(); });
+            $size = $response->filter('.sp-itm')->each(function ($node) {
+                return $node->text(); });
+            $price = $response->filter('.prc-dsc')->each(function ($node) {
+                return $node->text(); });
+            $image = $response->filter('img')->each(function ($node) {
+                return $node->attr('src'); });
+
             $imgUrl;
             for ($i = 0; $i < count($image); $i++) {
                 $surat = explode(".", $image[$i]);
@@ -98,12 +104,12 @@ class MaviController extends Controller
                     break;
                 }
             }
-            
+
             for ($i = 0; $i < count($name); $i++) {
                 $fullprice = explode(" ", $price[$i]);
                 $floatValue = floatval($fullprice[0]);
-                $fullpricee = $floatValue * 0.78;
-                
+                $fullpricee = $floatValue * 0.82;
+
                 $product = array(
                     'name' => $name[$i],
                     'price' => $fullpricee,
@@ -114,7 +120,7 @@ class MaviController extends Controller
                 array_push($products, $product);
             }
         }
-        
+
         $insertData = array();
         foreach ($products as $product) {
             $newprice = $product['price'] < 10 ? $product['price'] * 1000 : $product['price'];
@@ -128,15 +134,16 @@ class MaviController extends Controller
                 'updated_at' => now(),
             ];
         }
-        
+
         DB::table('products')->insert($insertData);
-        
+
         $products = DB::select("SELECT * FROM products WHERE brand='Mavi'");
         return view('brands/mavi', ['products' => $products]);
     }
 
 
-    public function getmavi() {
+    public function getmavi()
+    {
         $products = DB::select('SELECT * FROM products WHERE brand = "Mavi"');
         return $products;
     }

@@ -8,12 +8,14 @@ use Illuminate\Support\Facades\DB;
 
 class MangoController extends Controller
 {
-    public function allmango(Request $request){
+    public function allmango(Request $request)
+    {
         $products = DB::select("SELECT * FROM products WHERE brand='Mango'");
         return view('brands/mango', ['products' => $products]);
     }
 
-    public function dbmango() {
+    public function dbmango()
+    {
         $client = new Client();
         $products = array();
         $urls = [
@@ -106,15 +108,19 @@ class MangoController extends Controller
             'https://www.trendyol.com/mango/100-keten-kumas-blazer-ceket-p-670251842',
             'https://www.trendyol.com/mango/dugmeli-kolsuz-trenckot-p-748876796',
         ];
-        
+
 
         foreach ($urls as $url) {
-            $response = $client->request('GET', $url);            
-            $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });
-            $size = $response->filter('.sp-itm')->each(function ($node) { return $node->text(); });
-            $price = $response->filter('.prc-dsc')->each(function ($node) { return $node->text(); });
-            $image = $response->filter('img')->each(function ($node) { return $node->attr('src'); });
-            
+            $response = $client->request('GET', $url);
+            $name = $response->filter('h1.pr-new-br')->each(function ($node) {
+                return $node->text(); });
+            $size = $response->filter('.sp-itm')->each(function ($node) {
+                return $node->text(); });
+            $price = $response->filter('.prc-dsc')->each(function ($node) {
+                return $node->text(); });
+            $image = $response->filter('img')->each(function ($node) {
+                return $node->attr('src'); });
+
             $imgUrl;
             for ($i = 0; $i < count($image); $i++) {
                 $surat = explode(".", $image[$i]);
@@ -123,12 +129,12 @@ class MangoController extends Controller
                     break;
                 }
             }
-            
+
             for ($i = 0; $i < count($name); $i++) {
                 $fullprice = explode(" ", $price[$i]);
                 $floatValue = floatval($fullprice[0]);
-                $fullpricee = $floatValue * 0.78;
-                
+                $fullpricee = $floatValue * 0.82;
+
                 $product = array(
                     'name' => $name[$i],
                     'price' => $fullpricee,
@@ -139,7 +145,7 @@ class MangoController extends Controller
                 array_push($products, $product);
             }
         }
-        
+
         $insertData = array();
         foreach ($products as $product) {
             $newprice = $product['price'] < 10 ? $product['price'] * 1000 : $product['price'];
@@ -153,14 +159,15 @@ class MangoController extends Controller
                 'updated_at' => now(),
             ];
         }
-        
+
         DB::table('products')->insert($insertData);
-        
+
         $products = DB::select("SELECT * FROM products WHERE brand='Mango'");
         return view('brands/mango', ['products' => $products]);
     }
 
-    public function dbmango1() {
+    public function dbmango1()
+    {
         $client = new Client();
         $products = array();
         $urls = [
@@ -255,14 +262,18 @@ class MangoController extends Controller
             'https://www.trendyol.com/mango/dugmeli-crop-yelek-p-748880002',
             'https://www.trendyol.com/mango/kruvaze-yaka-kumas-blazer-ceket-p-766983875',
         ];
-        
+
         foreach ($urls as $url) {
-            $response = $client->request('GET', $url);            
-            $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });
-            $size = $response->filter('.sp-itm')->each(function ($node) { return $node->text(); });
-            $price = $response->filter('.prc-dsc')->each(function ($node) { return $node->text(); });
-            $image = $response->filter('img')->each(function ($node) { return $node->attr('src'); });
-            
+            $response = $client->request('GET', $url);
+            $name = $response->filter('h1.pr-new-br')->each(function ($node) {
+                return $node->text(); });
+            $size = $response->filter('.sp-itm')->each(function ($node) {
+                return $node->text(); });
+            $price = $response->filter('.prc-dsc')->each(function ($node) {
+                return $node->text(); });
+            $image = $response->filter('img')->each(function ($node) {
+                return $node->attr('src'); });
+
             $imgUrl;
             for ($i = 0; $i < count($image); $i++) {
                 $surat = explode(".", $image[$i]);
@@ -271,12 +282,12 @@ class MangoController extends Controller
                     break;
                 }
             }
-            
+
             for ($i = 0; $i < count($name); $i++) {
                 $fullprice = explode(" ", $price[$i]);
                 $floatValue = floatval($fullprice[0]);
-                $fullpricee = $floatValue * 0.78;
-                
+                $fullpricee = $floatValue * 0.82;
+
                 $product = array(
                     'name' => $name[$i],
                     'price' => $fullpricee,
@@ -287,7 +298,7 @@ class MangoController extends Controller
                 array_push($products, $product);
             }
         }
-        
+
         $insertData = array();
         foreach ($products as $product) {
             $newprice = $product['price'] < 10 ? $product['price'] * 1000 : $product['price'];
@@ -301,14 +312,15 @@ class MangoController extends Controller
                 'updated_at' => now(),
             ];
         }
-        
+
         DB::table('products')->insert($insertData);
-        
+
         $products = DB::select("SELECT * FROM products WHERE brand='Mango'");
         return view('brands/mango', ['products' => $products]);
     }
 
-    public function getmango() {
+    public function getmango()
+    {
         $products = DB::select('SELECT * FROM products WHERE brand = "Mango"');
         return $products;
     }

@@ -9,12 +9,14 @@ use App\Models\Product;
 
 class LCWaikikiController extends Controller
 {
-    public function alllcwaikiki(Request $request){
+    public function alllcwaikiki(Request $request)
+    {
         $products = DB::select("SELECT * FROM products WHERE brand='LCWaikiki'");
         return view('brands/lcwaikiki', ['products' => $products]);
     }
 
-    public function dblcwaikiki() {
+    public function dblcwaikiki()
+    {
         $client = new Client();
         $products = array();
         $urls = [
@@ -91,14 +93,18 @@ class LCWaikikiController extends Controller
             'https://www.trendyol.com/lc-waikiki/kadin-koyu-lacivert-ceket-0sk852z8-p-36512488',
             'https://www.trendyol.com/lc-waikiki/gomlek-yaka-duz-uzun-kollu-kadin-jean-ceket-p-762092001',
         ];
-        
+
         foreach ($urls as $url) {
-            $response = $client->request('GET', $url);            
-            $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });
-            $size = $response->filter('.sp-itm')->each(function ($node) { return $node->text(); });
-            $price = $response->filter('.prc-dsc')->each(function ($node) { return $node->text(); });
-            $image = $response->filter('img')->each(function ($node) { return $node->attr('src'); });
-            
+            $response = $client->request('GET', $url);
+            $name = $response->filter('h1.pr-new-br')->each(function ($node) {
+                return $node->text(); });
+            $size = $response->filter('.sp-itm')->each(function ($node) {
+                return $node->text(); });
+            $price = $response->filter('.prc-dsc')->each(function ($node) {
+                return $node->text(); });
+            $image = $response->filter('img')->each(function ($node) {
+                return $node->attr('src'); });
+
             $imgUrl;
             for ($i = 0; $i < count($image); $i++) {
                 $surat = explode(".", $image[$i]);
@@ -107,12 +113,12 @@ class LCWaikikiController extends Controller
                     break;
                 }
             }
-            
+
             for ($i = 0; $i < count($name); $i++) {
                 $fullprice = explode(" ", $price[$i]);
                 $floatValue = floatval($fullprice[0]);
-                $fullpricee = $floatValue * 0.78;
-                
+                $fullpricee = $floatValue * 0.82;
+
                 $product = array(
                     'name' => $name[$i],
                     'price' => $fullpricee,
@@ -123,7 +129,7 @@ class LCWaikikiController extends Controller
                 array_push($products, $product);
             }
         }
-        
+
         $insertData = array();
         foreach ($products as $product) {
             $newprice = $product['price'] < 10 ? $product['price'] * 1000 : $product['price'];
@@ -137,14 +143,15 @@ class LCWaikikiController extends Controller
                 'updated_at' => now(),
             ];
         }
-        
+
         DB::table('products')->insert($insertData);
-        
+
         $products = DB::select("SELECT * FROM products WHERE brand='LCWaikiki'");
         return view('brands/lcwaikiki', ['products' => $products]);
     }
 
-    public function dblcwaikiki1() {
+    public function dblcwaikiki1()
+    {
         $client = new Client();
         $products = array();
         $urls = [
@@ -245,14 +252,18 @@ class LCWaikikiController extends Controller
             'https://www.trendyol.com/lc-waikiki/duz-uzun-kollu-deri-gorunumlu-oversize-kadin-gomlek-ceket-p-662761635',
             'https://www.trendyol.com/lc-waikiki/onden-dugme-kapamali-duz-uzun-kollu-crop-kadin-ceket-p-639531614',
         ];
-        
+
         foreach ($urls as $url) {
-            $response = $client->request('GET', $url);            
-            $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });
-            $size = $response->filter('.sp-itm')->each(function ($node) { return $node->text(); });
-            $price = $response->filter('.prc-dsc')->each(function ($node) { return $node->text(); });
-            $image = $response->filter('img')->each(function ($node) { return $node->attr('src'); });
-            
+            $response = $client->request('GET', $url);
+            $name = $response->filter('h1.pr-new-br')->each(function ($node) {
+                return $node->text(); });
+            $size = $response->filter('.sp-itm')->each(function ($node) {
+                return $node->text(); });
+            $price = $response->filter('.prc-dsc')->each(function ($node) {
+                return $node->text(); });
+            $image = $response->filter('img')->each(function ($node) {
+                return $node->attr('src'); });
+
             $imgUrl;
             for ($i = 0; $i < count($image); $i++) {
                 $surat = explode(".", $image[$i]);
@@ -261,12 +272,12 @@ class LCWaikikiController extends Controller
                     break;
                 }
             }
-            
+
             for ($i = 0; $i < count($name); $i++) {
                 $fullprice = explode(" ", $price[$i]);
                 $floatValue = floatval($fullprice[0]);
-                $fullpricee = $floatValue * 0.78;
-                
+                $fullpricee = $floatValue * 0.82;
+
                 $product = array(
                     'name' => $name[$i],
                     'price' => $fullpricee,
@@ -277,7 +288,7 @@ class LCWaikikiController extends Controller
                 array_push($products, $product);
             }
         }
-        
+
         $insertData = array();
         foreach ($products as $product) {
             $newprice = $product['price'] < 10 ? $product['price'] * 1000 : $product['price'];
@@ -291,14 +302,15 @@ class LCWaikikiController extends Controller
                 'updated_at' => now(),
             ];
         }
-        
+
         DB::table('products')->insert($insertData);
-        
+
         $products = DB::select("SELECT * FROM products WHERE brand='LCWaikiki'");
         return view('brands/lcwaikiki', ['products' => $products]);
     }
 
-    public function dblcwaikiki2() {
+    public function dblcwaikiki2()
+    {
         $client = new Client();
         $products = array();
         $urls = [
@@ -401,12 +413,16 @@ class LCWaikikiController extends Controller
         ];
 
         foreach ($urls as $url) {
-            $response = $client->request('GET', $url);            
-            $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });
-            $size = $response->filter('.sp-itm')->each(function ($node) { return $node->text(); });
-            $price = $response->filter('.prc-dsc')->each(function ($node) { return $node->text(); });
-            $image = $response->filter('img')->each(function ($node) { return $node->attr('src'); });
-            
+            $response = $client->request('GET', $url);
+            $name = $response->filter('h1.pr-new-br')->each(function ($node) {
+                return $node->text(); });
+            $size = $response->filter('.sp-itm')->each(function ($node) {
+                return $node->text(); });
+            $price = $response->filter('.prc-dsc')->each(function ($node) {
+                return $node->text(); });
+            $image = $response->filter('img')->each(function ($node) {
+                return $node->attr('src'); });
+
             $imgUrl;
             for ($i = 0; $i < count($image); $i++) {
                 $surat = explode(".", $image[$i]);
@@ -415,12 +431,12 @@ class LCWaikikiController extends Controller
                     break;
                 }
             }
-            
+
             for ($i = 0; $i < count($name); $i++) {
                 $fullprice = explode(" ", $price[$i]);
                 $floatValue = floatval($fullprice[0]);
-                $fullpricee = $floatValue * 0.78;
-                
+                $fullpricee = $floatValue * 0.82;
+
                 $product = array(
                     'name' => $name[$i],
                     'price' => $fullpricee,
@@ -431,7 +447,7 @@ class LCWaikikiController extends Controller
                 array_push($products, $product);
             }
         }
-        
+
         $insertData = array();
         foreach ($products as $product) {
             $newprice = $product['price'] < 10 ? $product['price'] * 1000 : $product['price'];
@@ -445,14 +461,15 @@ class LCWaikikiController extends Controller
                 'updated_at' => now(),
             ];
         }
-        
+
         DB::table('products')->insert($insertData);
-        
+
         $products = DB::select("SELECT * FROM products WHERE brand='LCWaikiki'");
         return view('brands/lcwaikiki', ['products' => $products]);
     }
 
-    public function dblcwaikiki3() {
+    public function dblcwaikiki3()
+    {
         $client = new Client();
         $products = array();
         $urls = [
@@ -543,14 +560,18 @@ class LCWaikikiController extends Controller
             'https://www.trendyol.com/lc-waikiki/lcw-vision-kendinden-desenli-uzun-kollu-kadin-ceket-p-639537104',
             'https://www.trendyol.com/lc-waikiki/lcw-vision-desenli-uzun-kollu-kadin-blazer-ceket-p-765776054',
         ];
-        
+
         foreach ($urls as $url) {
-            $response = $client->request('GET', $url);            
-            $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });
-            $size = $response->filter('.sp-itm')->each(function ($node) { return $node->text(); });
-            $price = $response->filter('.prc-dsc')->each(function ($node) { return $node->text(); });
-            $image = $response->filter('img')->each(function ($node) { return $node->attr('src'); });
-            
+            $response = $client->request('GET', $url);
+            $name = $response->filter('h1.pr-new-br')->each(function ($node) {
+                return $node->text(); });
+            $size = $response->filter('.sp-itm')->each(function ($node) {
+                return $node->text(); });
+            $price = $response->filter('.prc-dsc')->each(function ($node) {
+                return $node->text(); });
+            $image = $response->filter('img')->each(function ($node) {
+                return $node->attr('src'); });
+
             $imgUrl;
             for ($i = 0; $i < count($image); $i++) {
                 $surat = explode(".", $image[$i]);
@@ -559,12 +580,12 @@ class LCWaikikiController extends Controller
                     break;
                 }
             }
-            
+
             for ($i = 0; $i < count($name); $i++) {
                 $fullprice = explode(" ", $price[$i]);
                 $floatValue = floatval($fullprice[0]);
-                $fullpricee = $floatValue * 0.78;
-                
+                $fullpricee = $floatValue * 0.82;
+
                 $product = array(
                     'name' => $name[$i],
                     'price' => $fullpricee,
@@ -575,7 +596,7 @@ class LCWaikikiController extends Controller
                 array_push($products, $product);
             }
         }
-        
+
         $insertData = array();
         foreach ($products as $product) {
             $newprice = $product['price'] < 10 ? $product['price'] * 1000 : $product['price'];
@@ -589,14 +610,15 @@ class LCWaikikiController extends Controller
                 'updated_at' => now(),
             ];
         }
-        
+
         DB::table('products')->insert($insertData);
-        
+
         $products = DB::select("SELECT * FROM products WHERE brand='LCWaikiki'");
         return view('brands/lcwaikiki', ['products' => $products]);
     }
 
-    public function getlcwaikiki() {
+    public function getlcwaikiki()
+    {
         $products = DB::select('SELECT * FROM products WHERE brand = "LCWaikiki"');
         return $products;
     }

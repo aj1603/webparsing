@@ -9,12 +9,14 @@ use Illuminate\Support\Facades\DB;
 
 class BiancoLucciController extends Controller
 {
-    public function allbiancolucci(Request $request){
+    public function allbiancolucci(Request $request)
+    {
         $products = DB::select("SELECT * FROM products WHERE brand='Biancolucci'");
         return view('brands/biancolucci', ['products' => $products]);
     }
 
-    public function dbbiancolucci() {
+    public function dbbiancolucci()
+    {
         $client = new Client();
         $products = array();
         $urls = [
@@ -56,7 +58,7 @@ class BiancoLucciController extends Controller
             'https://www.trendyol.com/bianco-lucci/kadin-desenli-dugmeli-ceket-p-282451679',
             'https://www.trendyol.com/bianco-lucci/kadin-polo-yaka-astarli-torba-cepli-ceket-p-682931786',
             'https://www.trendyol.com/bianco-lucci/kadin-yakasi-ve-cebi-tas-islemeli-gabardin-ceket-p-762235353',
-            'https://www.trendyol.com/bianco-lucci/kadin-cikarilabilir-kapispnlu-dugmeli-ceket-p-766716020',
+            // 'https://www.trendyol.com/bianco-lucci/kadin-cikarilabilir-kapispnlu-dugmeli-ceket-p-766716020',
             'https://www.trendyol.com/bianco-lucci/kadin-cift-cepli-dugmeli-ceket-p-762214429',
             'https://www.trendyol.com/bianco-lucci/kadin-tas-puskullu-kanvas-gabardin-ceket-p-674545643',
             'https://www.trendyol.com/bianco-lucci/kadin-cift-cepli-bomber-ceket-p-765037769',
@@ -91,14 +93,22 @@ class BiancoLucciController extends Controller
             'https://www.trendyol.com/bianco-lucci/kadin-cakimli-motorcu-deri-ceket-p-765347272',
             'https://www.trendyol.com/bianco-lucci/kadin-tas-islemeli-cift-cepli-kase-ceket-p-766712527',
         ];
-        
+
         foreach ($urls as $url) {
-            $response = $client->request('GET', $url);            
-            $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });
-            $size = $response->filter('.sp-itm')->each(function ($node) { return $node->text(); });
-            $price = $response->filter('.prc-dsc')->each(function ($node) { return $node->text(); });
-            $image = $response->filter('img')->each(function ($node) { return $node->attr('src'); });
-            
+            $response = $client->request('GET', $url);
+            $name = $response->filter('h1.pr-new-br')->each(function ($node) {
+                return $node->text();
+            });
+            $size = $response->filter('.sp-itm')->each(function ($node) {
+                return $node->text();
+            });
+            $price = $response->filter('.prc-dsc')->each(function ($node) {
+                return $node->text();
+            });
+            $image = $response->filter('img')->each(function ($node) {
+                return $node->attr('src');
+            });
+
             $imgUrl;
             for ($i = 0; $i < count($image); $i++) {
                 $surat = explode(".", $image[$i]);
@@ -107,12 +117,12 @@ class BiancoLucciController extends Controller
                     break;
                 }
             }
-            
+
             for ($i = 0; $i < count($name); $i++) {
                 $fullprice = explode(" ", $price[$i]);
                 $floatValue = floatval($fullprice[0]);
-                $fullpricee = $floatValue * 0.78;
-                
+                $fullpricee = $floatValue * 0.82;
+
                 $product = array(
                     'name' => $name[$i],
                     'price' => $fullpricee,
@@ -123,7 +133,7 @@ class BiancoLucciController extends Controller
                 array_push($products, $product);
             }
         }
-        
+
         $insertData = array();
         foreach ($products as $product) {
             $newprice = $product['price'] < 10 ? $product['price'] * 1000 : $product['price'];
@@ -137,19 +147,20 @@ class BiancoLucciController extends Controller
                 'updated_at' => now(),
             ];
         }
-        
+
         DB::table('products')->insert($insertData);
-        
+
         $products = DB::select("SELECT * FROM products WHERE brand='Biancolucci'");
         return view('brands/biancolucci', ['products' => $products]);
     }
 
-    public function dbbiancolucci1() {
+    public function dbbiancolucci1()
+    {
         $client = new Client();
         $products = array();
         $urls = [
-            'https://www.trendyol.com/bianco-lucci/kadin-ekose-desenli-sanel-kumas-ceket-p-766711229',
-            'https://www.trendyol.com/bianco-lucci/kadin-beli-lastikli-citcitli-deri-bomber-ceket-p-766710106',
+            // 'https://www.trendyol.com/bianco-lucci/kadin-ekose-desenli-sanel-kumas-ceket-p-766711229',
+            // 'https://www.trendyol.com/bianco-lucci/kadin-beli-lastikli-citcitli-deri-bomber-ceket-p-766710106',
             'https://www.trendyol.com/bianco-lucci/kadin-cift-cepli-bomber-ceket-p-765017278',
             'https://www.trendyol.com/bianco-lucci/kadin-fermuarli-gabardin-ceket-2195-p-355654015',
             'https://www.trendyol.com/bianco-lucci/kadin-dugmeli-lamineli-keten-ceket-p-307972145',
@@ -217,12 +228,20 @@ class BiancoLucciController extends Controller
         ];
 
         foreach ($urls as $url) {
-            $response = $client->request('GET', $url);            
-            $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });
-            $size = $response->filter('.sp-itm')->each(function ($node) { return $node->text(); });
-            $price = $response->filter('.prc-dsc')->each(function ($node) { return $node->text(); });
-            $image = $response->filter('img')->each(function ($node) { return $node->attr('src'); });
-            
+            $response = $client->request('GET', $url);
+            $name = $response->filter('h1.pr-new-br')->each(function ($node) {
+                return $node->text();
+            });
+            $size = $response->filter('.sp-itm')->each(function ($node) {
+                return $node->text();
+            });
+            $price = $response->filter('.prc-dsc')->each(function ($node) {
+                return $node->text();
+            });
+            $image = $response->filter('img')->each(function ($node) {
+                return $node->attr('src');
+            });
+
             $imgUrl;
             for ($i = 0; $i < count($image); $i++) {
                 $surat = explode(".", $image[$i]);
@@ -231,12 +250,12 @@ class BiancoLucciController extends Controller
                     break;
                 }
             }
-            
+
             for ($i = 0; $i < count($name); $i++) {
                 $fullprice = explode(" ", $price[$i]);
                 $floatValue = floatval($fullprice[0]);
-                $fullpricee = $floatValue * 0.78;
-                
+                $fullpricee = $floatValue * 0.82;
+
                 $product = array(
                     'name' => $name[$i],
                     'price' => $fullpricee,
@@ -247,7 +266,7 @@ class BiancoLucciController extends Controller
                 array_push($products, $product);
             }
         }
-        
+
         $insertData = array();
         foreach ($products as $product) {
             $newprice = $product['price'] < 10 ? $product['price'] * 1000 : $product['price'];
@@ -261,14 +280,15 @@ class BiancoLucciController extends Controller
                 'updated_at' => now(),
             ];
         }
-        
+
         DB::table('products')->insert($insertData);
-        
+
         $products = DB::select("SELECT * FROM products WHERE brand='Biancolucci'");
         return view('brands/biancolucci', ['products' => $products]);
     }
 
-    public function getbiancolucci() {
+    public function getbiancolucci()
+    {
         $products = DB::select('SELECT * FROM products WHERE brand = "Biancolucci"');
         return $products;
     }

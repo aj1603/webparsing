@@ -9,16 +9,18 @@ use App\Models\Product;
 
 class KotonController extends Controller
 {
-    public function allkoton(Request $request){
+    public function allkoton(Request $request)
+    {
         $products = DB::select("SELECT * FROM products WHERE brand='Koton'");
         return view('brands/koton', ['products' => $products]);
     }
 
-    public function dbkoton1() {
+    public function dbkoton1()
+    {
         $client = new Client();
         $products = array();
         $urls = [
-            'https://www.trendyol.com/koton/oversize-kapitone-ceket-gomlek-yaka-cepli-p-411232785',
+            // 'https://www.trendyol.com/koton/oversize-kapitone-ceket-gomlek-yaka-cepli-p-411232785',
             'https://www.trendyol.com/koton/biker-ceket-deri-gorunumlu-fermuarli-kemer-detayli-p-752654038',
             'https://www.trendyol.com/koton/kadife-blazer-ceket-kruvaze-dugmeli-cep-detayli-p-636519935',
             'https://www.trendyol.com/koton/deri-gorunumlu-ceket-oversize-cepli-dugmeli-gomlek-yaka-p-755016328',
@@ -118,12 +120,20 @@ class KotonController extends Controller
         ];
 
         foreach ($urls as $url) {
-            $response = $client->request('GET', $url);            
-            $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });
-            $size = $response->filter('.sp-itm')->each(function ($node) { return $node->text(); });
-            $price = $response->filter('.prc-dsc')->each(function ($node) { return $node->text(); });
-            $image = $response->filter('img')->each(function ($node) { return $node->attr('src'); });
-            
+            $response = $client->request('GET', $url);
+            $name = $response->filter('h1.pr-new-br')->each(function ($node) {
+                return $node->text();
+            });
+            $size = $response->filter('.sp-itm')->each(function ($node) {
+                return $node->text();
+            });
+            $price = $response->filter('.prc-dsc')->each(function ($node) {
+                return $node->text();
+            });
+            $image = $response->filter('img')->each(function ($node) {
+                return $node->attr('src');
+            });
+
             $imgUrl;
             for ($i = 0; $i < count($image); $i++) {
                 $surat = explode(".", $image[$i]);
@@ -132,12 +142,12 @@ class KotonController extends Controller
                     break;
                 }
             }
-            
+
             for ($i = 0; $i < count($name); $i++) {
                 $fullprice = explode(" ", $price[$i]);
                 $floatValue = floatval($fullprice[0]);
-                $fullpricee = $floatValue * 0.78;
-                
+                $fullpricee = $floatValue * 0.82;
+
                 $product = array(
                     'name' => $name[$i],
                     'price' => $fullpricee,
@@ -148,7 +158,7 @@ class KotonController extends Controller
                 array_push($products, $product);
             }
         }
-        
+
         $insertData = array();
         foreach ($products as $product) {
             $newprice = $product['price'] < 10 ? $product['price'] * 1000 : $product['price'];
@@ -162,14 +172,15 @@ class KotonController extends Controller
                 'updated_at' => now(),
             ];
         }
-        
+
         DB::table('products')->insert($insertData);
-        
+
         $products = DB::select("SELECT * FROM products WHERE brand='Koton'");
         return view('brands/koton', ['products' => $products]);
     }
 
-    public function dbkoton2() {
+    public function dbkoton2()
+    {
         $client = new Client();
         $products = array();
         $urls = [
@@ -270,14 +281,22 @@ class KotonController extends Controller
             'https://www.trendyol.com/koton/kadin-suni-deri-ceket-2yak23523ow-p-363675708',
             'https://www.trendyol.com/koton/blazer-ceket-v-yaka-cep-detayli-p-641744412',
         ];
-        
+
         foreach ($urls as $url) {
-            $response = $client->request('GET', $url);            
-            $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });
-            $size = $response->filter('.sp-itm')->each(function ($node) { return $node->text(); });
-            $price = $response->filter('.prc-dsc')->each(function ($node) { return $node->text(); });
-            $image = $response->filter('img')->each(function ($node) { return $node->attr('src'); });
-            
+            $response = $client->request('GET', $url);
+            $name = $response->filter('h1.pr-new-br')->each(function ($node) {
+                return $node->text();
+            });
+            $size = $response->filter('.sp-itm')->each(function ($node) {
+                return $node->text();
+            });
+            $price = $response->filter('.prc-dsc')->each(function ($node) {
+                return $node->text();
+            });
+            $image = $response->filter('img')->each(function ($node) {
+                return $node->attr('src');
+            });
+
             $imgUrl;
             for ($i = 0; $i < count($image); $i++) {
                 $surat = explode(".", $image[$i]);
@@ -286,12 +305,12 @@ class KotonController extends Controller
                     break;
                 }
             }
-            
+
             for ($i = 0; $i < count($name); $i++) {
                 $fullprice = explode(" ", $price[$i]);
                 $floatValue = floatval($fullprice[0]);
-                $fullpricee = $floatValue * 0.78;
-                
+                $fullpricee = $floatValue * 0.82;
+
                 $product = array(
                     'name' => $name[$i],
                     'price' => $fullpricee,
@@ -302,7 +321,7 @@ class KotonController extends Controller
                 array_push($products, $product);
             }
         }
-        
+
         $insertData = array();
         foreach ($products as $product) {
             $newprice = $product['price'] < 10 ? $product['price'] * 1000 : $product['price'];
@@ -316,14 +335,15 @@ class KotonController extends Controller
                 'updated_at' => now(),
             ];
         }
-        
+
         DB::table('products')->insert($insertData);
-        
+
         $products = DB::select("SELECT * FROM products WHERE brand='Koton'");
         return view('brands/koton', ['products' => $products]);
     }
 
-    public function dbkoton3() {
+    public function dbkoton3()
+    {
         $client = new Client();
         $products = array();
         $urls = [
@@ -423,15 +443,23 @@ class KotonController extends Controller
             'https://www.trendyol.com/koton/blazer-ceket-p-263492380',
             'https://www.trendyol.com/koton/rachel-araz-x-puskul-detayli-cepli-tuvit-ceket-p-461805726',
             'https://www.trendyol.com/koton/oversize-blazer-ceket-kruvaze-dugmeli-p-702178069',
-      ];
-        
+        ];
+
         foreach ($urls as $url) {
-            $response = $client->request('GET', $url);            
-            $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });
-            $size = $response->filter('.sp-itm')->each(function ($node) { return $node->text(); });
-            $price = $response->filter('.prc-dsc')->each(function ($node) { return $node->text(); });
-            $image = $response->filter('img')->each(function ($node) { return $node->attr('src'); });
-            
+            $response = $client->request('GET', $url);
+            $name = $response->filter('h1.pr-new-br')->each(function ($node) {
+                return $node->text();
+            });
+            $size = $response->filter('.sp-itm')->each(function ($node) {
+                return $node->text();
+            });
+            $price = $response->filter('.prc-dsc')->each(function ($node) {
+                return $node->text();
+            });
+            $image = $response->filter('img')->each(function ($node) {
+                return $node->attr('src');
+            });
+
             $imgUrl;
             for ($i = 0; $i < count($image); $i++) {
                 $surat = explode(".", $image[$i]);
@@ -440,12 +468,12 @@ class KotonController extends Controller
                     break;
                 }
             }
-            
+
             for ($i = 0; $i < count($name); $i++) {
                 $fullprice = explode(" ", $price[$i]);
                 $floatValue = floatval($fullprice[0]);
-                $fullpricee = $floatValue * 0.78;
-                
+                $fullpricee = $floatValue * 0.82;
+
                 $product = array(
                     'name' => $name[$i],
                     'price' => $fullpricee,
@@ -456,7 +484,7 @@ class KotonController extends Controller
                 array_push($products, $product);
             }
         }
-        
+
         $insertData = array();
         foreach ($products as $product) {
             $newprice = $product['price'] < 10 ? $product['price'] * 1000 : $product['price'];
@@ -470,14 +498,15 @@ class KotonController extends Controller
                 'updated_at' => now(),
             ];
         }
-        
+
         DB::table('products')->insert($insertData);
-        
+
         $products = DB::select("SELECT * FROM products WHERE brand='Koton'");
         return view('brands/koton', ['products' => $products]);
     }
 
-    public function dbkoton4() {
+    public function dbkoton4()
+    {
         $client = new Client();
         $products = array();
         $urls = [
@@ -578,14 +607,22 @@ class KotonController extends Controller
             'https://www.trendyol.com/koton/crop-tuvit-ceket-kisa-kollu-kruvaze-dugmeli-v-yaka-p-641744420',
             'https://www.trendyol.com/koton/melis-agazat-x-bros-detayli-kruvaze-tuvit-ceket-3wak50064ew-p-465897658',
         ];
-        
+
         foreach ($urls as $url) {
-            $response = $client->request('GET', $url);            
-            $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });
-            $size = $response->filter('.sp-itm')->each(function ($node) { return $node->text(); });
-            $price = $response->filter('.prc-dsc')->each(function ($node) { return $node->text(); });
-            $image = $response->filter('img')->each(function ($node) { return $node->attr('src'); });
-            
+            $response = $client->request('GET', $url);
+            $name = $response->filter('h1.pr-new-br')->each(function ($node) {
+                return $node->text();
+            });
+            $size = $response->filter('.sp-itm')->each(function ($node) {
+                return $node->text();
+            });
+            $price = $response->filter('.prc-dsc')->each(function ($node) {
+                return $node->text();
+            });
+            $image = $response->filter('img')->each(function ($node) {
+                return $node->attr('src');
+            });
+
             $imgUrl;
             for ($i = 0; $i < count($image); $i++) {
                 $surat = explode(".", $image[$i]);
@@ -594,12 +631,12 @@ class KotonController extends Controller
                     break;
                 }
             }
-            
+
             for ($i = 0; $i < count($name); $i++) {
                 $fullprice = explode(" ", $price[$i]);
                 $floatValue = floatval($fullprice[0]);
-                $fullpricee = $floatValue * 0.78;
-                
+                $fullpricee = $floatValue * 0.82;
+
                 $product = array(
                     'name' => $name[$i],
                     'price' => $fullpricee,
@@ -610,7 +647,7 @@ class KotonController extends Controller
                 array_push($products, $product);
             }
         }
-        
+
         $insertData = array();
         foreach ($products as $product) {
             $newprice = $product['price'] < 10 ? $product['price'] * 1000 : $product['price'];
@@ -624,14 +661,15 @@ class KotonController extends Controller
                 'updated_at' => now(),
             ];
         }
-        
+
         DB::table('products')->insert($insertData);
-        
+
         $products = DB::select("SELECT * FROM products WHERE brand='Koton'");
         return view('brands/koton', ['products' => $products]);
     }
 
-    public function dbkoton5() {
+    public function dbkoton5()
+    {
         $client = new Client();
         $products = array();
         $urls = [
@@ -725,12 +763,20 @@ class KotonController extends Controller
         ];
 
         foreach ($urls as $url) {
-            $response = $client->request('GET', $url);            
-            $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });
-            $size = $response->filter('.sp-itm')->each(function ($node) { return $node->text(); });
-            $price = $response->filter('.prc-dsc')->each(function ($node) { return $node->text(); });
-            $image = $response->filter('img')->each(function ($node) { return $node->attr('src'); });
-            
+            $response = $client->request('GET', $url);
+            $name = $response->filter('h1.pr-new-br')->each(function ($node) {
+                return $node->text();
+            });
+            $size = $response->filter('.sp-itm')->each(function ($node) {
+                return $node->text();
+            });
+            $price = $response->filter('.prc-dsc')->each(function ($node) {
+                return $node->text();
+            });
+            $image = $response->filter('img')->each(function ($node) {
+                return $node->attr('src');
+            });
+
             $imgUrl;
             for ($i = 0; $i < count($image); $i++) {
                 $surat = explode(".", $image[$i]);
@@ -739,12 +785,12 @@ class KotonController extends Controller
                     break;
                 }
             }
-            
+
             for ($i = 0; $i < count($name); $i++) {
                 $fullprice = explode(" ", $price[$i]);
                 $floatValue = floatval($fullprice[0]);
-                $fullpricee = $floatValue * 0.78;
-                
+                $fullpricee = $floatValue * 0.82;
+
                 $product = array(
                     'name' => $name[$i],
                     'price' => $fullpricee,
@@ -755,7 +801,7 @@ class KotonController extends Controller
                 array_push($products, $product);
             }
         }
-        
+
         $insertData = array();
         foreach ($products as $product) {
             $newprice = $product['price'] < 10 ? $product['price'] * 1000 : $product['price'];
@@ -769,14 +815,15 @@ class KotonController extends Controller
                 'updated_at' => now(),
             ];
         }
-        
+
         DB::table('products')->insert($insertData);
-        
+
         $products = DB::select("SELECT * FROM products WHERE brand='Koton'");
         return view('brands/koton', ['products' => $products]);
     }
 
-    public function getkoton() {
+    public function getkoton()
+    {
         $products = DB::select('SELECT * FROM products WHERE brand = "Koton"');
         return $products;
     }

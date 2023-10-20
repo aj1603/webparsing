@@ -9,12 +9,14 @@ use Illuminate\Support\Facades\DB;
 
 class BershkaController extends Controller
 {
-    public function allbershka(Request $request){
+    public function allbershka(Request $request)
+    {
         $products = DB::select("SELECT * FROM products WHERE brand='Bershka'");
         return view('brands/bershka', ['products' => $products]);
     }
 
-    public function dbbershka() {
+    public function dbbershka()
+    {
         $client = new Client();
         $products = array();
         $urls = [
@@ -103,14 +105,18 @@ class BershkaController extends Controller
             'https://www.trendyol.com/bershka/fosforlu-detayli-kapusonlu-ceket-p-750039068',
             'https://www.trendyol.com/bershka/distressed-suni-deri-trucker-ceket-p-751624910',
         ];
-        
+
         foreach ($urls as $url) {
-            $response = $client->request('GET', $url);            
-            $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });
-            $size = $response->filter('.sp-itm')->each(function ($node) { return $node->text(); });
-            $price = $response->filter('.prc-dsc')->each(function ($node) { return $node->text(); });
-            $image = $response->filter('img')->each(function ($node) { return $node->attr('src'); });
-            
+            $response = $client->request('GET', $url);
+            $name = $response->filter('h1.pr-new-br')->each(function ($node) {
+                return $node->text(); });
+            $size = $response->filter('.sp-itm')->each(function ($node) {
+                return $node->text(); });
+            $price = $response->filter('.prc-dsc')->each(function ($node) {
+                return $node->text(); });
+            $image = $response->filter('img')->each(function ($node) {
+                return $node->attr('src'); });
+
             $imgUrl;
             for ($i = 0; $i < count($image); $i++) {
                 $surat = explode(".", $image[$i]);
@@ -119,12 +125,12 @@ class BershkaController extends Controller
                     break;
                 }
             }
-            
+
             for ($i = 0; $i < count($name); $i++) {
                 $fullprice = explode(" ", $price[$i]);
                 $floatValue = floatval($fullprice[0]);
-                $fullpricee = $floatValue * 0.78;
-                
+                $fullpricee = $floatValue * 0.82;
+
                 $product = array(
                     'name' => $name[$i],
                     'price' => $fullpricee,
@@ -135,7 +141,7 @@ class BershkaController extends Controller
                 array_push($products, $product);
             }
         }
-        
+
         $insertData = array();
         foreach ($products as $product) {
             $newprice = $product['price'] < 10 ? $product['price'] * 1000 : $product['price'];
@@ -149,14 +155,15 @@ class BershkaController extends Controller
                 'updated_at' => now(),
             ];
         }
-        
+
         DB::table('products')->insert($insertData);
-        
+
         $products = DB::select("SELECT * FROM products WHERE brand='Bershka'");
         return view('brands/bershka', ['products' => $products]);
     }
 
-    public function getbershka() {
+    public function getbershka()
+    {
         $products = DB::select('SELECT * FROM products WHERE brand = "Bershka"');
         return $products;
     }

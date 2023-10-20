@@ -9,16 +9,18 @@ use Illuminate\Support\Facades\DB;
 
 class DefactoController extends Controller
 {
-    public function alldefacto(Request $request){
+    public function alldefacto(Request $request)
+    {
         $products = DB::select("SELECT * FROM products WHERE brand='Defacto'");
         return view('brands/defacto', ['products' => $products]);
     }
 
-    public function dbdefacto() {
+    public function dbdefacto()
+    {
         $client = new Client();
         $products = array();
         $urls = [
-            'https://www.trendyol.com/defacto/su-gecirmez-oversize-fit-suni-deri-mont-p-753243402',
+            // 'https://www.trendyol.com/defacto/su-gecirmez-oversize-fit-suni-deri-mont-p-753243402',
             'https://www.trendyol.com/defacto/su-itici-suni-deri-blazer-biker-ceket-p-645885480',
             'https://www.trendyol.com/defacto/su-itici-suni-deri-biker-ceket-p-649379400',
             'https://www.trendyol.com/defacto/oversize-fit-blazer-p-755758257',
@@ -89,12 +91,20 @@ class DefactoController extends Controller
         ];
 
         foreach ($urls as $url) {
-            $response = $client->request('GET', $url);            
-            $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });
-            $size = $response->filter('.sp-itm')->each(function ($node) { return $node->text(); });
-            $price = $response->filter('.prc-dsc')->each(function ($node) { return $node->text(); });
-            $image = $response->filter('img')->each(function ($node) { return $node->attr('src'); });
-            
+            $response = $client->request('GET', $url);
+            $name = $response->filter('h1.pr-new-br')->each(function ($node) {
+                return $node->text();
+            });
+            $size = $response->filter('.sp-itm')->each(function ($node) {
+                return $node->text();
+            });
+            $price = $response->filter('.prc-dsc')->each(function ($node) {
+                return $node->text();
+            });
+            $image = $response->filter('img')->each(function ($node) {
+                return $node->attr('src');
+            });
+
             $imgUrl;
             for ($i = 0; $i < count($image); $i++) {
                 $surat = explode(".", $image[$i]);
@@ -103,12 +113,12 @@ class DefactoController extends Controller
                     break;
                 }
             }
-            
+
             for ($i = 0; $i < count($name); $i++) {
                 $fullprice = explode(" ", $price[$i]);
                 $floatValue = floatval($fullprice[0]);
-                $fullpricee = $floatValue * 0.78;
-                
+                $fullpricee = $floatValue * 0.82;
+
                 $product = array(
                     'name' => $name[$i],
                     'price' => $fullpricee,
@@ -119,7 +129,7 @@ class DefactoController extends Controller
                 array_push($products, $product);
             }
         }
-        
+
         $insertData = array();
         foreach ($products as $product) {
             $newprice = $product['price'] < 10 ? $product['price'] * 1000 : $product['price'];
@@ -133,14 +143,15 @@ class DefactoController extends Controller
                 'updated_at' => now(),
             ];
         }
-        
+
         DB::table('products')->insert($insertData);
-        
+
         $products = DB::select("SELECT * FROM products WHERE brand='Defacto'");
         return view('brands/defacto', ['products' => $products]);
     }
 
-    public function dbdefacto1() {
+    public function dbdefacto1()
+    {
         $client = new Client();
         $products = array();
         $urls = [
@@ -191,12 +202,20 @@ class DefactoController extends Controller
         ];
 
         foreach ($urls as $url) {
-            $response = $client->request('GET', $url);            
-            $name = $response->filter('h1.pr-new-br')->each(function ($node) { return $node->text(); });
-            $size = $response->filter('.sp-itm')->each(function ($node) { return $node->text(); });
-            $price = $response->filter('.prc-dsc')->each(function ($node) { return $node->text(); });
-            $image = $response->filter('img')->each(function ($node) { return $node->attr('src'); });
-            
+            $response = $client->request('GET', $url);
+            $name = $response->filter('h1.pr-new-br')->each(function ($node) {
+                return $node->text();
+            });
+            $size = $response->filter('.sp-itm')->each(function ($node) {
+                return $node->text();
+            });
+            $price = $response->filter('.prc-dsc')->each(function ($node) {
+                return $node->text();
+            });
+            $image = $response->filter('img')->each(function ($node) {
+                return $node->attr('src');
+            });
+
             $imgUrl;
             for ($i = 0; $i < count($image); $i++) {
                 $surat = explode(".", $image[$i]);
@@ -205,12 +224,12 @@ class DefactoController extends Controller
                     break;
                 }
             }
-            
+
             for ($i = 0; $i < count($name); $i++) {
                 $fullprice = explode(" ", $price[$i]);
                 $floatValue = floatval($fullprice[0]);
-                $fullpricee = $floatValue * 0.78;
-                
+                $fullpricee = $floatValue * 0.82;
+
                 $product = array(
                     'name' => $name[$i],
                     'price' => $fullpricee,
@@ -221,7 +240,7 @@ class DefactoController extends Controller
                 array_push($products, $product);
             }
         }
-        
+
         $insertData = array();
         foreach ($products as $product) {
             $newprice = $product['price'] < 10 ? $product['price'] * 1000 : $product['price'];
@@ -235,14 +254,15 @@ class DefactoController extends Controller
                 'updated_at' => now(),
             ];
         }
-        
+
         DB::table('products')->insert($insertData);
-        
+
         $products = DB::select("SELECT * FROM products WHERE brand='Defacto'");
         return view('brands/defacto', ['products' => $products]);
     }
 
-    public function getdefacto() {
+    public function getdefacto()
+    {
         $products = DB::select('SELECT * FROM products WHERE brand = "Defacto"');
         return $products;
     }
