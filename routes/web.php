@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductsDB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
@@ -23,7 +24,7 @@ Route::get('/url', [ProductController::class, 'url']);
 Route::get('/', [ProductController::class, 'product_all']);
 Route::get('/delete', [ProductController::class, 'delete']);
 
-Route::get('/products_1', [AsicsController::class, 'products_1']);
+Route::get('/products', [ProductsDB::class, 'products']);
 Route::get('/dbasics', [AsicsController::class, 'dbasics']);
 Route::get('/getasics', [AsicsController::class, 'getasics']);
 
