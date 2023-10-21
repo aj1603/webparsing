@@ -15,15 +15,15 @@ use App\Http\Controllers\GrimelangeController;
 use App\Http\Controllers\MaviController;
 use App\Http\Controllers\LCWaikikiController;
 use App\Http\Controllers\FacesController;
-    
-Route::get('/allproducts',[ProductController::class, 'allproducts'])->name('import-view');
-Route::post('/import',[ProductController::class, 'import'])->name('import');
-Route::get('/export',[ProductController::class, 'export'])->name('export');
+
+Route::get('/allproducts', [ProductController::class, 'allproducts'])->name('import-view');
+Route::post('/import', [ProductController::class, 'import'])->name('import');
+Route::get('/export', [ProductController::class, 'export'])->name('export');
 Route::get('/url', [ProductController::class, 'url']);
 Route::get('/', [ProductController::class, 'product_all']);
 Route::get('/delete', [ProductController::class, 'delete']);
 
-Route::get('/allasics', [AsicsController::class, 'allasics']);
+Route::get('/products_1', [AsicsController::class, 'products_1']);
 Route::get('/dbasics', [AsicsController::class, 'dbasics']);
 Route::get('/getasics', [AsicsController::class, 'getasics']);
 
