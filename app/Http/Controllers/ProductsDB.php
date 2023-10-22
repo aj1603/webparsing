@@ -9,13 +9,32 @@ use App\Models\Product;
 
 class ProductsDB extends Controller
 {
-    public function products()
+    public function products(Request $request)
     {
-        DB::table('products')->delete();
+        $batchSize = 200;
+        $page = $request->query('page', 1);
+        $offset = ($page - 1) * $batchSize;
+        $code = 1;
+        if ($page == 1) {
+            DB::table('products')->delete();
+        } else {
+            $last = DB::select('select productcode from products order by id desc limit 1');
+            $firstProduct = $last[0];
+            $productCode = $firstProduct->productcode;
+            $parts = explode('-', $productCode);
+            $number = (int) $parts[2];
+
+            if ($number > 1) {
+                $code = $number + 1;
+            }
+        }
         $client = new Client();
         $products = array();
-        $code = 1;
-        $productsurls = DB::select("SELECT brands, links FROM productsurl");
+        $productsurls = DB::table('productsurl')
+            ->select('brands', 'links')
+            ->skip($offset)
+            ->take($batchSize)
+            ->get();
 
         foreach ($productsurls as $row) {
             $url = $row->links;
@@ -94,6 +113,7 @@ class ProductsDB extends Controller
         }
 
         DB::table('products')->insert($insertData);
+        $products = DB::table('products')->get();
         return $products;
     }
 }

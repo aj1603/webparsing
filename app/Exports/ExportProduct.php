@@ -8,10 +8,23 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 class ExportProduct implements FromCollection
 {
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     public function collection()
     {
-        return Product::select('name', 'imgUrl', 'price', 'brand', 'size')->get();
+        return Product::select(
+            'productcode',
+            'name',
+            'price',
+            'quantity',
+            'status',
+            'maincat',
+            'seccat',
+            'language',
+            'description',
+            'imgUrl',
+            'size',
+            'brand'
+        )->get();
     }
 }
