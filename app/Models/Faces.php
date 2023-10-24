@@ -10,13 +10,13 @@ class Faces extends Model
     use HasFactory;
 
     protected $fillable = [
-        'productCode',
+        'productcode',
         'name',
         'price',
         'quantity',
         'status',
-        'mainCategory',
-        'secCategory',
+        'maincat',
+        'seccat',
         'language',
         'imgUrl',
         'description',

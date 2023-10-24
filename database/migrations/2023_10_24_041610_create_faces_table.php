@@ -14,17 +14,17 @@ class CreateFacesTable extends Migration
     public function up()
     {
         Schema::create('faces', function (Blueprint $table) {
-            $table->id();
-            $table->string('productCode');
+            $table->increments('id');
+            $table->string('productcode');
             $table->string('name');
             $table->float('price');
             $table->integer('quantity');
             $table->string('status');
-            $table->string('mainCategory');
-            $table->string('secCategory');
+            $table->string('maincat');
+            $table->string('seccat');
             $table->string('language');
-            $table->string('imgUrl', 1000);
             $table->string('description');
+            $table->string('imgUrl', 1000);
             $table->timestamps();
         });
     }

@@ -110,7 +110,7 @@ class TrendyolController extends Controller
         }
     }
 
-    public function products(Request $request)
+    public function trendyolpro(Request $request)
     {
         $batchSize = 200;
         $page = $request->query('page', 1);

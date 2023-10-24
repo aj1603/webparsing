@@ -9,23 +9,15 @@ use App\Models\Product;
 
 class FacesController extends Controller
 {
-    public function faces1()
+    public function haircaredb()
     {
         $client = new Client();
-        echo ("HI");
-
         $urls = [
             'https://www.faces.com/ae-en/haircare?sz=647',
         ];
-
+        $code = 1;
         $products = [];
-
-        $code = 6500;
-
-        // $last = DB::select('select productCode from facestables order by id desc limit 1');
-        // $lastcode = explode("-", $last[['productCode']]);
-        // // echo($lastcode);
-        // return $last;
+        DB::table('faces')->delete();
 
         foreach ($urls as $url) {
             $crawler = $client->request('GET', $url);
@@ -38,18 +30,18 @@ class FacesController extends Controller
                 $image = $node->filter('img.product-tile-image-el.tile-image.js-tile-image')->attr('src');
 
                 $stringcode = strval($code);
-                $uaeprice = DB::table('money')->where('id', 2)->value('money');
-                $price = floatval(str_replace(['$', ','], '', $price));
-                $fullprice = $price * $uaeprice;
+                $uaeprice = DB::table('fprice')->where('id', 2)->value('fprice');
+                $price1 = floatval(str_replace(['$', ','], '', $price));
+                $fullprice = $price1 * $uaeprice;
 
                 $product = [
-                    'productCode' => 'uae-parc-' . $stringcode,
+                    'productcode' => 'uae-parc-' . $stringcode,
                     'name' => $name,
                     'price' => $fullprice,
                     'quantity' => 1,
                     'status' => 'A',
-                    'mainCategory' => 'Gerekli Global',
-                    'secCategory' => 'Gerekli Global///Широкий ассортимент из ОАЭ',
+                    'maincat' => 'Gerekli Global',
+                    'seccat' => 'Gerekli Global///Широкий ассортимент из ОАЭ',
                     'language' => 'ru',
                     'imgUrl' => $image,
                     'description' => "Цена товара может меняться за счет коэффицента и дополнительных затрат.",
@@ -64,13 +56,13 @@ class FacesController extends Controller
         $insertData = array();
         foreach ($products as $product) {
             $insertData[] = [
-                'productCode' => $product['productCode'],
+                'productcode' => $product['productcode'],
                 'name' => $product['name'],
                 'price' => $product['price'],
                 'quantity' => $product['quantity'],
                 'status' => $product['status'],
-                'mainCategory' => $product['mainCategory'],
-                'secCategory' => $product['secCategory'],
+                'maincat' => $product['maincat'],
+                'seccat' => $product['seccat'],
                 'language' => $product['language'],
                 'imgUrl' => $product['imgUrl'],
                 'description' => $product['description'],
@@ -79,16 +71,24 @@ class FacesController extends Controller
             ];
         }
 
-        DB::table('facestables')->insert($insertData);
+        DB::table('faces')->insert($insertData);
 
-        $products = DB::select("SELECT * FROM facestables");
+        $products = DB::select("SELECT * FROM faces");
         return $products;
     }
 
     public function hairmistdb()
     {
         $client = new Client();
-        echo ("HI");
+        $code = 1;
+        $last = DB::select('select productcode from faces order by id desc limit 1');
+        $firstProduct = $last[0];
+        $productCode = $firstProduct->productcode;
+        $parts = explode('-', $productCode);
+        $number = (int) $parts[2];
+        if ($number > 1) {
+            $code = $number + 1;
+        }
 
         $urls = [
             'https://www.faces.com/ae-en/fragrance/fragrance_hairmists?sz=40',
@@ -98,9 +98,6 @@ class FacesController extends Controller
         ];
 
         $products = [];
-
-        $code = 1;
-
         foreach ($urls as $url) {
             $crawler = $client->request('GET', $url);
 
@@ -112,18 +109,18 @@ class FacesController extends Controller
                 $image = $node->filter('img.product-tile-image-el.tile-image.js-tile-image')->attr('src');
 
                 $stringcode = strval($code);
-                $uaeprice = DB::table('money')->where('id', 2)->value('money');
-                $price = floatval(str_replace(['$', ','], '', $price));
-                $fullprice = $price * $uaeprice;
+                $uaeprice = DB::table('fprice')->where('id', 2)->value('fprice');
+                $price1 = floatval(str_replace(['$', ','], '', $price));
+                $fullprice = $price1 * $uaeprice;
 
                 $product = [
-                    'productCode' => 'uae-parc-' . $stringcode,
+                    'productcode' => 'uae-parc-' . $stringcode,
                     'name' => $name,
                     'price' => $fullprice,
                     'quantity' => 1,
                     'status' => 'A',
-                    'mainCategory' => 'Gerekli Global',
-                    'secCategory' => 'Gerekli Global///Широкий ассортимент из ОАЭ',
+                    'maincat' => 'Gerekli Global',
+                    'seccat' => 'Gerekli Global///Широкий ассортимент из ОАЭ',
                     'language' => 'ru',
                     'imgUrl' => $image,
                     'description' => "Цена товара может меняться за счет коэффицента и дополнительных затрат.",
@@ -138,13 +135,13 @@ class FacesController extends Controller
         $insertData = array();
         foreach ($products as $product) {
             $insertData[] = [
-                'productCode' => $product['productCode'],
+                'productcode' => $product['productcode'],
                 'name' => $product['name'],
                 'price' => $product['price'],
                 'quantity' => $product['quantity'],
                 'status' => $product['status'],
-                'mainCategory' => $product['mainCategory'],
-                'secCategory' => $product['secCategory'],
+                'maincat' => $product['maincat'],
+                'seccat' => $product['seccat'],
                 'language' => $product['language'],
                 'imgUrl' => $product['imgUrl'],
                 'description' => $product['description'],
@@ -153,25 +150,30 @@ class FacesController extends Controller
             ];
         }
 
-        DB::table('facestables')->insert($insertData);
+        DB::table('faces')->insert($insertData);
 
-        $products = DB::select("SELECT * FROM facestables");
+        $products = DB::select("SELECT * FROM faces");
         return $products;
     }
 
     public function makeupdb()
     {
         $client = new Client();
-        echo ("HI");
+        $code = 1;
+        $last = DB::select('select productcode from faces order by id desc limit 1');
+        $firstProduct = $last[0];
+        $productCode = $firstProduct->productcode;
+        $parts = explode('-', $productCode);
+        $number = (int) $parts[2];
+        if ($number > 1) {
+            $code = $number + 1;
+        }
 
         $urls = [
             'https://www.faces.com/ae-en/makeup?sz=1285',
         ];
 
         $products = [];
-
-        $code = 5000;
-
         foreach ($urls as $url) {
             $crawler = $client->request('GET', $url);
 
@@ -183,18 +185,18 @@ class FacesController extends Controller
                 $image = $node->filter('img.product-tile-image-el.tile-image.js-tile-image')->attr('src');
 
                 $stringcode = strval($code);
-                $uaeprice = DB::table('money')->where('id', 2)->value('money');
-                $price = floatval(str_replace(['$', ','], '', $price));
-                $fullprice = $price * $uaeprice;
+                $uaeprice = DB::table('fprice')->where('id', 2)->value('fprice');
+                $price1 = floatval(str_replace(['$', ','], '', $price));
+                $fullprice = $price1 * $uaeprice;
 
                 $product = [
-                    'productCode' => 'uae-parc-' . $stringcode,
+                    'productcode' => 'uae-parc-' . $stringcode,
                     'name' => $name,
                     'price' => $fullprice,
                     'quantity' => 1,
                     'status' => 'A',
-                    'mainCategory' => 'Gerekli Global',
-                    'secCategory' => 'Gerekli Global///Широкий ассортимент из ОАЭ',
+                    'maincat' => 'Gerekli Global',
+                    'seccat' => 'Gerekli Global///Широкий ассортимент из ОАЭ',
                     'language' => 'ru',
                     'imgUrl' => $image,
                     'description' => "Цена товара может меняться за счет коэффицента и дополнительных затрат.",
@@ -209,13 +211,13 @@ class FacesController extends Controller
         $insertData = array();
         foreach ($products as $product) {
             $insertData[] = [
-                'productCode' => $product['productCode'],
+                'productcode' => $product['productcode'],
                 'name' => $product['name'],
                 'price' => $product['price'],
                 'quantity' => $product['quantity'],
                 'status' => $product['status'],
-                'mainCategory' => $product['mainCategory'],
-                'secCategory' => $product['secCategory'],
+                'maincat' => $product['maincat'],
+                'seccat' => $product['seccat'],
                 'language' => $product['language'],
                 'imgUrl' => $product['imgUrl'],
                 'description' => $product['description'],
@@ -224,26 +226,31 @@ class FacesController extends Controller
             ];
         }
 
-        DB::table('facestables')->insert($insertData);
+        DB::table('faces')->insert($insertData);
 
-        $products = DB::select("SELECT * FROM facestables");
+        $products = DB::select("SELECT * FROM faces");
         return $products;
     }
-
     public function privatedb()
     {
         $client = new Client();
+        $code = 1;
+        $last = DB::select('select productcode from faces order by id desc limit 1');
+        $firstProduct = $last[0];
+        $productCode = $firstProduct->productcode;
+        $parts = explode('-', $productCode);
+        $number = (int) $parts[2];
+        if ($number > 1) {
+            $code = $number + 1;
+        }
 
         $urls = [
             'https://www.faces.com/ae-en/fragrance/fragrance_women?sz=955',
             'https://www.faces.com/ae-en/fragrance/private_collection?sz=124',
-            'https://www.faces.com/ae-en/fragrance/fragrance_oud'
+            'https://www.faces.com/ae-en/fragrance/fragrance_oud',
         ];
 
         $products = [];
-
-        $code = 2500;
-
         foreach ($urls as $url) {
             $crawler = $client->request('GET', $url);
 
@@ -255,19 +262,18 @@ class FacesController extends Controller
                 $image = $node->filter('img.product-tile-image-el.tile-image.js-tile-image')->attr('src');
 
                 $stringcode = strval($code);
-
-                $uaeprice = DB::table('money')->where('id', 2)->value('money');
-                $price = floatval(str_replace(['$', ','], '', $price));
-                $fullprice = $price * $uaeprice;
+                $uaeprice = DB::table('fprice')->where('id', 2)->value('fprice');
+                $price1 = floatval(str_replace(['$', ','], '', $price));
+                $fullprice = $price1 * $uaeprice;
 
                 $product = [
-                    'productCode' => 'uae-parc-' . $stringcode,
+                    'productcode' => 'uae-parc-' . $stringcode,
                     'name' => $name,
                     'price' => $fullprice,
                     'quantity' => 1,
                     'status' => 'A',
-                    'mainCategory' => 'Gerekli Global',
-                    'secCategory' => 'Gerekli Global///Широкий ассортимент из ОАЭ',
+                    'maincat' => 'Gerekli Global',
+                    'seccat' => 'Gerekli Global///Широкий ассортимент из ОАЭ',
                     'language' => 'ru',
                     'imgUrl' => $image,
                     'description' => "Цена товара может меняться за счет коэффицента и дополнительных затрат.",
@@ -282,13 +288,13 @@ class FacesController extends Controller
         $insertData = array();
         foreach ($products as $product) {
             $insertData[] = [
-                'productCode' => $product['productCode'],
+                'productcode' => $product['productcode'],
                 'name' => $product['name'],
                 'price' => $product['price'],
                 'quantity' => $product['quantity'],
                 'status' => $product['status'],
-                'mainCategory' => $product['mainCategory'],
-                'secCategory' => $product['secCategory'],
+                'maincat' => $product['maincat'],
+                'seccat' => $product['seccat'],
                 'language' => $product['language'],
                 'imgUrl' => $product['imgUrl'],
                 'description' => $product['description'],
@@ -297,25 +303,29 @@ class FacesController extends Controller
             ];
         }
 
-        DB::table('facestables')->insert($insertData);
+        DB::table('faces')->insert($insertData);
 
-        $products = DB::select("SELECT * FROM facestables");
+        $products = DB::select("SELECT * FROM faces");
         return $products;
     }
-
     public function skincaredb()
     {
         $client = new Client();
-        echo ("HI");
+        $code = 1;
+        $last = DB::select('select productcode from faces order by id desc limit 1');
+        $firstProduct = $last[0];
+        $productCode = $firstProduct->productcode;
+        $parts = explode('-', $productCode);
+        $number = (int) $parts[2];
+        if ($number > 1) {
+            $code = $number + 1;
+        }
 
         $urls = [
             'https://www.faces.com/ae-en/skincare?sz=2519',
         ];
 
         $products = [];
-
-        $code = 1;
-
         foreach ($urls as $url) {
             $crawler = $client->request('GET', $url);
 
@@ -327,18 +337,18 @@ class FacesController extends Controller
                 $image = $node->filter('img.product-tile-image-el.tile-image.js-tile-image')->attr('src');
 
                 $stringcode = strval($code);
-                $uaeprice = DB::table('money')->where('id', 2)->value('money');
-                $price = floatval(str_replace(['$', ','], '', $price));
-                $fullprice = $price * $uaeprice;
+                $uaeprice = DB::table('fprice')->where('id', 2)->value('fprice');
+                $price1 = floatval(str_replace(['$', ','], '', $price));
+                $fullprice = $price1 * $uaeprice;
 
                 $product = [
-                    'productCode' => 'uae-parc-' . $stringcode,
+                    'productcode' => 'uae-parc-' . $stringcode,
                     'name' => $name,
                     'price' => $fullprice,
                     'quantity' => 1,
                     'status' => 'A',
-                    'mainCategory' => 'Gerekli Global',
-                    'secCategory' => 'Gerekli Global///Широкий ассортимент из ОАЭ',
+                    'maincat' => 'Gerekli Global',
+                    'seccat' => 'Gerekli Global///Широкий ассортимент из ОАЭ',
                     'language' => 'ru',
                     'imgUrl' => $image,
                     'description' => "Цена товара может меняться за счет коэффицента и дополнительных затрат.",
@@ -353,13 +363,13 @@ class FacesController extends Controller
         $insertData = array();
         foreach ($products as $product) {
             $insertData[] = [
-                'productCode' => $product['productCode'],
+                'productcode' => $product['productcode'],
                 'name' => $product['name'],
                 'price' => $product['price'],
                 'quantity' => $product['quantity'],
                 'status' => $product['status'],
-                'mainCategory' => $product['mainCategory'],
-                'secCategory' => $product['secCategory'],
+                'maincat' => $product['maincat'],
+                'seccat' => $product['seccat'],
                 'language' => $product['language'],
                 'imgUrl' => $product['imgUrl'],
                 'description' => $product['description'],
@@ -368,9 +378,9 @@ class FacesController extends Controller
             ];
         }
 
-        DB::table('facestables')->insert($insertData);
+        DB::table('faces')->insert($insertData);
 
-        $products = DB::select("SELECT * FROM facestables");
+        $products = DB::select("SELECT * FROM faces");
         return $products;
     }
 }
