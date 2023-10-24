@@ -7,14 +7,35 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Product;
 
-class AsicsController extends Controller
+class TrendyolController extends Controller
 {
-    public function products_1()
+    public function products(Request $request)
     {
+        $batchSize = 200;
+        $page = $request->query('page', 1);
+        $offset = ($page - 1) * $batchSize;
+        $code = 1;
+        $page2 = (int) $page;
+        if ($page2 == 1) {
+            DB::table('products')->delete();
+        } else {
+            $last = DB::select('select productcode from products order by id desc limit 1');
+            $firstProduct = $last[0];
+            $productCode = $firstProduct->productcode;
+            $parts = explode('-', $productCode);
+            $number = (int) $parts[2];
+
+            if ($number > 1) {
+                $code = $number + 1;
+            }
+        }
         $client = new Client();
         $products = array();
-        $code = 1;
-        $productsurls = DB::select("SELECT brands, links FROM productsurl");
+        $productsurls = DB::table('productsurl')
+            ->select('brands', 'links')
+            ->skip($offset)
+            ->take($batchSize)
+            ->get();
 
         foreach ($productsurls as $row) {
             $url = $row->links;
@@ -55,12 +76,18 @@ class AsicsController extends Controller
                 $pricedb = $floatValue * $turkprice;
                 $newprice = $pricedb < 10 ? $pricedb * 1000 : $pricedb;
                 $product = array(
-                    'productCode' => 'turk-parc-' . $stringcode,
+                    'productcode' => 'turk-parc-' . $stringcode,
                     'name' => $name[$i],
                     'price' => $newprice,
+                    'quantity' => 1,
+                    'status' => 'A',
+                    'maincat' => 'Gerekli Global',
+                    'seccat' => 'Gerekli Global///Турецкое качество',
+                    'language' => 'ru',
+                    'description' => 'Цена товара может меняться за счет коэффицента и дополнительных затрат.',
                     'imgUrl' => $imgUrl,
-                    'brand' => $brand,
                     'size' => $size,
+                    'brand' => $brand,
                 );
                 array_push($products, $product);
             }
@@ -69,17 +96,25 @@ class AsicsController extends Controller
         $insertData = array();
         foreach ($products as $product) {
             $insertData[] = [
+                'productcode' => $product['productcode'],
                 'name' => $product['name'],
                 'price' => $product['price'],
+                'quantity' => 1,
+                'status' => 'A',
+                'maincat' => 'Gerekli Global',
+                'seccat' => 'Gerekli Global///Турецкое качество',
+                'language' => 'ru',
+                'description' => 'Цена товара может меняться за счет коэффицента и дополнительных затрат.',
                 'imgUrl' => $product['imgUrl'],
-                'brand' => $product['brand'],
                 'size' => $product['size'],
+                'brand' => $product['brand'],
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
         }
 
         DB::table('products')->insert($insertData);
+        $products = DB::table('products')->get();
         return $products;
     }
 }

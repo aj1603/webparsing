@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class FileDownloadController extends Controller
 {
-    public function download() {
+    public function download()
+    {
         // Create a BinaryFileResponse object
         $response = new BinaryFileResponse('app/public/products.xlsx');
 

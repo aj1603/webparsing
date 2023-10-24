@@ -15,7 +15,8 @@ class ProductsDB extends Controller
         $page = $request->query('page', 1);
         $offset = ($page - 1) * $batchSize;
         $code = 1;
-        if ($page == 1) {
+        $page2 = (int) $page;
+        if ($page2 == 1) {
             DB::table('products')->delete();
         } else {
             $last = DB::select('select productcode from products order by id desc limit 1');
