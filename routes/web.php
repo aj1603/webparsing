@@ -26,4 +26,7 @@ Route::get('/skincaredb', [FacesController::class, 'skincaredb']);
 Route::get('/price', [FpriceController::class]);
 Route::get('/create', [FpriceController::class, 'create'])->name('fprice.create');
 Route::post('/store', [FpriceController::class, 'store']);
-Route::get('/price/{{fprice}}/edit', [FpriceController::class, 'edit'])->name('fprice.edit');
+Route::get('/edit/{fprice}', [FpriceController::class, 'edit'])->name('edit.fprice');
+Route::put('/update/{fprice}', [FpriceController::class, 'update'])->name('update.fprice');
+
+

@@ -10,7 +10,8 @@ class FpriceController extends Controller
 {
     public function create()
     {
-        $fprices = DB::select('SELECT * from fprice');
+        $fprices = DB::select("SELECT id, fprice from fprices");
+        // dd($fprices);
         return view('fprice.create', ['fprices' => $fprices]);
     }
 
@@ -28,42 +29,19 @@ class FpriceController extends Controller
         return view('fprice.create', ['fprices' => $fprices]);
     }
 
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        $fprice = DB::select("SELECT * from fprice WHERE id=1");
-        return view('fprice.edit', ['fprice' => $fprice]);
-        // dd($fprice);
+        $fprices = DB::select("SELECT id, fprice from fprices where id = $id");
+        return view('fprice.edit', ['fprices' => $fprices]);
     }
-
-    //     public function update(Request $request, $id)
-//   {
-//     $request->validate([
-//       'title' => 'required|max:255',
-//       'body' => 'required',
-//     ]);
-//     $post = Post::find($id);
-//     $post->update($request->all());
-//     return redirect()->route('posts.index')
-//       ->with('success', 'Post updated successfully.');
-//   }
     public function update(Request $request, $id)
     {
         $request->validate([
             'new_fprice' => 'required',
         ]);
-
         $tfprice = $request['new_fprice'];
 
-        DB::update("UPDATE fprice SET fprice = $tfprice");
-
-        return redirect()->route('products.index')
-            ->with('success', 'Succsesfylly updated!');
-    }
-
-    public function destroy(Product $product)
-    {
-        $product->delete();
-        return redirect()->route('products.index')
-            ->with('success', 'Succsesfylly deleted!');
+        DB::update("UPDATE fprices SET fprice = $tfprice where id=$id");
+        return redirect()->route('fprice.create');
     }
 }
