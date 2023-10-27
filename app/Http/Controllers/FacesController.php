@@ -72,8 +72,6 @@ class FacesController extends Controller
         }
 
         DB::table('faces')->insert($insertData);
-
-        $products = DB::select("SELECT * FROM faces");
         return $products;
     }
 
@@ -152,7 +150,6 @@ class FacesController extends Controller
 
         DB::table('faces')->insert($insertData);
 
-        $products = DB::select("SELECT * FROM faces");
         return $products;
     }
 
@@ -228,7 +225,6 @@ class FacesController extends Controller
 
         DB::table('faces')->insert($insertData);
 
-        $products = DB::select("SELECT * FROM faces");
         return $products;
     }
     public function privatedb()
@@ -305,7 +301,6 @@ class FacesController extends Controller
 
         DB::table('faces')->insert($insertData);
 
-        $products = DB::select("SELECT * FROM faces");
         return $products;
     }
     public function skincaredb()
@@ -380,7 +375,6 @@ class FacesController extends Controller
 
         DB::table('faces')->insert($insertData);
 
-        $products = DB::select("SELECT * FROM faces");
         return $products;
     }
 }

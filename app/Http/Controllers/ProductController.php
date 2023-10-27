@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\FacesExport;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ImportProduct;
@@ -31,6 +32,11 @@ class ProductController extends Controller
     public function export(Request $request)
     {
         return Excel::download(new ExportProduct, 'products.xlsx');
+    }
+
+    public function exportf(Request $request)
+    {
+        return Excel::download(new FacesExport, 'productsf.xlsx');
     }
 
     public function product_all(Request $request)

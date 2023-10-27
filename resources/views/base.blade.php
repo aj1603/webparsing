@@ -13,7 +13,12 @@
     <h3><a href="/products?page=7">P7</a></h3>
     <h3><a href="/products?page=8">P8</a></h3>
     <h3><a href="/products?page=9">P9</a></h3>
-    <h3><a href="/">Bahasy</a></h3>
+    <h3><a href="/haircaredb">AEF1</a></h3>
+    <h3><a href="/hairmistdb">AEF2</a></h3>
+    <h3><a href="/makeupdb">AEF3</a></h3>
+    <h3><a href="/privatedb">AEF4</a></h3>
+    <h3><a href="/skincaredb">AEF5</a></h3>
+    <h3><a href="/create">Bahasy</a></h3>
     <h3><a href="/export">Export</a></h3>
     <h3><a href="/delete">DELETE</a></h3>
 </nav>
