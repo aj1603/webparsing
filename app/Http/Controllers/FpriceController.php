@@ -11,7 +11,6 @@ class FpriceController extends Controller
     public function create()
     {
         $fprices = DB::select("SELECT id, fprice from fprices");
-        // dd($fprices);
         return view('fprice.create', ['fprices' => $fprices]);
     }
 
@@ -23,10 +22,9 @@ class FpriceController extends Controller
         ($formFields);
 
         $fullfprice = $formFields['fprice'];
-        DB::insert("INSERT INTO fprice (fprice) VALUES ($fullfprice)");
+        DB::insert("INSERT INTO fprices (fprice, created_at, updated_at) VALUES (?, now(), now())", [$fullfprice]);
 
-        $fprices = DB::select('SELECT (fprice) from fprice');
-        return view('fprice.create', ['fprices' => $fprices]);
+        return redirect()->route('fprice.create');
     }
 
     public function edit(Request $request, $id)
@@ -41,7 +39,13 @@ class FpriceController extends Controller
         ]);
         $tfprice = $request['new_fprice'];
 
-        DB::update("UPDATE fprices SET fprice = $tfprice where id=$id");
+        DB::update("UPDATE fprices SET fprice = $tfprice, updated_at = now() where id=$id");
+        return redirect()->route('fprice.create');
+    }
+
+    public function delete(Request $request, $id)
+    {
+        DB::delete("DELETE FROM fprices WHERE id=$id");
         return redirect()->route('fprice.create');
     }
 }

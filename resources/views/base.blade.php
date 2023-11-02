@@ -4,15 +4,15 @@
     center; } .nav-bar a { text-decoration: none; border: 3px solid rebeccapurple; border-radius: 10px; padding: 10px; }
     </style>
 <nav class="nav-bar">
-    <h3><a href="/products?page=1">P1</a></h3>
-    <h3><a href="/products?page=2">P2</a></h3>
-    <h3><a href="/products?page=3">P3</a></h3>
-    <h3><a href="/products?page=4">P4</a></h3>
-    <h3><a href="/products?page=5">P5</a></h3>
-    <h3><a href="/products?page=6">P6</a></h3>
-    <h3><a href="/products?page=7">P7</a></h3>
-    <h3><a href="/products?page=8">P8</a></h3>
-    <h3><a href="/products?page=9">P9</a></h3>
+    <h3><a href="/trendyolpro?page=1">P1</a></h3>
+    <h3><a href="/trendyolpro?page=2">P2</a></h3>
+    <h3><a href="/trendyolpro?page=3">P3</a></h3>
+    <h3><a href="/trendyolpro?page=4">P4</a></h3>
+    <h3><a href="/trendyolpro?page=5">P5</a></h3>
+    <h3><a href="/trendyolpro?page=6">P6</a></h3>
+    <h3><a href="/trendyolpro?page=7">P7</a></h3>
+    <h3><a href="/trendyolpro?page=8">P8</a></h3>
+    <h3><a href="/trendyolpro?page=9">P9</a></h3>
     <h3><a href="/haircaredb">AEF1</a></h3>
     <h3><a href="/hairmistdb">AEF2</a></h3>
     <h3><a href="/makeupdb">AEF3</a></h3>

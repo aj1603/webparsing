@@ -189,7 +189,7 @@
             <div>
                 <a href="{{ route('edit.fprice', ['fprice' => $fprice->id]) }}"
                     class="edit_btn btn-primary btn-sm">Edit</a>
-                <span class="delete_btn">Delete</span>
+                <a href="{{ route('delete.fprice', ['fprice' => $fprice->id]) }}" class="delete_btn">Delete</a>
             </div>
 
         </div>

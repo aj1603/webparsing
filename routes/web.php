@@ -27,6 +27,7 @@ Route::get('/price', [FpriceController::class]);
 Route::get('/create', [FpriceController::class, 'create'])->name('fprice.create');
 Route::post('/store', [FpriceController::class, 'store']);
 Route::get('/edit/{fprice}', [FpriceController::class, 'edit'])->name('edit.fprice');
+Route::get('/delete/{fprice}', [FpriceController::class, 'delete'])->name('delete.fprice');
 Route::put('/update/{fprice}', [FpriceController::class, 'update'])->name('update.fprice');
 
 
