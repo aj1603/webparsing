@@ -15,6 +15,8 @@ Route::get('/delete', [ProductController::class, 'delete']);
 
 Route::get('/trendyolurl', [TrendyolController::class, 'trendyolurl']);
 Route::get('/trendyolpro', [TrendyolController::class, 'trendyolpro']);
+Route::get('/pullbearurl', [TrendyolController::class, 'pullbearurl']);
+Route::get('/pullbearproducts', [TrendyolController::class, 'pullbearproducts']);
 
 Route::get('/haircaredb', [FacesController::class, 'haircaredb']);
 Route::get('/hairmistdb', [FacesController::class, 'hairmistdb']);

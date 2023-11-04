@@ -39,6 +39,16 @@ class FpriceController extends Controller
         ]);
         $tfprice = $request['new_fprice'];
 
+        $orginalprice = DB::select("SELECT id, orginalprice FROM pullbearproducts");
+        for ($i = 0; $i < count($orginalprice); $i++) {
+            foreach ($orginalprice as $orginalprdb)
+                $orginalpricedb = $orginalprdb->price;
+            $productid = $orginalprdb->id;
+            $newproduct = $orginalpricedb * $tfprice;
+            $newprice = $newproduct < 10 ? $newproduct * 1000 : $newproduct;
+            DB::update("UPDATE pullbearproducts SET price = $newprice, updated_at = now() where id=$productid");
+        }
+
         DB::update("UPDATE fprices SET fprice = $tfprice, updated_at = now() where id=$id");
         return redirect()->route('fprice.create');
     }

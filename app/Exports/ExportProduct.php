@@ -15,6 +15,7 @@ class ExportProduct implements FromCollection
         return Product::select(
             'productcode',
             'name',
+            'orginalprice',
             'price',
             'quantity',
             'status',

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFacesTable extends Migration
+class CreateWomencoatproductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateFacesTable extends Migration
      */
     public function up()
     {
-        Schema::create('faces', function (Blueprint $table) {
+        Schema::create('womencoatproducts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('productcode');
             $table->string('name');
@@ -25,7 +25,9 @@ class CreateFacesTable extends Migration
             $table->string('seccat');
             $table->string('language');
             $table->string('description');
-            $table->string('imgUrl', 1000);
+            $table->string('imgUrl');
+            $table->string('size');
+            $table->string('brand');
             $table->timestamps();
         });
     }
@@ -37,6 +39,6 @@ class CreateFacesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('faces');
+        Schema::dropIfExists('womencoatproducts');
     }
 }

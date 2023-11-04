@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductsurlTable extends Migration
+class CreateWomencoaturlTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateProductsurlTable extends Migration
      */
     public function up()
     {
-        Schema::create('productsurl', function (Blueprint $table) {
+        Schema::create('womencoaturl', function (Blueprint $table) {
             $table->id();
             $table->string('brands');
             $table->string('links', 1000);
@@ -28,6 +28,6 @@ class CreateProductsurlTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('productsurl');
+        Schema::dropIfExists('womencoaturl');
     }
 }
