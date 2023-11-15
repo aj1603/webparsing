@@ -110,7 +110,7 @@ class TrendyolController extends Controller
         }
     }
 
-    public function womencoatproducts(Request $request)
+    public function womencoatproducts11s(Request $request)
     {
         $batchSize = 200;
         $page = $request->query('page', 1);
@@ -170,7 +170,6 @@ class TrendyolController extends Controller
                 $surat = explode(".", $image[$i]);
                 if ($surat[3] == 'jpg') {
                     $imgUrl = $image[$i];
-                    break;
                 }
             }
 

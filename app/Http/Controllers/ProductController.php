@@ -41,7 +41,7 @@ class ProductController extends Controller
 
     public function product_all(Request $request)
     {
-        $products = DB::select("SELECT * FROM pullbearproducts");
+        $products = DB::select("SELECT * FROM womencoatproducts");
         return view('productall', ['products' => $products]);
     }
 

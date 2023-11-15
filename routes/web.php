@@ -13,8 +13,8 @@ Route::get('/export', [ProductController::class, 'export'])->name('export');
 Route::get('/exportf', [ProductController::class, 'exportf'])->name('exportf');
 Route::get('/delete', [ProductController::class, 'delete']);
 
-Route::get('/trendyolurl', [TrendyolController::class, 'trendyolurl']);
-Route::get('/trendyolpro', [TrendyolController::class, 'trendyolpro']);
+Route::get('/womencoaturl', [TrendyolController::class, 'womencoaturl']);
+Route::get('/womencoatproducts', [TrendyolController::class, 'womencoatproducts']);
 Route::get('/pullbearurl', [TrendyolController::class, 'pullbearurl']);
 Route::get('/pullbearproducts', [TrendyolController::class, 'pullbearproducts']);
 
