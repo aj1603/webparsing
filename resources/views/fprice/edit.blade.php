@@ -4,7 +4,8 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        border: 1px solid gray;
+        border:
+            1px solid gray;
         border-radius: 20px;
         background-color: beige;
     }
@@ -12,7 +13,8 @@
     .form-control {
         width: 70%;
         font-size: 20px;
-        height: 40px;
+        height:
+            40px;
         border-radius: 10px;
         padding: 10px
     }
@@ -30,7 +32,8 @@
         background-color: rgb(2, 95, 2);
         border-radius: 10px;
         color: white;
-        padding: 10px;
+        padding:
+            10px;
         width: 100px;
         text-align: center;
         cursor: pointer;
