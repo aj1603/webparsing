@@ -110,7 +110,7 @@ class TrendyolController extends Controller
         }
     }
 
-    public function womencoatproducts11s(Request $request)
+    public function womencoatproducts(Request $request)
     {
         $batchSize = 200;
         $page = $request->query('page', 1);
@@ -481,6 +481,173 @@ class TrendyolController extends Controller
 
         DB::table('pullbearproducts')->insert($insertData);
         $products = DB::table('pullbearproducts')->get();
+        return $products;
+    }
+
+
+    public function mencoaturl()
+    {
+        DB::table('mencoaturl')->delete();
+        $client = new Client();
+        $urls = [
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=1',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=2',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=3',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=4',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=5',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=6',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=7',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=8',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=9',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=10',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=11',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=12',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=13',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=14',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=15',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=16',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=17',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=18',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=19',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=20',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=21',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=22',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=23',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=24',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=25',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=26',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=27',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=28',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=29',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=30',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=31',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=32',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=33',
+            'https://www.trendyol.com/erkek-palto-x-g2-c1130?pi=34',
+        ];
+
+        foreach ($urls as $url) {
+            $response = $client->request('GET', $url);
+            $productLinks = $response->filter('.p-card-chldrn-cntnr.card-border a')->links();
+
+            foreach ($productLinks as $link) {
+                $linkUrl = $link->getUri();
+                $brandspl = explode("/", $linkUrl);
+                $brand = $brandspl[3];
+                DB::insert("INSERT INTO mencoaturl (brands, links, created_at, updated_at) VALUES (?, ?, ?, ?)", [$brand, $linkUrl, now(), now()]);
+            }
+        }
+    }
+    public function mencoatproducts(Request $request)
+    {
+        $batchSize = 200;
+        $page = $request->query('page', 1);
+        $offset = ($page - 1) * $batchSize;
+        $productCode = 0;
+        $page2 = (int) $page;
+        if ($page2 == 1) {
+            DB::table('mencoatproducts')->delete();
+        }
+        ;
+
+        $client = new Client();
+        $products = array();
+        $mencoaturls = DB::table('mencoaturl')
+            ->select('brands', 'links')
+            ->skip($offset)
+            ->take($batchSize)
+            ->get();
+
+        foreach ($mencoaturls as $row) {
+            $url = $row->links;
+            echo ($url);
+            $regex = '/-p-(\d+)\?/';
+            preg_match($regex, $url, $matches);
+            $productCode = $matches[1] ?? null;
+            if ($productCode == null) {
+                $urlParts = parse_url($url);
+                if (isset($urlParts['path'])) {
+                    $splitslesh = explode('/', $urlParts['path']);
+                    $lastSegment = end($splitslesh);
+                    $splitminus = explode('-', $lastSegment);
+                    $productCode = end($splitminus);
+                }
+            }
+            $brand = $row->brands;
+            $response = $client->request('GET', $url);
+            $name = $response->filter('h1.pr-new-br')->each(function ($node) {
+                return $node->text();
+            });
+            $esize = $response->filter('.sp-itm')->each(function ($node) {
+                return $node->text();
+            });
+            $nsize = $response->filter('.so.sp-itm')->each(function ($node) {
+                return $node->text();
+            });
+            $price = $response->filter('.prc-dsc')->each(function ($node) {
+                return $node->text();
+            });
+            $image = $response->filter('img')->each(function ($node) {
+                return $node->attr('src');
+            });
+            $missingSizes = array_diff($esize, $nsize);
+            $size = implode('-', $missingSizes);
+
+            $imgUrl;
+            for ($i = 0; $i < count($image); $i++) {
+                $surat = explode(".", $image[$i]);
+                if ($surat[3] == 'jpg') {
+                    $imgUrl = $image[$i];
+                }
+            }
+
+            for ($i = 0; $i < count($name); $i++) {
+                $fullprice = explode(" ", $price[$i]);
+                $floatValue = floatval($fullprice[0]);
+                $turkprice = DB::table('fprices')->where('id', 1)->value('fprice');
+                $pricedb = $floatValue * $turkprice;
+                $newprice = $pricedb < 10 ? $pricedb * 1000 : $pricedb;
+                $product = array(
+                    'productcode' => 'turk-parc-' . $productCode,
+                    'name' => $name[$i],
+                    'orginalprice' => $floatValue,
+                    'price' => $newprice,
+                    'quantity' => 1,
+                    'status' => 'A',
+                    'maincat' => 'Gerekli Global///Турецкое качество///Мужская верхняя одежда',
+                    'seccat' => 'Gerekli Global///Турецкое качество',
+                    'language' => 'ru',
+                    'description' => 'Цена товара может меняться за счет коэффицента и дополнительных затрат.',
+                    'imgUrl' => $imgUrl,
+                    'size' => $size,
+                    'brand' => $brand,
+                );
+                array_push($products, $product);
+            }
+        }
+        $insertData = array();
+        foreach ($products as $product) {
+            $insertData[] = [
+                'productcode' => $product['productcode'],
+                'name' => $product['name'],
+                'orginalprice' => $product['orginalprice'],
+                'price' => $product['price'],
+                'quantity' => 1,
+                'status' => 'A',
+                'maincat' => 'Gerekli Global///Турецкое качество///Мужская верхняя одежда',
+                'seccat' => 'Gerekli Global///Турецкое качество',
+                'language' => 'ru',
+                'description' => 'Цена товара может меняться за счет коэффицента и дополнительных затрат.',
+                'imgUrl' => $product['imgUrl'],
+                'size' => $product['size'],
+                'brand' => $product['brand'],
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+        }
+
+        DB::table('mencoatproducts')->insert($insertData);
+        $products = DB::table('mencoatproducts')->get();
         return $products;
     }
 }

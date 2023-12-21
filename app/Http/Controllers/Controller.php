@@ -12,12 +12,4 @@ use App\Jobs\WomencoatProductsJob;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-    public function womencoatproducts(Request $request)
-    {
-        // Dispatch the job to run asynchronously
-        dispatch(new WomencoatProductsJob());
-
-        // Return a response if needed
-        return response()->json(['message' => 'The womencoatproducts job has been dispatched.']);
-    }
 }

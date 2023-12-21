@@ -17,6 +17,9 @@ Route::get('/womencoaturl', [TrendyolController::class, 'womencoaturl']);
 Route::get('/womencoatproducts', [TrendyolController::class, 'womencoatproducts']);
 Route::get('/pullbearurl', [TrendyolController::class, 'pullbearurl']);
 Route::get('/pullbearproducts', [TrendyolController::class, 'pullbearproducts']);
+Route::get('/mencoaturl', [TrendyolController::class, 'mencoaturl']);
+Route::get('/mencoatproducts', [TrendyolController::class, 'mencoatproducts']);
+
 
 Route::get('/haircaredb', [FacesController::class, 'haircaredb']);
 Route::get('/hairmistdb', [FacesController::class, 'hairmistdb']);
