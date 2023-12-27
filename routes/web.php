@@ -21,6 +21,10 @@ Route::get('/mencoaturl', [TrendyolController::class, 'mencoaturl']);
 Route::get('/mencoatproducts', [TrendyolController::class, 'mencoatproducts']);
 Route::get('/pumaurl1', [TrendyolController::class, 'pumaurl1']);
 Route::get('/pumaproducts1', [TrendyolController::class, 'pumaproducts1']);
+Route::get('/pumaurl1', [TrendyolController::class, 'pumaurl2']);
+Route::get('/pumaproducts1', [TrendyolController::class, 'pumaproducts2']);
+Route::get('/pumaurl1', [TrendyolController::class, 'pumaurl3']);
+Route::get('/pumaproducts1', [TrendyolController::class, 'pumaproducts3']);
 
 
 Route::get('/haircaredb', [FacesController::class, 'haircaredb']);
