@@ -650,4 +650,238 @@ class TrendyolController extends Controller
         $products = DB::table('mencoatproducts')->get();
         return $products;
     }
+
+    public function pumaurl1()
+    {
+        DB::table('pumaurl1')->delete();
+        $client = new Client();
+        $urls = [
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=1',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=2',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=3',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=4',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=5',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=6',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=7',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=8',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=9',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=10',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=11',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=12',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=13',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=14',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=15',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=16',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=17',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=18',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=19',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=20',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=21',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=22',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=23',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=24',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=25',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=26',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=27',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=28',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=29',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=30',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=31',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=32',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=33',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=34',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=35',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=36',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=37',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=38',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=39',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=40',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=41',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=42',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=43',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=44',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=45',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=46',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=47',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=48',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=49',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=50',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=51',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=52',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=53',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=54',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=55',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=56',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=57',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=58',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=59',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=60',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=61',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=62',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=63',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=64',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=65',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=66',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=67',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=68',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=69',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=70',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=71',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=72',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=73',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=74',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=75',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=76',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=77',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=78',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=79',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=80',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=81',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=82',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=83',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=84',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=85',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=86',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=87',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=88',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=89',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=90',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=91',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=92',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=93',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=94',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=95',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=96',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=97',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=98',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=99',
+            'https://www.trendyol.com/sr?q=puma&qt=puma&st=puma&os=1&pi=100',
+
+        ];
+
+        foreach ($urls as $url) {
+            $response = $client->request('GET', $url);
+            $productLinks = $response->filter('.p-card-chldrn-cntnr.card-border a')->links();
+
+            foreach ($productLinks as $link) {
+                $linkUrl = $link->getUri();
+                $brandspl = explode("/", $linkUrl);
+                $brand = $brandspl[3];
+                DB::insert("INSERT INTO pumaurl1 (brands, links, created_at, updated_at) VALUES (?, ?, ?, ?)", [$brand, $linkUrl, now(), now()]);
+            }
+        }
+    }
+
+    public function pumaproducts1(Request $request)
+    {
+        $batchSize = 200;
+        $page = $request->query('page', 1);
+        $offset = ($page - 1) * $batchSize;
+        $productCode = 0;
+        $page2 = (int) $page;
+        if ($page2 == 1) {
+            DB::table('pumaproducts1')->delete();
+        }
+        ;
+
+        $client = new Client();
+        $products = array();
+        $pumaurls = DB::table('pumaurl1')
+            ->select('brands', 'links')
+            ->skip($offset)
+            ->take($batchSize)
+            ->get();
+
+        foreach ($pumaurls as $row) {
+            $url = $row->links;
+            echo ($url);
+            $regex = '/-p-(\d+)\?/';
+            preg_match($regex, $url, $matches);
+            $productCode = $matches[1] ?? null;
+            if ($productCode == null) {
+                $urlParts = parse_url($url);
+                if (isset($urlParts['path'])) {
+                    $splitslesh = explode('/', $urlParts['path']);
+                    $lastSegment = end($splitslesh);
+                    $splitminus = explode('-', $lastSegment);
+                    $productCode = end($splitminus);
+                }
+            }
+            $brand = $row->brands;
+            $response = $client->request('GET', $url);
+            $name = $response->filter('h1.pr-new-br')->each(function ($node) {
+                return $node->text();
+            });
+            $esize = $response->filter('.sp-itm')->each(function ($node) {
+                return $node->text();
+            });
+            $nsize = $response->filter('.so.sp-itm')->each(function ($node) {
+                return $node->text();
+            });
+            $price = $response->filter('.prc-dsc')->each(function ($node) {
+                return $node->text();
+            });
+            $image = $response->filter('img')->each(function ($node) {
+                return $node->attr('src');
+            });
+            $missingSizes = array_diff($esize, $nsize);
+            $size = implode('-', $missingSizes);
+
+            $imgUrl;
+            for ($i = 0; $i < count($image); $i++) {
+                $surat = explode(".", $image[$i]);
+                if ($surat[3] == 'jpg') {
+                    $imgUrl = $image[$i];
+                }
+            }
+
+            for ($i = 0; $i < count($name); $i++) {
+                $fullprice = explode(" ", $price[$i]);
+                $floatValue = floatval($fullprice[0]);
+                $turkprice = DB::table('fprices')->where('id', 1)->value('fprice');
+                $pricedb = $floatValue * $turkprice;
+                $newprice = $pricedb < 10 ? $pricedb * 1000 : $pricedb;
+                $product = array(
+                    'productcode' => 'turk-parc-' . $productCode,
+                    'name' => $name[$i],
+                    'orginalprice' => $floatValue,
+                    'price' => $newprice,
+                    'quantity' => 1,
+                    'status' => 'A',
+                    'maincat' => 'Gerekli Global///Турецкое качество///Мужская верхняя одежда',
+                    'seccat' => 'Gerekli Global///Турецкое качество',
+                    'language' => 'ru',
+                    'description' => 'Цена товара может меняться за счет коэффицента и дополнительных затрат.',
+                    'imgUrl' => $imgUrl,
+                    'size' => $size,
+                    'brand' => $brand,
+                );
+                array_push($products, $product);
+            }
+        }
+        $insertData = array();
+        foreach ($products as $product) {
+            $insertData[] = [
+                'productcode' => $product['productcode'],
+                'name' => $product['name'],
+                'orginalprice' => $product['orginalprice'],
+                'price' => $product['price'],
+                'quantity' => 1,
+                'status' => 'A',
+                'maincat' => 'Gerekli Global///Турецкое качество///Мужская верхняя одежда',
+                'seccat' => 'Gerekli Global///Турецкое качество',
+                'language' => 'ru',
+                'description' => 'Цена товара может меняться за счет коэффицента и дополнительных затрат.',
+                'imgUrl' => $product['imgUrl'],
+                'size' => $product['size'],
+                'brand' => $product['brand'],
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+        }
+
+        DB::table('pumaproducts1')->insert($insertData);
+        $products = DB::table('pumaproducts1')->get();
+        return $products;
+    }
 }
